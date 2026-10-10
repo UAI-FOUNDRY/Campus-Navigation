@@ -1,0 +1,120 @@
+{
+  "_readme": "Ground floor of Block A / main building. Distances are the team's tile measurements (metres). x,y are pixel positions on ground.png (1357 x 882) and are GUESSES: move them to the real spots. Never rename ids.",
+  "status": "draft",
+  "floor": 0,
+  "image": "ground.png",
+  "image_size": [
+    1357,
+    882
+  ],
+  "nodes": [
+    {
+      "id": "a0_quad_south_exit",
+      "type": "exit",
+      "name": "Quadrangle south entrance",
+      "x": 850,
+      "y": 850
+    },
+    {
+      "id": "a0_adminlobby",
+      "type": "gate",
+      "name": "Admin Lobby gate",
+      "x": 981,
+      "y": 560
+    },
+    {
+      "id": "a0_mess_inside_door",
+      "type": "door",
+      "name": "Cafeteria / Mess inside door",
+      "x": 990,
+      "y": 336
+    },
+    {
+      "id": "a0_library",
+      "type": "area",
+      "name": "Library",
+      "x": 800,
+      "y": 330
+    },
+    {
+      "id": "a0_everest_door",
+      "type": "door",
+      "name": "Mount Everest 130",
+      "x": 733,
+      "y": 400
+    },
+    {
+      "id": "a0_lhotse_door",
+      "type": "door",
+      "name": "Mount Lhotse",
+      "x": 704,
+      "y": 718
+    },
+    {
+      "id": "a0_clinic",
+      "type": "door",
+      "name": "Clinic",
+      "x": 703,
+      "y": 792
+    }
+  ],
+  "edges": [
+    {
+      "label": "start to lobby",
+      "from": "a0_quad_south_exit",
+      "to": "a0_adminlobby",
+      "meters": 40
+    },
+    {
+      "label": "lobby to mess",
+      "from": "a0_adminlobby",
+      "to": "a0_mess_inside_door",
+      "meters": 27
+    },
+    {
+      "label": "mess to library",
+      "from": "a0_mess_inside_door",
+      "to": "a0_library",
+      "meters": 32
+    },
+    {
+      "label": "library to Everest",
+      "from": "a0_library",
+      "to": "a0_everest_door",
+      "meters": 19
+    },
+    {
+      "label": "Everest to Lhotse",
+      "from": "a0_everest_door",
+      "to": "a0_lhotse_door",
+      "meters": 21
+    },
+    {
+      "label": "Lhotse to clinic",
+      "from": "a0_lhotse_door",
+      "to": "a0_clinic",
+      "meters": 14
+    },
+    {
+      "label": "clinic to start",
+      "from": "a0_clinic",
+      "to": "a0_quad_south_exit",
+      "meters": 15
+    }
+  ],
+  "links": [
+    {
+      "label": "start = quadrangle south entrance (Q3) joins the outdoor map",
+      "indoor": "a0_quad_south_exit",
+      "outdoor": "quad_south_entrance",
+      "meters": 0,
+      "note": "add the outdoor dot quad_south_entrance in geojson.io (v3) at the south exit, connected to the nearest path"
+    },
+    {
+      "label": "mess inside door to mess back entrance (inner gate)",
+      "indoor": "a0_mess_inside_door",
+      "outdoor": "mess_entrance",
+      "meters": 19
+    }
+  ]
+}

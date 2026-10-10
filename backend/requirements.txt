@@ -1,6 +1,4 @@
-flask
-flask-cors
-networkx
-rapidfuzz
-pytest
-gunicorn
+flask>=3.0
+rapidfuzz>=3.0
+gunicorn>=21.2
+pytest>=8.0
