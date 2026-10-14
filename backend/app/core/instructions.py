@@ -106,7 +106,10 @@ def build_route(graph, result, walk_speed, goal_name=None):
             continue
         a, b = nodes[node_ids[i]], nodes[node_ids[i + 1]]
         w = int(round(e["weight"]))  # indoor distances are short: whole metres
-        if e["space"] == "link":
+        if e["space"] == "link" and e["weight"] < 1:  # a doorway only: no distance to announce
+            text = (f"Go inside through {_label(a)}" if a["space"] == "outdoor"
+                    else f"Go outside through {_label(b)}")
+        elif e["space"] == "link":
             text = (f"Go inside and walk {w} m to {_label(b)}" if a["space"] == "outdoor"
                     else f"Go outside and walk {w} m to {_label(b)}")
         else:

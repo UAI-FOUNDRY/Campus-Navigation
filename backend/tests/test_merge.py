@@ -31,14 +31,14 @@ OUTDOOR = {"type": "FeatureCollection", "features": [
 ]}
 
 
-def indoor(meters=30, link_to="back_door"):
+def indoor(meters=30, link_to="back_door", link_m=50):
     return {"floor": 0, "image": "g.png", "image_size": [400, 300], "nodes": [
         {"id": "X", "type": "door", "name": "Hall door", "x": 100, "y": 100},
         {"id": "Y", "type": "door", "name": "Room Y", "x": 200, "y": 100},
         {"id": "Z", "type": "door", "name": "Room Z", "x": 100, "y": 200}],
         "edges": [{"label": "xy", "from": "X", "to": "Y", "meters": meters},
                   {"label": "xz", "from": "X", "to": "Z", "meters": 20}],
-        "links": [{"label": "door", "indoor": "X", "outdoor": link_to, "meters": 50}]}
+        "links": [{"label": "door", "indoor": "X", "outdoor": link_to, "meters": link_m}]}
 
 
 PLACES = [{"id": "hall", "name": "Hall", "aliases": ["main hall"], "entry_nodes": ["X", "back_door"]},
@@ -46,7 +46,7 @@ PLACES = [{"id": "hall", "name": "Hall", "aliases": ["main hall"], "entry_nodes"
           {"id": "room_z", "name": "Room Z", "entry_nodes": ["Z"]}]
 
 
-def build(ind=None, places=PLACES):
+def build(ind=None, places=PLACES):  # noqa: E302
     data, errors, warnings = merge(OUTDOOR, [ind or indoor()], places)
     assert not errors, errors
     return CampusGraph(data), warnings
@@ -135,3 +135,11 @@ def test_a_too_good_indoor_shortcut_does_not_break_a_star():
             assert (found is None) == (expected is None)
             if found:
                 assert abs(found.distance - expected) < 1e-6, (a, b)
+
+
+def test_a_doorway_link_has_no_distance_in_the_step_text():
+    g, _ = build(indoor(link_m=0))
+    _, out = route(g, "gate_main", "room_z")
+    texts = [s["instruction"] for s in out["steps"]]
+    assert "Go inside through Back Door" in texts
+    assert not any("walk 0 m" in t for t in texts)
