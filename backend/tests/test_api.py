@@ -83,3 +83,24 @@ def test_gps_start_and_off_campus():
     ok = c.get(f"/api/route?from_lat={gate['lat']}&from_lng={gate['lng']}&to=mount_lhotse")
     assert ok.status_code == 200 and ok.json["from"] == "gate_main"
     assert c.get("/api/route?from_lat=0&from_lng=0&to=gym_entrance").status_code == 422
+
+
+def test_estimates_gives_walking_minutes():
+    c = client()
+    r = c.post("/api/estimates", json={"start": "gate_main", "destinations": ["mess", "gym_entrance", "nope"]})
+    est = r.json["estimates"]
+    assert r.status_code == 200 and set(est) == {"mess", "gym_entrance"}
+    assert all(isinstance(m, int) and m >= 1 for m in est.values())
+    assert c.post("/api/estimates", json={"start": "nope", "destinations": []}).status_code == 404
+    assert c.post("/api/estimates", json={}).status_code == 400
+
+
+def test_report_is_saved(tmp_path, monkeypatch):
+    from app import config
+
+    monkeypatch.setattr(config, "REPORTS_PATH", tmp_path / "reports.jsonl")
+    c = client()
+    r = c.post("/api/report", json={"start": "gate_main", "destination": "mess", "reason": "Path is blocked"})
+    assert r.status_code == 201
+    assert "Path is blocked" in (tmp_path / "reports.jsonl").read_text()
+    assert c.post("/api/report", json={"details": "no reason"}).status_code == 400

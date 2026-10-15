@@ -30,6 +30,8 @@ def create_app(data_path=None):
     @app.after_request
     def add_cors(resp):  # lets the Flutter web build and local tools call the API
         resp.headers["Access-Control-Allow-Origin"] = "*"
+        resp.headers["Access-Control-Allow-Headers"] = "Content-Type, If-None-Match"
+        resp.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
         return resp
 
     @app.errorhandler(404)

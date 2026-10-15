@@ -6,3 +6,4 @@ DATA_PATH = Path(os.environ.get("CAMPUS_DATA", ROOT / "data" / "build" / "campus
 WALK_SPEED_MPS = float(os.environ.get("WALK_SPEED_MPS", "1.3"))  # about 78 m per minute
 MAX_SNAP_M = float(os.environ.get("MAX_SNAP_M", "150"))  # GPS fix farther than this from any node is "off campus"
 ROUTE_CACHE_SIZE = 512
+REPORTS_PATH = Path(os.environ.get("CAMPUS_REPORTS", ROOT / "data" / "reports.jsonl"))  # "Report a problem" inbox

@@ -7,3 +7,5 @@ venv/
 # Flutter build output
 app/build/
 app/.dart_tool/
+# reports sent from the app
+data/reports.jsonl

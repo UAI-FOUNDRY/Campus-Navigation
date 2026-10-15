@@ -275,6 +275,14 @@ Example: `/api/route?from=gate_main&to=nope` gives 404:
 }
 ```
 
+## POST /api/estimates
+Walking minutes from one start to many places, for the "2 min walk" labels. Body: `{"start": "gate_main", "destinations": ["mess", "gym_entrance"]}`.
+Answers `{"estimates": {"mess": 3, "gym_entrance": 7}}`. Unknown or unreachable places are left out; unknown `start` is `404 not_found`.
+
+## POST /api/report
+The app's "Report a problem" sheet. Body: `{"start", "destination", "reason", "details"}` (`reason` required). Each report is appended to
+`data/reports.jsonl` (override with `CAMPUS_REPORTS`). Answers `201 {"status": "received"}`.
+
 ## GET /api/floors
 Floor-plan images the app should bundle (put the file in `app/assets/floorplans/`). `image_size` is the pixel size that
 `x`/`y` refer to.
