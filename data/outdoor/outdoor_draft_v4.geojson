@@ -1,0 +1,1647 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.373594,
+          18.903652
+        ]
+      },
+      "properties": {
+        "id": "gate_main",
+        "type": "gate",
+        "name": "Main Gate",
+        "marker-size": "medium",
+        "marker-color": "rgba(36, 33, 210, 1)"
+      },
+      "bbox": [
+        73.373594,
+        18.903652,
+        73.373594,
+        18.903652
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374554,
+          18.903
+        ]
+      },
+      "properties": {
+        "id": "quad_south_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(0, 0, 0, 1)",
+        "marker-size": "medium",
+        "name": "Quadrangle South Entrance"
+      },
+      "bbox": [
+        73.374406,
+        18.903091,
+        73.374406,
+        18.903091
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374095,
+          18.902669
+        ]
+      },
+      "properties": {
+        "id": "faculty_junction",
+        "type": "junction",
+        "marker-color": "rgba(209, 37, 157, 1)",
+        "marker-size": "medium"
+      },
+      "bbox": [
+        73.374095,
+        18.902669,
+        73.374095,
+        18.902669
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374482,
+          18.90239
+        ]
+      },
+      "properties": {
+        "id": "mess_junction",
+        "type": "junction",
+        "marker-color": "rgba(189, 28, 28, 1)",
+        "marker-size": "medium"
+      },
+      "bbox": [
+        73.374482,
+        18.90239,
+        73.374482,
+        18.90239
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374665,
+          18.902202
+        ]
+      },
+      "properties": {
+        "id": "hostel_junction01",
+        "type": "junction",
+        "marker-color": "rgba(182, 122, 39, 1)",
+        "marker-size": "medium"
+      },
+      "bbox": [
+        73.374665,
+        18.902202,
+        73.374665,
+        18.902202
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374595,
+          18.902549
+        ]
+      },
+      "properties": {
+        "id": "mess_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(47, 130, 95, 1)",
+        "marker-size": "medium",
+        "name": "Mess Back Entrance"
+      },
+      "bbox": [
+        73.374595,
+        18.902549,
+        73.374595,
+        18.902549
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374689,
+          18.901849
+        ]
+      },
+      "properties": {
+        "id": "tuck_junction",
+        "type": "junction",
+        "marker-color": "rgba(146, 204, 39, 1)",
+        "marker-size": "medium"
+      },
+      "bbox": [
+        73.374689,
+        18.901849,
+        73.374689,
+        18.901849
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.37457,
+          18.901617
+        ]
+      },
+      "properties": {
+        "id": "hostel_junction02",
+        "type": "junction",
+        "marker-color": "rgba(48, 173, 164, 1)",
+        "marker-size": "medium"
+      },
+      "bbox": [
+        73.37457,
+        18.901617,
+        73.37457,
+        18.901617
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374836,
+          18.901329
+        ]
+      },
+      "properties": {
+        "id": "hostel_junction03",
+        "type": "junction",
+        "marker-color": "rgba(221, 255, 0, 1)",
+        "marker-size": "medium"
+      },
+      "bbox": [
+        73.374836,
+        18.901329,
+        73.374836,
+        18.901329
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.375078,
+          18.901435
+        ]
+      },
+      "properties": {
+        "id": "hostel_junction04",
+        "type": "junction",
+        "marker-color": "rgba(255, 98, 0, 1)",
+        "marker-size": "medium"
+      },
+      "bbox": [
+        73.375078,
+        18.901435,
+        73.375078,
+        18.901435
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.375393,
+          18.902309
+        ]
+      },
+      "properties": {
+        "id": "hostel_junction05",
+        "type": "junction",
+        "marker-color": "rgba(0, 255, 208, 1)",
+        "marker-size": "medium"
+      },
+      "bbox": [
+        73.375393,
+        18.902309,
+        73.375393,
+        18.902309
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.375916,
+          18.903263
+        ]
+      },
+      "properties": {
+        "id": "gym_junction",
+        "type": "junction",
+        "marker-color": "rgba(0, 62, 46, 1)",
+        "marker-size": "medium"
+      },
+      "bbox": [
+        73.375916,
+        18.903263,
+        73.375916,
+        18.903263
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.375638,
+          18.903652
+        ]
+      },
+      "properties": {
+        "marker-color": "rgba(172, 135, 247, 1)",
+        "marker-size": "medium",
+        "id": "junction_01",
+        "type": "junction"
+      },
+      "bbox": [
+        73.375638,
+        18.903652,
+        73.375638,
+        18.903652
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374795,
+          18.903368
+        ]
+      },
+      "properties": {
+        "id": "junction00",
+        "type": "junction",
+        "marker-color": "rgba(201, 255, 101, 1)",
+        "marker-size": "medium"
+      },
+      "bbox": [
+        73.374795,
+        18.903368,
+        73.374795,
+        18.903368
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.375614,
+          18.902593
+        ]
+      },
+      "properties": {
+        "id": "hostel_junction06",
+        "type": "junction",
+        "marker-color": "rgba(72, 0, 131, 1)",
+        "marker-size": "medium"
+      },
+      "bbox": [
+        73.375614,
+        18.902593,
+        73.375614,
+        18.902593
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.375324,
+          18.902597
+        ]
+      },
+      "properties": {
+        "id": "hostel_junction07",
+        "type": "junction",
+        "marker-color": "#312E81",
+        "marker-size": "medium"
+      },
+      "bbox": [
+        73.375324,
+        18.902597,
+        73.375324,
+        18.902597
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.375244,
+          18.902664
+        ]
+      },
+      "properties": {
+        "id": "mountlogan_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(0, 98, 77, 1)",
+        "marker-size": "medium",
+        "name": "Mount Logan Classroom"
+      },
+      "bbox": [
+        73.375244,
+        18.902664,
+        73.375244,
+        18.902664
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.375209,
+          18.902721
+        ]
+      },
+      "properties": {
+        "id": "girlswashroom_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(91, 5, 62, 1)",
+        "marker-size": "medium",
+        "name": "Outer Girls Washroom"
+      },
+      "bbox": [
+        73.375209,
+        18.902721,
+        73.375209,
+        18.902721
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.375285,
+          18.902636
+        ]
+      },
+      "properties": {
+        "id": "class_entrance01",
+        "type": "entrance",
+        "marker-color": "rgba(115, 147, 0, 1)",
+        "marker-size": "medium",
+        "name": "Lab classroom"
+      },
+      "bbox": [
+        73.375285,
+        18.902636,
+        73.375285,
+        18.902636
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.375232,
+          18.902692
+        ]
+      },
+      "properties": {
+        "id": "mountK2_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(0, 105, 225, 1)",
+        "marker-size": "medium",
+        "name": "Mount K2 Classroom"
+      },
+      "bbox": [
+        73.375232,
+        18.902692,
+        73.375232,
+        18.902692
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.375189,
+          18.902751
+        ]
+      },
+      "properties": {
+        "id": "boyswashroom_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(69, 0, 94, 1)",
+        "marker-size": "medium",
+        "name": "Outer Boys Washroom"
+      },
+      "bbox": [
+        73.375189,
+        18.902751,
+        73.375189,
+        18.902751
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.37514,
+          18.90281
+        ]
+      },
+      "properties": {
+        "id": "makalu_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(247, 255, 172, 1)",
+        "marker-size": "medium",
+        "name": "Mount Makalu Classroom"
+      },
+      "bbox": [
+        73.37514,
+        18.90281,
+        73.37514,
+        18.90281
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374902,
+          18.90323
+        ]
+      },
+      "properties": {
+        "id": "wooddesign_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(102, 68, 6, 1)",
+        "marker-size": "medium",
+        "name": "School of Design (Wood)"
+      },
+      "bbox": [
+        73.374902,
+        18.90323,
+        73.374902,
+        18.90323
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374952,
+          18.903087
+        ]
+      },
+      "properties": {
+        "id": "infra_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(255, 255, 255, 1)",
+        "marker-size": "medium",
+        "name": "Infra Office"
+      },
+      "bbox": [
+        73.374952,
+        18.903087,
+        73.374952,
+        18.903087
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.375026,
+          18.902987
+        ]
+      },
+      "properties": {
+        "id": "vending_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(0, 255, 170, 1)",
+        "marker-size": "medium",
+        "name": "Vending Area"
+      },
+      "bbox": [
+        73.375026,
+        18.902987,
+        73.375026,
+        18.902987
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374696,
+          18.90163
+        ]
+      },
+      "properties": {
+        "id": "salon_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(16, 16, 67, 1)",
+        "marker-size": "medium",
+        "name": "Salon"
+      },
+      "bbox": [
+        73.374696,
+        18.90163,
+        73.374696,
+        18.90163
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374717,
+          18.901646
+        ]
+      },
+      "properties": {
+        "id": "tuck_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(200, 33, 119, 1)",
+        "marker-size": "medium",
+        "name": "Tuck Shop"
+      },
+      "bbox": [
+        73.374717,
+        18.901646,
+        73.374717,
+        18.901646
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374755,
+          18.901673
+        ]
+      },
+      "properties": {
+        "id": "bistro_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(106, 36, 176, 1)",
+        "marker-size": "medium",
+        "name": "Cafe Bistro"
+      },
+      "bbox": [
+        73.374755,
+        18.901673,
+        73.374755,
+        18.901673
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374669,
+          18.901568
+        ]
+      },
+      "properties": {
+        "id": "laundrymint_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(25, 240, 13, 1)",
+        "marker-size": "medium",
+        "name": "Laundry Mint"
+      },
+      "bbox": [
+        73.374669,
+        18.901568,
+        73.374669,
+        18.901568
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.376121,
+          18.903413
+        ]
+      },
+      "properties": {
+        "id": "gym_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(169, 206, 255, 1)",
+        "marker-size": "medium",
+        "name": "Gym"
+      },
+      "bbox": [
+        73.376121,
+        18.903413,
+        73.376121,
+        18.903413
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.375037,
+          18.90221
+        ]
+      },
+      "properties": {
+        "id": "hostel_junction08",
+        "type": "junction",
+        "marker-color": "rgba(106, 101, 122, 1)",
+        "marker-size": "medium"
+      },
+      "bbox": [
+        73.375037,
+        18.90221,
+        73.375037,
+        18.90221
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            73.373594,
+            18.903652
+          ],
+          [
+            73.373594,
+            18.903652
+          ],
+          [
+            73.37372,
+            18.903564
+          ],
+          [
+            73.373806,
+            18.903566
+          ],
+          [
+            73.373907,
+            18.903542
+          ],
+          [
+            73.374082,
+            18.903447
+          ],
+          [
+            73.374249,
+            18.903293
+          ],
+          [
+            73.374293,
+            18.903028
+          ],
+          [
+            73.374202,
+            18.902915
+          ],
+          [
+            73.374118,
+            18.902808
+          ],
+          [
+            73.374088,
+            18.902745
+          ],
+          [
+            73.374088,
+            18.902667
+          ],
+          [
+            73.374302,
+            18.90254
+          ],
+          [
+            73.374482,
+            18.902391
+          ],
+          [
+            73.374528,
+            18.902475
+          ],
+          [
+            73.374548,
+            18.902538
+          ],
+          [
+            73.374598,
+            18.902548
+          ],
+          [
+            73.374598,
+            18.902548
+          ]
+        ]
+      },
+      "properties": {
+        "stroke": "rgba(255, 0, 0, 1)"
+      },
+      "bbox": [
+        73.373594,
+        18.902391,
+        73.374598,
+        18.903652
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            73.374481,
+            18.902389
+          ],
+          [
+            73.374499,
+            18.902359
+          ],
+          [
+            73.37455,
+            18.902299
+          ],
+          [
+            73.37465,
+            18.902211
+          ],
+          [
+            73.374725,
+            18.902169
+          ],
+          [
+            73.374838,
+            18.902172
+          ],
+          [
+            73.375037,
+            18.902209
+          ],
+          [
+            73.375393,
+            18.902309
+          ],
+          [
+            73.375604,
+            18.902585
+          ],
+          [
+            73.375797,
+            18.902733
+          ],
+          [
+            73.375966,
+            18.902914
+          ],
+          [
+            73.375967,
+            18.903192
+          ],
+          [
+            73.375631,
+            18.903663
+          ],
+          [
+            73.375375,
+            18.903713
+          ],
+          [
+            73.375122,
+            18.903612
+          ],
+          [
+            73.374795,
+            18.903368
+          ],
+          [
+            73.374665,
+            18.903299
+          ],
+          [
+            73.374542,
+            18.903216
+          ],
+          [
+            73.37443,
+            18.903248
+          ],
+          [
+            73.374345,
+            18.903308
+          ],
+          [
+            73.374143,
+            18.903484
+          ],
+          [
+            73.373876,
+            18.903626
+          ],
+          [
+            73.373737,
+            18.903666
+          ],
+          [
+            73.373594,
+            18.903652
+          ]
+        ]
+      },
+      "properties": {
+        "stroke": "rgba(255, 0, 0, 1)"
+      },
+      "bbox": [
+        73.373594,
+        18.902169,
+        73.375967,
+        18.903713
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            73.374664,
+            18.902202
+          ],
+          [
+            73.374689,
+            18.901847
+          ],
+          [
+            73.37457,
+            18.901617
+          ],
+          [
+            73.374836,
+            18.901329
+          ],
+          [
+            73.374884,
+            18.901356
+          ],
+          [
+            73.374939,
+            18.901395
+          ],
+          [
+            73.37499,
+            18.901419
+          ],
+          [
+            73.375077,
+            18.901433
+          ],
+          [
+            73.375393,
+            18.902309
+          ]
+        ]
+      },
+      "properties": {
+        "stroke": "rgba(255, 0, 0, 1)"
+      },
+      "bbox": [
+        73.37457,
+        18.901329,
+        73.375393,
+        18.902309
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            73.374837,
+            18.901329
+          ],
+          [
+            73.374829,
+            18.901177
+          ],
+          [
+            73.374787,
+            18.901013
+          ],
+          [
+            73.374757,
+            18.900865
+          ],
+          [
+            73.374681,
+            18.900739
+          ],
+          [
+            73.37476,
+            18.900632
+          ],
+          [
+            73.374902,
+            18.900648
+          ],
+          [
+            73.37503,
+            18.900896
+          ],
+          [
+            73.375044,
+            18.901032
+          ],
+          [
+            73.375103,
+            18.901163
+          ],
+          [
+            73.375154,
+            18.901202
+          ],
+          [
+            73.375153,
+            18.901276
+          ],
+          [
+            73.375143,
+            18.901317
+          ],
+          [
+            73.375129,
+            18.90136
+          ],
+          [
+            73.375106,
+            18.901403
+          ],
+          [
+            73.375078,
+            18.901435
+          ]
+        ]
+      },
+      "properties": {
+        "stroke": "rgba(255, 0, 0, 1)"
+      },
+      "bbox": [
+        73.374681,
+        18.900632,
+        73.375154,
+        18.901435
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            73.374636,
+            18.901546
+          ],
+          [
+            73.374669,
+            18.901567
+          ],
+          [
+            73.374656,
+            18.901582
+          ],
+          [
+            73.374652,
+            18.901598
+          ],
+          [
+            73.374696,
+            18.90163
+          ],
+          [
+            73.374717,
+            18.901645
+          ],
+          [
+            73.374753,
+            18.901671
+          ],
+          [
+            73.37469,
+            18.901676
+          ],
+          [
+            73.37465,
+            18.901694
+          ],
+          [
+            73.374621,
+            18.901713
+          ]
+        ]
+      },
+      "properties": {
+        "stroke": "rgba(255, 0, 0, 1)"
+      },
+      "bbox": [
+        73.374621,
+        18.901546,
+        73.374753,
+        18.901713
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            73.374652,
+            18.901598
+          ],
+          [
+            73.374615,
+            18.901619
+          ],
+          [
+            73.37457,
+            18.901617
+          ]
+        ]
+      },
+      "properties": {
+        "stroke": "rgba(255, 0, 0, 1)"
+      },
+      "bbox": [
+        73.37457,
+        18.901598,
+        73.374652,
+        18.901619
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            73.374795,
+            18.903368
+          ],
+          [
+            73.374902,
+            18.90323
+          ],
+          [
+            73.374952,
+            18.903087
+          ],
+          [
+            73.37501,
+            18.903043
+          ],
+          [
+            73.375028,
+            18.902979
+          ],
+          [
+            73.375138,
+            18.902812
+          ],
+          [
+            73.375191,
+            18.90275
+          ],
+          [
+            73.375209,
+            18.902721
+          ],
+          [
+            73.37523,
+            18.902694
+          ],
+          [
+            73.375252,
+            18.902665
+          ],
+          [
+            73.375284,
+            18.902637
+          ],
+          [
+            73.375324,
+            18.902597
+          ],
+          [
+            73.375384,
+            18.902607
+          ],
+          [
+            73.375466,
+            18.902617
+          ],
+          [
+            73.37557,
+            18.90262
+          ],
+          [
+            73.375602,
+            18.902617
+          ],
+          [
+            73.375616,
+            18.902606
+          ],
+          [
+            73.375614,
+            18.902593
+          ]
+        ]
+      },
+      "properties": {
+        "id": "",
+        "type": "",
+        "stroke": "rgba(255, 0, 0, 1)",
+        "stroke-opacity": 1,
+        "stroke-width": 1
+      },
+      "bbox": [
+        73.374795,
+        18.902593,
+        73.375616,
+        18.903368
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            73.375037,
+            18.90221
+          ],
+          [
+            73.375049,
+            18.90228
+          ],
+          [
+            73.375074,
+            18.902319
+          ],
+          [
+            73.37517,
+            18.902396
+          ],
+          [
+            73.375221,
+            18.902501
+          ],
+          [
+            73.375324,
+            18.902597
+          ]
+        ]
+      },
+      "properties": {
+        "stroke": "rgba(255, 0, 0, 1)"
+      },
+      "bbox": [
+        73.375037,
+        18.90221,
+        73.375324,
+        18.902597
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            73.375639,
+            18.903652
+          ],
+          [
+            73.37578,
+            18.903775
+          ],
+          [
+            73.375946,
+            18.903874
+          ],
+          [
+            73.376045,
+            18.90384
+          ],
+          [
+            73.376134,
+            18.903752
+          ],
+          [
+            73.376295,
+            18.903574
+          ],
+          [
+            73.376309,
+            18.903436
+          ],
+          [
+            73.37633,
+            18.903327
+          ],
+          [
+            73.376444,
+            18.903189
+          ],
+          [
+            73.376379,
+            18.903251
+          ],
+          [
+            73.376304,
+            18.903278
+          ],
+          [
+            73.37623,
+            18.903295
+          ],
+          [
+            73.376178,
+            18.903328
+          ],
+          [
+            73.376121,
+            18.903413
+          ]
+        ]
+      },
+      "properties": {
+        "stroke": "rgba(255, 0, 0, 1)"
+      },
+      "bbox": [
+        73.375639,
+        18.903189,
+        73.376444,
+        18.903874
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            73.376175,
+            18.903333
+          ],
+          [
+            73.37607,
+            18.903266
+          ],
+          [
+            73.37603,
+            18.903277
+          ],
+          [
+            73.375963,
+            18.903284
+          ],
+          [
+            73.375925,
+            18.903281
+          ],
+          [
+            73.375917,
+            18.903264
+          ]
+        ]
+      },
+      "properties": {
+        "stroke": "rgba(242, 15, 15, 1)"
+      },
+      "bbox": [
+        73.375917,
+        18.903264,
+        73.376175,
+        18.903333
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.376444,
+          18.903189
+        ]
+      },
+      "properties": {
+        "marker-color": "rgba(255, 221, 163, 1)",
+        "id": "turf_entrance",
+        "type": "entrance",
+        "marker-size": "medium",
+        "name": "Turf"
+      },
+      "bbox": [
+        73.376444,
+        18.903189,
+        73.376444,
+        18.903189
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374114,
+          18.901435
+        ]
+      },
+      "properties": {
+        "id": "r8girls_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(158, 0, 124, 1)",
+        "marker-size": "medium",
+        "name": "R8 Girls"
+      },
+      "bbox": [
+        73.374114,
+        18.901435,
+        73.374114,
+        18.901435
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374042,
+          18.901309
+        ]
+      },
+      "properties": {
+        "id": "r7_entrance",
+        "type": "entrance",
+        "marker-color": "rgba(255, 137, 249, 1)",
+        "marker-size": "medium",
+        "name": "R7"
+      },
+      "bbox": [
+        73.374042,
+        18.901309,
+        73.374042,
+        18.901309
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            73.37457,
+            18.901617
+          ],
+          [
+            73.374407,
+            18.901407
+          ],
+          [
+            73.374313,
+            18.901272
+          ],
+          [
+            73.374233,
+            18.901213
+          ],
+          [
+            73.374146,
+            18.901255
+          ],
+          [
+            73.374077,
+            18.901363
+          ],
+          [
+            73.374079,
+            18.901385
+          ],
+          [
+            73.374088,
+            18.901409
+          ],
+          [
+            73.374113,
+            18.901435
+          ]
+        ]
+      },
+      "properties": {
+        "stroke": "rgba(255, 0, 0, 1)"
+      },
+      "bbox": [
+        73.374077,
+        18.901213,
+        73.37457,
+        18.901617
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            73.374114,
+            18.901435
+          ],
+          [
+            73.374072,
+            18.901401
+          ],
+          [
+            73.374042,
+            18.901309
+          ]
+        ]
+      },
+      "properties": {
+        "stroke": "rgba(255, 0, 0, 1)"
+      },
+      "bbox": [
+        73.374042,
+        18.901309,
+        73.374114,
+        18.901435
+      ]
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            73.374688,
+            18.90185
+          ],
+          [
+            73.374828,
+            18.90186
+          ],
+          [
+            73.374893,
+            18.901877
+          ],
+          [
+            73.374958,
+            18.901897
+          ],
+          [
+            73.375081,
+            18.901926
+          ],
+          [
+            73.37518,
+            18.902029
+          ],
+          [
+            73.375237,
+            18.902122
+          ],
+          [
+            73.375393,
+            18.902309
+          ]
+        ]
+      },
+      "properties": {
+        "stroke": "rgba(255, 0, 0, 1)",
+        "stroke-opacity": 1,
+        "stroke-width": 1
+      },
+      "bbox": [
+        73.374688,
+        18.90185,
+        73.375393,
+        18.902309
+      ]
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "rgba(255, 0, 0, 1)",
+        "stroke-opacity": 1,
+        "stroke-width": 1
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            73.374293,
+            18.903028
+          ],
+          [
+            73.374373,
+            18.902992
+          ],
+          [
+            73.374461,
+            18.902983
+          ],
+          [
+            73.374554,
+            18.903
+          ],
+          [
+            73.374576,
+            18.903073
+          ],
+          [
+            73.37456,
+            18.90319
+          ],
+          [
+            73.374542,
+            18.903216
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "main_junction01",
+        "type": "junction",
+        "marker-color": "rgba(2, 58, 38, 1)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374293,
+          18.903028
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "main_junction02",
+        "type": "entrance",
+        "marker-color": "rgba(106, 101, 240, 1)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.374542,
+          18.903216
+        ]
+      }
+    }
+  ]
+}

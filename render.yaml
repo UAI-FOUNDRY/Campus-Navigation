@@ -1,0 +1,13 @@
+# Render Blueprint (free plan, no card needed). Render dashboard > New > Blueprint > pick this repo.
+services:
+  - type: web
+    name: campus-nav-api
+    runtime: python
+    plan: free
+    branch: main
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: gunicorn --chdir backend wsgi:app --bind 0.0.0.0:$PORT --workers 2
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7

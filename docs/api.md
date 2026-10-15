@@ -323,3 +323,33 @@ graph (small) with an `ETag` equal to the version; send `If-None-Match: <version
   y / image_size[1] * displayedHeight)`. Connect the `points` in order with a `CustomPainter`.
 - Show `steps` as the text list; tapping a step can centre the map or plan on its `lat`/`lng` or `x`/`y`.
 - Wait about 300 ms after the user stops typing before calling `/api/rooms`.
+
+## App contract (what the Flutter app calls)
+These two endpoints match `lib/services/api_service.dart` in `UAI-FOUNDRY/CampusNav-Flutter`. They use the same graph and route cache as the endpoints above.
+
+### GET /api/search?q=
+A **plain list**. Empty `q` returns every place. `building` is `"Campus"` for outdoor places that have no building. `type` uses the app's
+filter words: `cafeteria`, `gym`, `turf`, `library`, `lab`, `office`, `hostel`, `hall` (classrooms), else `place` (shows under "Other").
+```json
+[{"id": "mount_everest_130", "name": "Mount Everest 130", "building": "Block A", "floor": 0, "type": "hall"}]
+```
+
+### POST /api/route
+Body: `{"start": "gate_main", "destination": "mount_lhotse", "step_free": false}`. `start`/`destination` take a place id or node id;
+`start` may also be a raw QR value `campusnav:<node id>`. Errors: 400 bad body, 404 unknown id, 422 `no_route`.
+```json
+{"distance_meters": 169, "estimated_minutes": 2,
+ "steps": [
+  {"type": "start", "title": "You are here", "instruction": "Main Gate", "distance": 0, "floor": 0},
+  {"type": "walk", "title": "Walk 115 m", "instruction": "Start at Main Gate and walk 115 m", "distance": 115.0, "floor": 0},
+  {"type": "turn_right", "title": "Bear right", "instruction": "Bear right at the junction and walk 25 m", "distance": 25.0, "floor": 0},
+  {"type": "enter", "title": "Go inside", "instruction": "Go inside through Quadrangle South Entrance", "distance": 0.0, "floor": 0},
+  {"type": "walk", "title": "Walk 15 m", "instruction": "Walk 15 m to Clinic", "distance": 15.0, "floor": 0},
+  {"type": "walk", "title": "Walk 14 m", "instruction": "Walk 14 m to Mount Lhotse", "distance": 14.0, "floor": 0},
+  {"type": "arrive", "title": "Arrive at Mount Lhotse", "instruction": "Arrive at Mount Lhotse", "distance": 0.0, "floor": 0}],
+ "path": [],
+ "legs": ["... same as GET /api/route ..."], "polyline": [[18.9, 73.3], "..."],
+ "from": "gate_main", "to": "a0_lhotse_door", "to_name": "Mount Lhotse", "graph_version": "f4f1dd1c5d"}
+```
+`path` is always empty (it belongs to the app's schematic map). To draw the real route use `legs`: `outdoor` legs have a `[lat, lng]`
+`polyline`; `indoor` legs have pixel `points` on the floor-plan `image`.

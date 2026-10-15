@@ -11,7 +11,7 @@
     {
       "id": "a0_quad_south_exit",
       "type": "exit",
-      "name": "Quadrangle south entrance",
+      "name": "Quadrangle (inside)",
       "x": 850,
       "y": 850
     },
@@ -104,11 +104,11 @@
   ],
   "links": [
     {
-      "label": "start = quadrangle south entrance (Q3) joins the outdoor map",
+      "label": "Quadrangle south entrance (Q3) joins the outdoor map",
       "indoor": "a0_quad_south_exit",
       "outdoor": "quad_south_entrance",
       "meters": 0,
-      "note": "add the outdoor dot quad_south_entrance in geojson.io (v3) at the south exit, connected to the nearest path"
+      "note": "outdoor dot quad_south_entrance (type entrance)"
     },
     {
       "label": "mess inside door to mess back entrance (inner gate)",
