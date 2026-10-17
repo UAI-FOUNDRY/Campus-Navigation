@@ -1,0 +1,898 @@
+{
+ "_readme": "Indoor map of one floor (plan metres, x right, y down; same frame on every floor). corridors = centre lines; a dot with \"on\": <corridor> is joined to it by a short square stub. Lengths are computed from positions; put \"meters\" on an edge only to override with a tape measurement. 'verify' = check on site. Never rename ids. See docs/data-format.md.",
+ "code": "sf",
+ "floor": 2,
+ "label": "Second floor",
+ "status": "plan",
+ "source_plan": "UAi_LEARNING_CENTER_-_SF_2026.pdf",
+ "image": "second.png",
+ "image_size": [
+  1358,
+  919
+ ],
+ "display_anchors": [
+  [
+   [
+    28.89,
+    82.54
+   ],
+   [
+    650,
+    712
+   ]
+  ],
+  [
+   [
+    28.89,
+    97.62
+   ],
+   [
+    650,
+    875
+   ]
+  ],
+  [
+   [
+    11.9,
+    82.54
+   ],
+   [
+    493,
+    712
+   ]
+  ],
+  [
+   [
+    11.9,
+    97.62
+   ],
+   [
+    493,
+    875
+   ]
+  ],
+  [
+   [
+    29.37,
+    52.38
+   ],
+   [
+    655,
+    410
+   ]
+  ],
+  [
+   [
+    11.9,
+    63.49
+   ],
+   [
+    515,
+    525
+   ]
+  ],
+  [
+   [
+    27.62,
+    69.84
+   ],
+   [
+    662,
+    580
+   ]
+  ],
+  [
+   [
+    55.87,
+    93.97
+   ],
+   [
+    930,
+    830
+   ]
+  ],
+  [
+   [
+    57.14,
+    82.54
+   ],
+   [
+    952,
+    712
+   ]
+  ],
+  [
+   [
+    69.84,
+    88.1
+   ],
+   [
+    1087,
+    783
+   ]
+  ],
+  [
+   [
+    60.32,
+    90.48
+   ],
+   [
+    985,
+    800
+   ]
+  ],
+  [
+   [
+    73.02,
+    97.62
+   ],
+   [
+    1092,
+    880
+   ]
+  ],
+  [
+   [
+    88.1,
+    97.62
+   ],
+   [
+    1268,
+    880
+   ]
+  ],
+  [
+   [
+    73.81,
+    71.43
+   ],
+   [
+    1123,
+    590
+   ]
+  ],
+  [
+   [
+    84.92,
+    77.78
+   ],
+   [
+    1215,
+    668
+   ]
+  ],
+  [
+   [
+    64.29,
+    80.95
+   ],
+   [
+    1031,
+    697
+   ]
+  ],
+  [
+   [
+    38.1,
+    52.38
+   ],
+   [
+    620,
+    405
+   ]
+  ]
+ ],
+ "corridors": [
+  {
+   "id": "a2_c_pa2",
+   "name": "Passage 02",
+   "type": "corridor",
+   "path": [
+    "a2_pa2_lobby",
+    "a2_pa2_s"
+   ]
+  },
+  {
+   "id": "a2_c_p1",
+   "name": "Passage 01",
+   "type": "corridor",
+   "path": [
+    "a2_ramp_s",
+    "a2_p1_hpc",
+    "a2_pa2_lobby"
+   ]
+  },
+  {
+   "id": "a2_c_hpc",
+   "name": "AI lab lobby",
+   "type": "corridor",
+   "path": [
+    "a2_p1_hpc",
+    [
+     27.14,
+     65.4
+    ]
+   ]
+  },
+  {
+   "id": "a2_c_ramp",
+   "name": "Ramp",
+   "type": "corridor",
+   "path": [
+    "a2_ramp_s",
+    "a2_ramp_n"
+   ]
+  },
+  {
+   "id": "a2_c_top",
+   "name": "Passage 03",
+   "type": "corridor",
+   "path": [
+    "a2_ramp_n",
+    "a2_tp_w"
+   ]
+  },
+  {
+   "id": "a2_c_a_top",
+   "name": "Studio passage",
+   "type": "corridor",
+   "path": [
+    "a2_tp_w",
+    [
+     23.49,
+     20.63
+    ]
+   ]
+  },
+  {
+   "id": "a2_c_aud",
+   "name": "Auditorium passage",
+   "type": "corridor",
+   "path": [
+    "a2_tp_w",
+    "a2_p3_n"
+   ]
+  },
+  {
+   "id": "a2_c_p3",
+   "name": "Passage 03",
+   "type": "corridor",
+   "path": [
+    "a2_p3_n",
+    "a2_p3_451",
+    "a2_p3_508",
+    "a2_p3_s"
+   ]
+  },
+  {
+   "id": "a2_c_p451",
+   "name": "Block B passage",
+   "type": "corridor",
+   "path": [
+    "a2_p3_451",
+    "a2_fp_s",
+    [
+     65.4,
+     71.59
+    ]
+   ]
+  },
+  {
+   "id": "a2_c_fp",
+   "name": "Faculty passage",
+   "type": "corridor",
+   "path": [
+    "a2_fp_s",
+    [
+     60.63,
+     53.65
+    ]
+   ]
+  },
+  {
+   "id": "a2_c_lift",
+   "name": "Lift lobby",
+   "type": "corridor",
+   "path": [
+    "a2_p3_508",
+    "a2_p4_m"
+   ]
+  },
+  {
+   "id": "a2_c_p4",
+   "name": "Classroom passage",
+   "type": "corridor",
+   "path": [
+    "a2_p4_n",
+    "a2_p4_m",
+    "a2_p4_s"
+   ]
+  },
+  {
+   "id": "a2_c_p52",
+   "name": "Classroom passage",
+   "type": "corridor",
+   "path": [
+    "a2_p4_n",
+    [
+     82.54,
+     78.89
+    ]
+   ]
+  },
+  {
+   "id": "a2_c_p5",
+   "name": "Classroom passage",
+   "type": "corridor",
+   "path": [
+    "a2_p3_s",
+    "a2_p4_s",
+    [
+     88.1,
+     90.0
+    ]
+   ]
+  }
+ ],
+ "nodes": [
+  {
+   "id": "a2_ramp_n",
+   "type": "corner",
+   "name": "",
+   "pos": [
+    13.97,
+    51.43
+   ]
+  },
+  {
+   "id": "a2_ramp_s",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    13.97,
+    75.24
+   ]
+  },
+  {
+   "id": "a2_p1_hpc",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    27.14,
+    75.24
+   ]
+  },
+  {
+   "id": "a2_pa2_lobby",
+   "type": "junction",
+   "name": "Block A passage (second floor)",
+   "pos": [
+    29.84,
+    75.24
+   ]
+  },
+  {
+   "id": "a2_pa2_s",
+   "type": "corner",
+   "name": "",
+   "pos": [
+    29.84,
+    97.14
+   ]
+  },
+  {
+   "id": "a2_tp_w",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    23.49,
+    51.43
+   ]
+  },
+  {
+   "id": "a2_p3_n",
+   "type": "corner",
+   "name": "",
+   "pos": [
+    56.03,
+    51.43
+   ]
+  },
+  {
+   "id": "a2_p3_451",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    56.03,
+    71.59
+   ]
+  },
+  {
+   "id": "a2_p3_508",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    56.03,
+    80.63
+   ]
+  },
+  {
+   "id": "a2_p3_s",
+   "type": "junction",
+   "name": "Block B passage (second floor)",
+   "pos": [
+    56.03,
+    90.0
+   ]
+  },
+  {
+   "id": "a2_fp_s",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    60.63,
+    71.59
+   ]
+  },
+  {
+   "id": "a2_p4_n",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    71.43,
+    78.89
+   ]
+  },
+  {
+   "id": "a2_p4_m",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    71.43,
+    80.63
+   ]
+  },
+  {
+   "id": "a2_p4_s",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    71.43,
+    90.0
+   ]
+  },
+  {
+   "id": "a2_untersberg_door",
+   "type": "door",
+   "name": "Untersberg Mountain",
+   "pos": [
+    22.54,
+    21.43
+   ],
+   "on": "a2_c_a_top",
+   "verify": "Signage puts Untersberg (16) where the plan shows Sound Studio 03; door side estimated."
+  },
+  {
+   "id": "a2_sound_studio",
+   "type": "door",
+   "name": "Sound Studio",
+   "pos": [
+    22.54,
+    27.78
+   ],
+   "on": "a2_c_a_top",
+   "verify": "Door side estimated."
+  },
+  {
+   "id": "a2_music_room",
+   "type": "door",
+   "name": "Music Recording Room",
+   "pos": [
+    22.54,
+    34.6
+   ],
+   "on": "a2_c_a_top",
+   "verify": "Door side estimated."
+  },
+  {
+   "id": "a2_washroom_a",
+   "type": "door",
+   "name": "Washroom (second floor, Block A)",
+   "pos": [
+    22.54,
+    40.48
+   ],
+   "on": "a2_c_a_top"
+  },
+  {
+   "id": "a2_school_music",
+   "type": "door",
+   "name": "School of Music, Sound & Cinematics",
+   "pos": [
+    22.54,
+    46.35
+   ],
+   "on": "a2_c_a_top",
+   "verify": "Plan: Conference Room; door side estimated."
+  },
+  {
+   "id": "a2_hpc_lab",
+   "type": "door",
+   "name": "High Performance AI Lab",
+   "pos": [
+    27.46,
+    63.97
+   ],
+   "on": "a2_c_hpc",
+   "note": "Plan: Quantum Computing Lab"
+  },
+  {
+   "id": "a2_arvr_lab",
+   "type": "door",
+   "name": "AR / VR / MR & IoT Lab",
+   "pos": [
+    16.51,
+    73.97
+   ],
+   "on": "a2_c_p1",
+   "note": "Plan: AI / VR Laboratory"
+  },
+  {
+   "id": "a2_univitt",
+   "type": "door",
+   "name": "Univitt AI Offices",
+   "pos": [
+    23.81,
+    76.83
+   ],
+   "on": "a2_c_p1",
+   "note": "Plan: Meeting Rooms 01/02"
+  },
+  {
+   "id": "a2_lift_a",
+   "type": "lift",
+   "name": "Lift (Block A)",
+   "pos": [
+    29.52,
+    71.75
+   ],
+   "on": "a2_c_p1"
+  },
+  {
+   "id": "a2_stair_a",
+   "type": "stairs",
+   "name": "Staircase (Block A)",
+   "pos": [
+    17.46,
+    76.19
+   ],
+   "on": "a2_c_p1"
+  },
+  {
+   "id": "a2_maunakea_door",
+   "type": "door",
+   "name": "Mauna Kea",
+   "pos": [
+    28.25,
+    86.51
+   ],
+   "on": "a2_c_pa2",
+   "note": "Plan: Classroom 02"
+  },
+  {
+   "id": "a2_vinson_door",
+   "type": "door",
+   "name": "Mount Vinson",
+   "pos": [
+    28.25,
+    95.24
+   ],
+   "on": "a2_c_pa2",
+   "note": "Plan: Classroom 01"
+  },
+  {
+   "id": "a2_auditorium_door",
+   "type": "door",
+   "name": "Auditorium / Multi Sports Centre",
+   "pos": [
+    41.27,
+    52.38
+   ],
+   "on": "a2_c_aud",
+   "verify": "Entrance position estimated along the passage."
+  },
+  {
+   "id": "a2_conference",
+   "type": "door",
+   "name": "Conference Room",
+   "pos": [
+    59.05,
+    72.38
+   ],
+   "on": "a2_c_p451",
+   "note": "Plan: Disc. Room"
+  },
+  {
+   "id": "a2_washroom_b",
+   "type": "door",
+   "name": "Washroom (second floor, Block B)",
+   "pos": [
+    63.81,
+    72.22
+   ],
+   "on": "a2_c_p451"
+  },
+  {
+   "id": "a2_lift_b",
+   "type": "lift",
+   "name": "Lift (Block B)",
+   "pos": [
+    65.08,
+    81.75
+   ],
+   "on": "a2_c_lift"
+  },
+  {
+   "id": "a2_design_counseling",
+   "type": "door",
+   "name": "Design Counseling Room",
+   "pos": [
+    68.25,
+    81.75
+   ],
+   "on": "a2_c_lift",
+   "verify": "Plan: Design Display."
+  },
+  {
+   "id": "a2_design_studio",
+   "type": "door",
+   "name": "Design Studio",
+   "pos": [
+    60.32,
+    82.86
+   ],
+   "on": "a2_c_lift",
+   "note": "Plan: Fashion Studio / Classroom 01"
+  },
+  {
+   "id": "a2_saraswati_door",
+   "type": "door",
+   "name": "Saraswati Parbat",
+   "pos": [
+    70.48,
+    84.92
+   ],
+   "on": "a2_c_p4",
+   "note": "Plan: Classroom 02"
+  },
+  {
+   "id": "a2_kailash_door",
+   "type": "door",
+   "name": "Sri Kailash Peak",
+   "pos": [
+    76.98,
+    77.94
+   ],
+   "on": "a2_c_p52",
+   "note": "Plan: Fashion Classroom 09"
+  },
+  {
+   "id": "a2_nuptse_door",
+   "type": "door",
+   "name": "Mount Nuptse",
+   "pos": [
+    74.6,
+    88.89
+   ],
+   "on": "a2_c_p5",
+   "note": "Plan: Classroom 06"
+  },
+  {
+   "id": "a2_elbrus_door",
+   "type": "door",
+   "name": "Mount Elbrus",
+   "pos": [
+    79.37,
+    88.89
+   ],
+   "on": "a2_c_p5",
+   "note": "Plan: Classroom 07"
+  },
+  {
+   "id": "a2_trisul_door",
+   "type": "door",
+   "name": "Mount Trisul",
+   "pos": [
+    84.92,
+    88.89
+   ],
+   "on": "a2_c_p5",
+   "note": "Plan: Design Studio / Classroom 08"
+  },
+  {
+   "id": "a2_nandadevi_door",
+   "type": "door",
+   "name": "Mount Nanda Devi",
+   "pos": [
+    65.4,
+    91.11
+   ],
+   "on": "a2_c_p5",
+   "note": "Plan: Classroom 03"
+  },
+  {
+   "id": "a2_manaslu_door",
+   "type": "door",
+   "name": "Mount Manaslu",
+   "pos": [
+    74.6,
+    91.11
+   ],
+   "on": "a2_c_p5",
+   "note": "Plan: Classroom 04"
+  },
+  {
+   "id": "a2_annapurna_door",
+   "type": "door",
+   "name": "Mount Annapurna",
+   "pos": [
+    83.81,
+    91.11
+   ],
+   "on": "a2_c_p5",
+   "note": "Plan: Classroom 05"
+  },
+  {
+   "id": "a2_stair_b",
+   "type": "stairs",
+   "name": "Spiral staircase (Block B)",
+   "pos": [
+    55.87,
+    92.86
+   ],
+   "on": "a2_c_p5"
+  },
+  {
+   "id": "a2_faculty_08",
+   "type": "door",
+   "name": "Faculty Room 08",
+   "pos": [
+    59.52,
+    54.44
+   ],
+   "on": "a2_c_fp"
+  },
+  {
+   "id": "a2_faculty_07",
+   "type": "door",
+   "name": "Faculty Room 07",
+   "pos": [
+    59.52,
+    56.51
+   ],
+   "on": "a2_c_fp"
+  },
+  {
+   "id": "a2_faculty_06",
+   "type": "door",
+   "name": "Faculty Room 06",
+   "pos": [
+    59.52,
+    57.62
+   ],
+   "on": "a2_c_fp"
+  },
+  {
+   "id": "a2_faculty_05",
+   "type": "door",
+   "name": "Faculty Room 05",
+   "pos": [
+    59.52,
+    60.95
+   ],
+   "on": "a2_c_fp"
+  },
+  {
+   "id": "a2_faculty_04",
+   "type": "door",
+   "name": "Faculty Room 04",
+   "pos": [
+    59.52,
+    62.06
+   ],
+   "on": "a2_c_fp"
+  },
+  {
+   "id": "a2_faculty_03",
+   "type": "door",
+   "name": "Faculty Room 03",
+   "pos": [
+    59.52,
+    65.4
+   ],
+   "on": "a2_c_fp"
+  },
+  {
+   "id": "a2_faculty_02",
+   "type": "door",
+   "name": "Faculty Room 02",
+   "pos": [
+    59.52,
+    67.62
+   ],
+   "on": "a2_c_fp"
+  },
+  {
+   "id": "a2_faculty_01",
+   "type": "door",
+   "name": "Faculty Room 01",
+   "pos": [
+    59.52,
+    68.41
+   ],
+   "on": "a2_c_fp"
+  },
+  {
+   "id": "a2_faculty_09",
+   "type": "door",
+   "name": "Faculty Room 09",
+   "pos": [
+    61.75,
+    57.62
+   ],
+   "on": "a2_c_fp"
+  },
+  {
+   "id": "a2_faculty_10",
+   "type": "door",
+   "name": "Faculty Room 10",
+   "pos": [
+    61.75,
+    60.95
+   ],
+   "on": "a2_c_fp"
+  },
+  {
+   "id": "a2_faculty_11",
+   "type": "door",
+   "name": "Faculty Room 11",
+   "pos": [
+    61.75,
+    62.22
+   ],
+   "on": "a2_c_fp"
+  },
+  {
+   "id": "a2_faculty_12",
+   "type": "door",
+   "name": "Faculty Room 12",
+   "pos": [
+    61.75,
+    65.4
+   ],
+   "on": "a2_c_fp"
+  },
+  {
+   "id": "a2_faculty_13",
+   "type": "door",
+   "name": "Faculty Room 13",
+   "pos": [
+    61.75,
+    67.46
+   ],
+   "on": "a2_c_fp"
+  },
+  {
+   "id": "a2_faculty_14",
+   "type": "door",
+   "name": "Faculty Room 14",
+   "pos": [
+    61.75,
+    68.57
+   ],
+   "on": "a2_c_fp"
+  }
+ ],
+ "edges": [],
+ "links": []
+}

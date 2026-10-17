@@ -11,7 +11,10 @@ def _public(graph, room):
             "building": room["building"], "floor": room["floor"], "node_ids": room["node_ids"],
             "indoor": all(n["space"] == "indoor" for n in nodes),
             "lat": geo["lat"] if geo else None, "lng": geo["lng"] if geo else None,
-            "x": first.get("x"), "y": first.get("y")}
+            "x": first.get("x"), "y": first.get("y"),
+            # "inside the Library": show it under the name in search results
+            "within": room.get("within"), "within_name": room.get("within_name"),
+            "category": room.get("category")}
 
 
 @bp.get("/rooms")
@@ -21,7 +24,7 @@ def search_rooms():
         limit = max(1, min(int(request.args.get("limit", 8)), 50))
     except ValueError:
         return error("bad_request", "'limit' must be a number", 400)
-    hits = ctx["places"].search(request.args.get("q", ""), limit)
+    hits = ctx["places"].search(request.args.get("q", "")[:100], limit)
     return jsonify(results=[_public(ctx["graph"], r) for r in hits])
 
 

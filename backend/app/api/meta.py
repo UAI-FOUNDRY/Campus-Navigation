@@ -1,4 +1,4 @@
-from flask import current_app, jsonify, make_response, request
+from flask import current_app, jsonify
 
 from . import bp
 
@@ -18,16 +18,12 @@ def graph_version():
 def floors():
     """Floor-plan images the app should bundle, with their pixel sizes."""
     g = current_app.extensions["campus"]["graph"]
-    return jsonify(floors=list(g.floors.values()))
+    return jsonify(floors=[g.floors[k] for k in sorted(g.floors)])
 
 
 @bp.get("/graph")
 def graph_full():
-    """Whole graph, for the app to cache (or bundle) so it can work offline. ETag = version."""
+    """Whole graph WITHOUT internal mapping data (plan metres, notes, 'verify' remarks), for offline use.
+    ETag = graph version; caching and 304 are handled in app/web.py."""
     g = current_app.extensions["campus"]["graph"]
-    if request.headers.get("If-None-Match") == g.version:
-        return make_response("", 304)
-    resp = jsonify(g.raw)
-    resp.headers["ETag"] = g.version
-    resp.headers["Cache-Control"] = "no-cache"
-    return resp
+    return current_app.response_class(g.public_json(), mimetype="application/json")

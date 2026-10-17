@@ -1,0 +1,1104 @@
+{
+ "_readme": "Indoor map of one floor (plan metres, x right, y down; same frame on every floor). corridors = centre lines; a dot with \"on\": <corridor> is joined to it by a short square stub. Lengths are computed from positions; put \"meters\" on an edge only to override with a tape measurement. 'verify' = check on site. Never rename ids. See docs/data-format.md.",
+ "code": "gf",
+ "floor": 0,
+ "label": "Ground floor",
+ "status": "plan",
+ "source_plan": "UAi_LEARNING_CENTER_-_GF_2026.pdf",
+ "image": "ground.png",
+ "image_size": [
+  1357,
+  882
+ ],
+ "display_anchors": [
+  [
+   [
+    29.37,
+    52.38
+   ],
+   [
+    733,
+    367
+   ]
+  ],
+  [
+   [
+    29.37,
+    71.43
+   ],
+   [
+    733,
+    520
+   ]
+  ],
+  [
+   [
+    32.54,
+    62.7
+   ],
+   [
+    766,
+    440
+   ]
+  ],
+  [
+   [
+    50.0,
+    97.62
+   ],
+   [
+    937,
+    782
+   ]
+  ],
+  [
+   [
+    50.0,
+    62.7
+   ],
+   [
+    937,
+    440
+   ]
+  ],
+  [
+   [
+    32.54,
+    97.62
+   ],
+   [
+    766,
+    782
+   ]
+  ],
+  [
+   [
+    54.76,
+    90.16
+   ],
+   [
+    1003,
+    800
+   ]
+  ],
+  [
+   [
+    63.02,
+    80.95
+   ],
+   [
+    1085,
+    652
+   ]
+  ],
+  [
+   [
+    27.3,
+    69.84
+   ],
+   [
+    722,
+    545
+   ]
+  ],
+  [
+   [
+    53.17,
+    54.76
+   ],
+   [
+    972,
+    420
+   ]
+  ],
+  [
+   [
+    45.24,
+    48.41
+   ],
+   [
+    900,
+    334
+   ]
+  ],
+  [
+   [
+    11.11,
+    52.38
+   ],
+   [
+    545,
+    367
+   ]
+  ],
+  [
+   [
+    11.11,
+    71.43
+   ],
+   [
+    545,
+    522
+   ]
+  ],
+  [
+   [
+    11.43,
+    82.54
+   ],
+   [
+    545,
+    668
+   ]
+  ],
+  [
+   [
+    11.43,
+    97.62
+   ],
+   [
+    545,
+    830
+   ]
+  ],
+  [
+   [
+    11.11,
+    25.4
+   ],
+   [
+    545,
+    90
+   ]
+  ],
+  [
+   [
+    23.49,
+    25.4
+   ],
+   [
+    668,
+    90
+   ]
+  ],
+  [
+   [
+    23.49,
+    52.38
+   ],
+   [
+    668,
+    365
+   ]
+  ],
+  [
+   [
+    11.27,
+    73.81
+   ],
+   [
+    545,
+    545
+   ]
+  ]
+ ],
+ "corridors": [
+  {
+   "id": "a0_c_north",
+   "name": "North corridor",
+   "type": "corridor",
+   "path": [
+    "a0_ww_n",
+    "a0_nc_steps",
+    "a0_nc_e"
+   ]
+  },
+  {
+   "id": "a0_c_west",
+   "name": "Block A walkway",
+   "type": "corridor",
+   "path": [
+    "a0_ww_n",
+    "a0_ww_everest",
+    "a0_ww_lobbya",
+    "a0_ww_lhotse",
+    "a0_ww_s"
+   ]
+  },
+  {
+   "id": "a0_c_east",
+   "name": "Block B walkway",
+   "type": "corridor",
+   "path": [
+    "a0_nc_e",
+    "a0_ew_2",
+    "a0_quad_se"
+   ]
+  },
+  {
+   "id": "a0_c_quad_s",
+   "name": "Quadrangle",
+   "type": "corridor",
+   "path": [
+    "a0_ww_s",
+    "a0_quad_s_mid",
+    "a0_quad_se"
+   ]
+  },
+  {
+   "id": "a0_c_quad",
+   "name": "Quadrangle",
+   "type": "open",
+   "path": [
+    "a0_quad_s_mid",
+    "a0_quad_n"
+   ]
+  },
+  {
+   "id": "a0_c_lobbya",
+   "name": "Block A lobby",
+   "type": "corridor",
+   "path": [
+    "a0_lobbya_w_exit",
+    "a0_lobbya_vest",
+    "a0_ww_lobbya"
+   ]
+  },
+  {
+   "id": "a0_c_vest_a",
+   "name": "Block A lobby",
+   "type": "corridor",
+   "path": [
+    "a0_lobbya_vest",
+    [
+     20.16,
+     69.52
+    ]
+   ]
+  },
+  {
+   "id": "a0_c_lhotse_n",
+   "name": "Lhotse hall",
+   "type": "corridor",
+   "path": [
+    "a0_ww_lhotse",
+    [
+     27.3,
+     83.33
+    ]
+   ]
+  },
+  {
+   "id": "a0_c_lhotse_s",
+   "name": "Lhotse hall",
+   "type": "corridor",
+   "path": [
+    "a0_ww_s",
+    [
+     27.3,
+     96.67
+    ]
+   ]
+  },
+  {
+   "id": "a0_c_library",
+   "name": "Library",
+   "type": "open",
+   "path": [
+    "a0_library",
+    [
+     36.9,
+     42.86
+    ],
+    "a0_lib_x",
+    [
+     24.13,
+     42.86
+    ],
+    [
+     24.13,
+     24.6
+    ]
+   ]
+  },
+  {
+   "id": "a0_c_library_e",
+   "name": "Library",
+   "type": "open",
+   "path": [
+    "a0_lib_x",
+    [
+     32.38,
+     30.48
+    ]
+   ]
+  },
+  {
+   "id": "a0_c_cafe",
+   "name": "Cafeteria",
+   "type": "open",
+   "path": [
+    "a0_mess_inside_door",
+    [
+     51.75,
+     50.48
+    ],
+    [
+     65.19,
+     50.48
+    ],
+    "a0_mess_back_door"
+   ]
+  },
+  {
+   "id": "a0_c_lobby_b",
+   "name": "Lobby",
+   "type": "corridor",
+   "path": [
+    "a0_ew_2",
+    "a0_adminlobby",
+    "a0_lobby_c",
+    "a0_lobby_b"
+   ]
+  },
+  {
+   "id": "a0_c_lobby_b_e",
+   "name": "Lobby",
+   "type": "corridor",
+   "path": [
+    "a0_lobby_c",
+    "a0_lobby_b_s",
+    [
+     57.14,
+     91.43
+    ]
+   ]
+  },
+  {
+   "id": "a0_c_lobby_n",
+   "name": "Lobby",
+   "type": "corridor",
+   "path": [
+    "a0_lobby_c",
+    [
+     57.14,
+     53.97
+    ]
+   ]
+  },
+  {
+   "id": "a0_c_b1",
+   "name": "Block B corridor",
+   "type": "corridor",
+   "path": [
+    "a0_lobby_b",
+    "a0_b_pass_n"
+   ]
+  },
+  {
+   "id": "a0_c_b_pass",
+   "name": "Block B corridor",
+   "type": "corridor",
+   "path": [
+    "a0_b_pass_n",
+    "a0_b_pass_s"
+   ]
+  },
+  {
+   "id": "a0_c_b2",
+   "name": "Office corridor",
+   "type": "corridor",
+   "path": [
+    "a0_lobby_b_s",
+    "a0_b_pass_s",
+    "a0_b_curve_s",
+    [
+     82.54,
+     90.16
+    ]
+   ]
+  },
+  {
+   "id": "a0_c_b_curve",
+   "name": "HOD corridor",
+   "type": "corridor",
+   "path": [
+    "a0_b_curve_s",
+    [
+     76.51,
+     85.71
+    ],
+    [
+     76.67,
+     80.95
+    ],
+    "a0_b_curve_n"
+   ]
+  },
+  {
+   "id": "a0_c_b_top",
+   "name": "HOD corridor",
+   "type": "corridor",
+   "path": [
+    "a0_b_curve_n",
+    [
+     81.43,
+     74.44
+    ]
+   ]
+  }
+ ],
+ "nodes": [
+  {
+   "id": "a0_ww_n",
+   "type": "corner",
+   "name": "",
+   "pos": [
+    30.63,
+    54.44
+   ]
+  },
+  {
+   "id": "a0_ww_everest",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    30.63,
+    63.81
+   ]
+  },
+  {
+   "id": "a0_ww_lobbya",
+   "type": "junction",
+   "name": "Block A lobby",
+   "pos": [
+    30.63,
+    73.81
+   ]
+  },
+  {
+   "id": "a0_ww_lhotse",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    30.63,
+    83.33
+   ]
+  },
+  {
+   "id": "a0_ww_s",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    30.63,
+    96.67
+   ]
+  },
+  {
+   "id": "a0_quad_s_mid",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    41.59,
+    96.67
+   ]
+  },
+  {
+   "id": "a0_quad_se",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    51.43,
+    96.67
+   ]
+  },
+  {
+   "id": "a0_quad_n",
+   "type": "junction",
+   "name": "Quadrangle steps",
+   "pos": [
+    41.59,
+    63.02
+   ]
+  },
+  {
+   "id": "a0_nc_steps",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    41.59,
+    54.44
+   ]
+  },
+  {
+   "id": "a0_nc_e",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    51.59,
+    54.44
+   ]
+  },
+  {
+   "id": "a0_ew_2",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    51.43,
+    78.89
+   ]
+  },
+  {
+   "id": "a0_lobby_b",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    60.63,
+    78.89
+   ]
+  },
+  {
+   "id": "a0_lobby_c",
+   "type": "junction",
+   "name": "Lobby",
+   "pos": [
+    57.14,
+    78.89
+   ]
+  },
+  {
+   "id": "a0_lobby_b_s",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    57.14,
+    90.16
+   ]
+  },
+  {
+   "id": "a0_b_pass_n",
+   "type": "corner",
+   "name": "",
+   "pos": [
+    68.73,
+    78.89
+   ]
+  },
+  {
+   "id": "a0_b_pass_s",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    68.73,
+    90.16
+   ]
+  },
+  {
+   "id": "a0_b_curve_s",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    76.83,
+    90.16
+   ]
+  },
+  {
+   "id": "a0_b_curve_n",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    76.35,
+    74.44
+   ]
+  },
+  {
+   "id": "a0_lobbya_vest",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    20.16,
+    73.81
+   ]
+  },
+  {
+   "id": "a0_lib_x",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    32.38,
+    42.86
+   ]
+  },
+  {
+   "id": "a0_quad_south_exit",
+   "type": "exit",
+   "name": "Quadrangle South Entrance",
+   "pos": [
+    41.59,
+    97.94
+   ],
+   "on": "a0_c_quad_s"
+  },
+  {
+   "id": "a0_lobbya_w_exit",
+   "type": "exit",
+   "name": "Block A side door (by Yummy Waffle)",
+   "pos": [
+    10.95,
+    73.81
+   ],
+   "verify": "Fire exit on the plan; the outdoor Vending entrance is right outside. Check it is open in the day."
+  },
+  {
+   "id": "a0_mess_back_door",
+   "type": "exit",
+   "name": "Cafeteria back door",
+   "pos": [
+    65.19,
+    52.7
+   ]
+  },
+  {
+   "id": "a0_everest_door",
+   "type": "door",
+   "name": "Mount Everest 130",
+   "pos": [
+    29.29,
+    63.89
+   ],
+   "on": "a0_c_west"
+  },
+  {
+   "id": "a0_shop_a",
+   "type": "door",
+   "name": "Snack room (Yummy Waffle & Vending)",
+   "pos": [
+    18.21,
+    69.52
+   ],
+   "on": "a0_c_vest_a",
+   "note": "Shop in the room the plan calls DATA-02, door on the small hall south of Everest"
+  },
+  {
+   "id": "a0_lift_a",
+   "type": "lift",
+   "name": "Lift (Block A)",
+   "pos": [
+    27.46,
+    71.59
+   ],
+   "on": "a0_c_lobbya"
+  },
+  {
+   "id": "a0_stair_a",
+   "type": "stairs",
+   "name": "Staircase (Block A)",
+   "pos": [
+    21.11,
+    76.19
+   ],
+   "on": "a0_c_lobbya"
+  },
+  {
+   "id": "a0_washroom_a",
+   "type": "door",
+   "name": "Washroom (Block A)",
+   "pos": [
+    13.81,
+    77.62
+   ],
+   "on": "a0_c_lobbya"
+  },
+  {
+   "id": "a0_washroom_a2",
+   "type": "door",
+   "name": "Washroom (Block A, accessible)",
+   "pos": [
+    26.94,
+    76.71
+   ],
+   "on": "a0_c_lobbya"
+  },
+  {
+   "id": "a0_lhotse_door",
+   "type": "door",
+   "name": "Mount Lhotse",
+   "pos": [
+    26.38,
+    83.41
+   ],
+   "on": "a0_c_lhotse_n"
+  },
+  {
+   "id": "a0_lhotse_door_s",
+   "type": "door",
+   "name": "Mount Lhotse (back door)",
+   "pos": [
+    26.38,
+    96.75
+   ],
+   "on": "a0_c_lhotse_s"
+  },
+  {
+   "id": "a0_clinic",
+   "type": "door",
+   "name": "Clinic",
+   "pos": [
+    28.49,
+    95.51
+   ],
+   "on": "a0_c_lhotse_s",
+   "verify": "Plan shows a plant room here; signage shows the Clinic. Check the door."
+  },
+  {
+   "id": "a0_library",
+   "type": "door",
+   "name": "Library",
+   "pos": [
+    36.9,
+    53.02
+   ],
+   "on": "a0_c_north"
+  },
+  {
+   "id": "a0_kosciuszko_door",
+   "type": "door",
+   "name": "Mount Kosciuszko",
+   "pos": [
+    23.41,
+    42.94
+   ],
+   "on": "a0_c_library"
+  },
+  {
+   "id": "a0_psychology_lab",
+   "type": "door",
+   "name": "Psychology Lab",
+   "pos": [
+    32.46,
+    35.87
+   ],
+   "on": "a0_c_library_e"
+  },
+  {
+   "id": "a0_counseling_lab",
+   "type": "door",
+   "name": "Counseling Lab",
+   "pos": [
+    32.46,
+    30.48
+   ],
+   "on": "a0_c_library_e",
+   "verify": "The plan shows one double door (Psychology Lab); check where the Counseling Lab door is."
+  },
+  {
+   "id": "a0_stair_lib",
+   "type": "stairs",
+   "name": "Library staircase",
+   "pos": [
+    24.6,
+    23.81
+   ],
+   "on": "a0_c_library",
+   "verify": "Steel staircase ST-02; check students may use it."
+  },
+  {
+   "id": "a0_exec_dining",
+   "type": "door",
+   "name": "Executive Dining",
+   "pos": [
+    45.51,
+    53.02
+   ],
+   "on": "a0_c_north"
+  },
+  {
+   "id": "a0_mess_inside_door",
+   "type": "door",
+   "name": "Cafeteria / Mess inside door",
+   "pos": [
+    51.75,
+    52.38
+   ],
+   "on": "a0_c_north"
+  },
+  {
+   "id": "a0_wellbeing",
+   "type": "door",
+   "name": "Wellbeing Office",
+   "pos": [
+    48.41,
+    53.33
+   ],
+   "on": "a0_c_north",
+   "verify": "Signage only (the plan shows a small enclosure by Executive Dining). Check the door."
+  },
+  {
+   "id": "a0_stair_cafe",
+   "type": "stairs",
+   "name": "Cafeteria staircase",
+   "pos": [
+    62.22,
+    45.4
+   ],
+   "on": "a0_c_cafe"
+  },
+  {
+   "id": "a0_adminlobby",
+   "type": "gate",
+   "name": "Admin Lobby gate",
+   "pos": [
+    53.02,
+    78.89
+   ]
+  },
+  {
+   "id": "a0_aspretto",
+   "type": "door",
+   "name": "Aspretto (coffee shop)",
+   "pos": [
+    54.29,
+    88.89
+   ],
+   "on": "a0_c_lobby_b_e"
+  },
+  {
+   "id": "a0_reception",
+   "type": "door",
+   "name": "Guest Waiting Room",
+   "pos": [
+    55.56,
+    86.98
+   ],
+   "on": "a0_c_lobby_b_e"
+  },
+  {
+   "id": "a0_accounts",
+   "type": "door",
+   "name": "Accounts Office",
+   "pos": [
+    61.59,
+    53.97
+   ],
+   "on": "a0_c_lobby_n",
+   "verify": "Signage only: north-east corner of the lobby. Check the door."
+  },
+  {
+   "id": "a0_study_pods",
+   "type": "door",
+   "name": "Study Pods",
+   "pos": [
+    62.86,
+    59.21
+   ],
+   "on": "a0_c_lobby_n",
+   "verify": "Signage only: east side of the lobby."
+  },
+  {
+   "id": "a0_merch_store",
+   "type": "door",
+   "name": "Merchandise Store",
+   "pos": [
+    62.86,
+    67.14
+   ],
+   "on": "a0_c_lobby_n",
+   "verify": "Signage only: east side of the lobby."
+  },
+  {
+   "id": "a0_stair_b",
+   "type": "stairs",
+   "name": "Spiral staircase (Block B)",
+   "pos": [
+    56.51,
+    91.43
+   ],
+   "on": "a0_c_lobby_b_e"
+  },
+  {
+   "id": "a0_lift_b",
+   "type": "lift",
+   "name": "Lift (Block B)",
+   "pos": [
+    63.49,
+    79.68
+   ],
+   "on": "a0_c_b1"
+  },
+  {
+   "id": "a0_washroom_b",
+   "type": "door",
+   "name": "Washroom (Block B, ladies)",
+   "pos": [
+    64.29,
+    77.14
+   ],
+   "on": "a0_c_b1"
+  },
+  {
+   "id": "a0_washroom_b2",
+   "type": "door",
+   "name": "Washroom (Block B, gents)",
+   "pos": [
+    67.14,
+    77.14
+   ],
+   "on": "a0_c_b1"
+  },
+  {
+   "id": "a0_registrar",
+   "type": "door",
+   "name": "Registrar Office",
+   "pos": [
+    68.19,
+    88.3
+   ],
+   "on": "a0_c_b_pass"
+  },
+  {
+   "id": "a0_board_room",
+   "type": "door",
+   "name": "Faculty Board Room",
+   "pos": [
+    67.56,
+    91.05
+   ],
+   "on": "a0_c_b2",
+   "note": "Plan: Conference Room"
+  },
+  {
+   "id": "a0_vc_office",
+   "type": "door",
+   "name": "Vice Chancellor Office",
+   "pos": [
+    73.43,
+    91.05
+   ],
+   "on": "a0_c_b2"
+  },
+  {
+   "id": "a0_director_office",
+   "type": "door",
+   "name": "Director Office",
+   "pos": [
+    77.83,
+    91.05
+   ],
+   "on": "a0_c_b2",
+   "note": "Plan: Director Office 02"
+  },
+  {
+   "id": "a0_chancellor",
+   "type": "door",
+   "name": "Chancellor Office",
+   "pos": [
+    79.68,
+    91.05
+   ],
+   "on": "a0_c_b2"
+  },
+  {
+   "id": "a0_admin_office",
+   "type": "door",
+   "name": "Admin Office",
+   "pos": [
+    77.62,
+    82.86
+   ],
+   "on": "a0_c_b_curve",
+   "note": "Open-plan office east of the HOD corridor"
+  },
+  {
+   "id": "a0_hod_04",
+   "type": "door",
+   "name": "HOD Office 04",
+   "pos": [
+    75.65,
+    87.78
+   ],
+   "on": "a0_c_b_curve"
+  },
+  {
+   "id": "a0_hod_05",
+   "type": "door",
+   "name": "HOD Office 05",
+   "pos": [
+    75.48,
+    81.9
+   ],
+   "on": "a0_c_b_curve"
+  },
+  {
+   "id": "a0_hod_06",
+   "type": "door",
+   "name": "HOD Office 06",
+   "pos": [
+    75.63,
+    80.48
+   ],
+   "on": "a0_c_b_curve"
+  },
+  {
+   "id": "a0_hod_07",
+   "type": "door",
+   "name": "HOD Office 07",
+   "pos": [
+    75.05,
+    74.92
+   ],
+   "on": "a0_c_b_curve"
+  },
+  {
+   "id": "a0_hod_08",
+   "type": "door",
+   "name": "HOD Office 08",
+   "pos": [
+    75.05,
+    73.65
+   ],
+   "on": "a0_c_b_top"
+  },
+  {
+   "id": "a0_hod_09",
+   "type": "door",
+   "name": "HOD Office 09",
+   "pos": [
+    76.51,
+    73.57
+   ],
+   "on": "a0_c_b_top"
+  },
+  {
+   "id": "a0_hod_10",
+   "type": "door",
+   "name": "HOD Office 10",
+   "pos": [
+    81.4,
+    73.71
+   ],
+   "on": "a0_c_b_top"
+  }
+ ],
+ "edges": [
+  {
+   "from": "a0_quad_n",
+   "to": "a0_nc_steps",
+   "type": "steps",
+   "note": "wide steps up to the north corridor; step-free routes use the ramps on the walkways"
+  }
+ ],
+ "links": [
+  {
+   "indoor": "a0_quad_south_exit",
+   "outdoor": "quad_south_entrance"
+  },
+  {
+   "indoor": "a0_lobbya_w_exit",
+   "outdoor": "vending_entrance"
+  },
+  {
+   "indoor": "a0_mess_back_door",
+   "outdoor": "mess_entrance"
+  }
+ ]
+}

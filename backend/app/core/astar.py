@@ -59,3 +59,27 @@ def astar(graph, starts, goals, accessible_only=False):
                 came_from[nbr] = (cur, eid)
                 heapq.heappush(heap, (new_g + h(nbr), next(tie), nbr))
     return None
+
+
+def walk_times(graph, starts, walk_speed, accessible_only=False):
+    """One Dijkstra from `starts` to every node: {node id: (route cost, walking seconds)}. Used for the "2 min walk"
+    labels, so asking for 130 places costs one search instead of 130 (and does not fill the route cache)."""
+    starts = _as_list(starts)
+    tie = itertools.count()
+    best = {s: 0.0 for s in starts}
+    secs = {s: 0.0 for s in starts}
+    heap = [(0.0, next(tie), s) for s in starts]
+    while heap:
+        d, _, cur = heapq.heappop(heap)
+        if d > best[cur] + 1e-9:
+            continue
+        for nbr, weight, eid in graph.adj[cur]:
+            edge = graph.edges[eid]
+            if edge["type"] == "restricted" or (accessible_only and not edge["accessible"]):
+                continue
+            nd = d + weight
+            if nd < best.get(nbr, float("inf")) - 1e-12:
+                best[nbr] = nd
+                secs[nbr] = secs[cur] + edge["length"] / walk_speed + edge.get("extra_s", 0.0)
+                heapq.heappush(heap, (nd, next(tie), nbr))
+    return {n: (best[n], secs[n]) for n in best}

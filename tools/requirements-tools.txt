@@ -1,0 +1,4 @@
+# Optional: only for the plan tools (render_plan.py, render_graph.py) and QR printing (generate_qr.py)
+pymupdf>=1.24
+pillow>=10
+qrcode[pil]>=7.4

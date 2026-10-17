@@ -10,3 +10,8 @@ app/build/
 app/.dart_tool/
 # reports sent from the app
 data/reports.jsonl
+
+# architect plans and anything made from them: never commit (the repo may be public)
+private/
+*.dwg
+out/

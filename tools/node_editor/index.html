@@ -1,1 +1,575 @@
-<!-- Floor plan node editor (to build) -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indoor Node Editor</title>
+<!--
+  Indoor node editor for data/indoor/<floor>.json  (gf, ff, sf ...). No install, no internet: double-click this file.
+
+  PLAN MODE (current files: dots have "pos" in plan metres)
+    1. Make the plan picture once (private, never commit):  python tools/render_plan.py gf
+       -> private/plans/gf.png at 25.2 pixels per metre (shown in "Plan scale").
+    2. "Open JSON" -> data/indoor/gf.json, then "Open image" -> private/plans/gf.png
+    3. Corridors (recommended): "Add corridor", click along the CENTRE of a corridor (click an existing dot to pass
+       through it, so two corridors share that junction), press Enter to finish.  Then give each door
+       "sits on corridor" in its panel: it is joined by a short square stub, no line needed.
+       Add line: click dot A, then dot B (Enter = use the plan distance, or type a tape-measured number to override)
+       for anything a corridor can't describe (stairs landing, a door straight onto another door).
+       Drag a dot or a corridor point to move it.  Click a dot/line/corridor to edit or delete.
+    4. "Download JSON", save it over data/indoor/gf.json, run  python tools/merge_data.py
+  PICTURE MODE (old files: dots have x, y pixels on the signage picture and every line needs measured metres)
+    Same buttons; the signage picture loads by itself.
+-->
+<style>
+  :root { --bg:#f5f7fa; --panel:#fff; --ink:#1b2340; --muted:#5b6478; --line:#e4e8ef; --accent:#2457e6; --bad:#c8372d; --ok:#0e9f8e; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:14px/1.4 system-ui, Segoe UI, sans-serif; color:var(--ink); background:var(--bg); display:flex; height:100vh; }
+  #side { width:340px; min-width:340px; background:var(--panel); border-right:1px solid var(--line); overflow:auto; padding:12px; }
+  #main { flex:1; overflow:auto; padding:12px; position:relative; }
+  h1 { font-size:16px; margin:0 0 8px; }
+  h2 { font-size:13px; margin:16px 0 6px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+  button, select, input { font:inherit; }
+  button { border:1px solid var(--line); background:#fff; border-radius:8px; padding:6px 10px; cursor:pointer; }
+  button:hover { border-color:var(--accent); }
+  button.on { background:var(--accent); color:#fff; border-color:var(--accent); }
+  button.danger { color:var(--bad); }
+  .row { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px; align-items:center; }
+  label.f { display:block; margin:6px 0 2px; color:var(--muted); font-size:12px; }
+  input[type=text], input[type=number], select { width:100%; padding:5px 7px; border:1px solid var(--line); border-radius:6px; }
+  #wrap { position:relative; display:inline-block; transform-origin: 0 0; }
+  #plan { display:block; user-select:none; -webkit-user-drag:none; }
+  #overlay { position:absolute; inset:0; width:100%; height:100%; }
+  .hint { color:var(--muted); font-size:12px; }
+  .msg { padding:6px 8px; border-radius:6px; margin:4px 0; font-size:12px; }
+  .msg.err { background:#fde8e6; color:var(--bad); }
+  .msg.warn { background:#fff4d6; color:#7a5600; }
+  .msg.ok { background:#e2f6f3; color:#0a6e63; }
+  .link { display:grid; grid-template-columns: 1fr 1fr 60px 24px; gap:4px; margin-bottom:4px; }
+  .link input, .link select { padding:3px 5px; font-size:12px; }
+  #edit { border:1px solid var(--line); border-radius:8px; padding:8px; margin-top:6px; }
+  #status { font-size:12px; color:var(--muted); margin-left:8px; }
+</style>
+</head>
+<body>
+<div id="side">
+  <h1>Indoor node editor</h1>
+  <div class="row">
+    <button id="openJson">Open JSON</button>
+    <button id="openImg">Open image</button>
+    <button id="download">Download JSON</button>
+  </div>
+  <input type="file" id="jsonFile" accept=".json,application/json" hidden>
+  <input type="file" id="imgFile" accept="image/*" hidden>
+
+  <h2>Tool</h2>
+  <div class="row">
+    <button data-mode="select" class="on">Select / move</button>
+    <button data-mode="dot">Add dot</button>
+    <button data-mode="line">Add line</button>
+    <button data-mode="corridor">Add corridor</button>
+  </div>
+  <div class="hint" id="modeHint">Click a dot or line to edit it. Drag a dot to move it.</div>
+  <div class="row" style="margin-top:6px">
+    <label class="hint"><input type="checkbox" id="showIds" checked> show ids</label>
+    <label class="hint"><input type="checkbox" id="showM" checked> show metres</label>
+    <span class="hint">zoom</span><input type="range" id="zoom" min="0.4" max="2.5" step="0.05" value="1" style="width:90px">
+  </div>
+
+  <div id="edit" hidden></div>
+
+  <h2>Links to the outdoor map</h2>
+  <div class="hint">An indoor exit joined to an outdoor dot id from geojson.io. Without a link, A* can't go in or out at that door.</div>
+  <div id="links" style="margin-top:6px"></div>
+  <button id="addLink">+ Add link</button>
+
+  <h2>Floor</h2>
+  <label class="hint"><input type="checkbox" id="planMode"> plan mode (dots in metres on the architect's plan)</label>
+  <label class="f">plan scale (pixels per metre of the plan picture)</label>
+  <input type="number" id="pxPerM" step="0.1" value="25.2">
+  <label class="f">status</label>
+  <select id="fStatus"><option>plan</option><option>draft</option><option>confirmed</option></select>
+  <label class="f">floor number</label>
+  <input type="number" id="fFloor" step="1">
+  <label class="f">image file name (what the app loads)</label>
+  <input type="text" id="fImage">
+
+  <h2>Checks</h2>
+  <div id="checks"></div>
+</div>
+
+<div id="main">
+  <div class="hint" style="margin-bottom:6px">Plan pixels: <span id="size">-</span> <span id="status"></span></div>
+  <div id="wrap">
+    <img id="plan" alt="floor plan" src="../../app/assets/floorplans/ground.png">
+    <svg id="overlay"></svg>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  const TYPES = ["junction", "corner", "door", "exit", "gate", "area", "lift", "stairs"];
+  const EDGE_TYPES = ["corridor", "open", "ramp", "steps", "restricted"];
+  const COLORS = { junction:"#5b6478", corner:"#9aa3b5", door:"#2457e6", exit:"#e0457b", gate:"#0e9f8e",
+                   area:"#f2a900", lift:"#7a3fd1", stairs:"#7a3fd1" };
+  const ID_RE = /^[a-z0-9_]+$/;
+  const DRAFT_KEY = "indoor-node-editor-draft";
+
+  let data = blank();
+  let mode = "select", selected = null, lineStart = null, drag = null, fileName = "gf.json";
+  let draft = null;   // corridor being drawn: list of dot ids / [x, y] plan metres
+  let planMode = false;
+
+  // where a dot is drawn, in pixels of the loaded picture
+  function P(n) {
+    if (planMode) { const k = pxPerM(); return n.pos ? [n.pos[0] * k, n.pos[1] * k] : [0, 0]; }
+    return [n.x, n.y];
+  }
+  function setP(n, px, py) {
+    if (planMode) { const k = pxPerM(); n.pos = [Math.round(px / k * 100) / 100, Math.round(py / k * 100) / 100]; }
+    else { n.x = Math.round(px); n.y = Math.round(py); }
+  }
+  function pxPerM() { return parseFloat($("pxPerM").value) || 25.2; }
+  function planLen(e) {
+    const a = nodeById(e.from), b = nodeById(e.to);
+    if (!planMode || !a || !b || !a.pos || !b.pos) return null;
+    return Math.hypot(a.pos[0] - b.pos[0], a.pos[1] - b.pos[1]);
+  }
+  function edgeLen(e) { return e.meters > 0 ? e.meters : planLen(e); }
+  function picSize() { return planMode ? [img.naturalWidth || 1000, img.naturalHeight || 1000] : (data.image_size || [img.naturalWidth, img.naturalHeight]); }
+
+  const $ = (id) => document.getElementById(id);
+  const img = $("plan"), svg = $("overlay");
+
+  function blank() {
+    return { status:"draft", floor:0, image:"ground.png", image_size:[1357, 882], nodes:[], edges:[], links:[] };
+  }
+  function nodeById(id) { return data.nodes.find(n => n.id === id); }
+  function prefix() { return "a" + (Number(data.floor) || 0) + "_"; }
+
+  // ---------- load / save ----------
+  function load(obj, name) {
+    if (!obj || !Array.isArray(obj.nodes)) { alert("That file has no 'nodes' list."); return; }
+    obj.edges = obj.edges || []; obj.links = obj.links || [];
+    data = obj; if (name) fileName = name;
+    selected = null; lineStart = null; draft = null;
+    planMode = obj.nodes.some(n => Array.isArray(n.pos)) || (obj.nodes.length === 0 && !!obj.code);
+    $("planMode").checked = planMode;
+    syncFloorFields(); render(); save();
+  }
+  function save() { try { localStorage.setItem(DRAFT_KEY, JSON.stringify(data)); } catch (e) {} }
+  function restore() {
+    try { const s = localStorage.getItem(DRAFT_KEY); if (s) { data = JSON.parse(s); $("status").textContent = "(restored unsaved draft)"; } } catch (e) {}
+  }
+
+  $("openJson").onclick = () => $("jsonFile").click();
+  $("jsonFile").onchange = (e) => {
+    const f = e.target.files[0]; if (!f) return;
+    f.text().then(t => { try { load(JSON.parse(t), f.name); $("status").textContent = "(" + f.name + ")"; } catch (err) { alert("Not valid JSON: " + err.message); } });
+    e.target.value = "";
+  };
+  $("openImg").onclick = () => $("imgFile").click();
+  $("imgFile").onchange = (e) => {
+    const f = e.target.files[0]; if (!f) return;
+    img.src = URL.createObjectURL(f);
+    if (!data.image || data.nodes.length === 0) data.image = f.name;
+    e.target.value = "";
+  };
+  img.onload = () => {
+    const w = img.naturalWidth, h = img.naturalHeight;
+    $("size").textContent = w + " x " + h + (planMode ? " (plan picture)" : "");
+    if (planMode) { applyZoom(); render(); return; }
+    const [dw, dh] = data.image_size || [];
+    if (dw && (dw !== w || dh !== h)) {
+      if (confirm("The JSON says the image is " + dw + " x " + dh + " but this image is " + w + " x " + h +
+                  ". Positions only match the original size. Update image_size to the new size?")) data.image_size = [w, h];
+    } else data.image_size = [w, h];
+    applyZoom(); render();
+  };
+  img.onerror = () => { $("size").textContent = "image not found: use Open image"; };
+
+  $("download").onclick = () => {
+    const issues = check();
+    if (issues.some(i => i[0] === "err") && !confirm("There are errors (see Checks). Download anyway?")) return;
+    const out = JSON.stringify(data, null, 2) + "\n";
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([out], { type: "application/json" }));
+    a.download = fileName; a.click();
+  };
+
+  // ---------- floor fields ----------
+  $("planMode").onchange = (e) => { planMode = e.target.checked; render(); };
+  $("pxPerM").onchange = () => render();
+  function syncFloorFields() {
+    $("fStatus").value = data.status || "draft";
+    $("fFloor").value = data.floor ?? 0;
+    $("fImage").value = data.image || "";
+  }
+  $("fStatus").onchange = (e) => { data.status = e.target.value; save(); };
+  $("fFloor").onchange = (e) => { data.floor = parseInt(e.target.value, 10) || 0; save(); };
+  $("fImage").onchange = (e) => { data.image = e.target.value.trim(); save(); };
+
+  // ---------- modes ----------
+  const hints = {
+    select: "Click a dot or line to edit it. Drag a dot to move it.",
+    dot: "Click the plan where a door, junction, corner or exit is.",
+    line: "Click the first dot, then the second. Then type the measured metres.",
+    corridor: "Click along the corridor's centre line (click a dot to pass through it). Enter = finish, Esc = cancel."
+  };
+  document.querySelectorAll("[data-mode]").forEach(b => b.onclick = () => setMode(b.dataset.mode));
+  function setMode(m) {
+    if (m === "corridor" && !planMode) { alert("Corridors need plan mode (dots in metres)."); return; }
+    mode = m; lineStart = null; draft = m === "corridor" ? [] : null;
+    document.querySelectorAll("[data-mode]").forEach(b => b.classList.toggle("on", b.dataset.mode === m));
+    $("modeHint").textContent = hints[m]; render();
+  }
+  document.addEventListener("keydown", (e) => {
+    if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
+    if (e.key === "Escape") { lineStart = null; selected = null; if (draft) draft = []; render(); }
+    if (e.key === "Enter" && draft) finishCorridor();
+    if (e.key === "1") setMode("select"); if (e.key === "2") setMode("dot"); if (e.key === "3") setMode("line");
+    if (e.key === "4") setMode("corridor");
+    if ((e.key === "Delete" || e.key === "Backspace") && selected) { removeSelected(); }
+  });
+
+  $("zoom").oninput = applyZoom;
+  function applyZoom() {
+    const z = parseFloat($("zoom").value) || 1;
+    img.style.width = (img.naturalWidth * z) + "px";
+  }
+  $("showIds").onchange = render; $("showM").onchange = render;
+
+  // ---------- plan coordinates ----------
+  function toPlan(evt) {
+    const r = img.getBoundingClientRect();
+    const [W, H] = picSize();
+    const sx = W / r.width, sy = H / r.height;
+    return { x: Math.round((evt.clientX - r.left) * sx), y: Math.round((evt.clientY - r.top) * sy) };
+  }
+
+  svg.addEventListener("mousedown", (e) => {
+    const t = e.target, nid = t.dataset.node, eid = t.dataset.edge, cid = t.dataset.corr, cpt = t.dataset.cpt;
+    if (mode === "corridor") {
+      if (nid) draft.push(nid);
+      else { const p = toPlan(e), k = pxPerM(); draft.push([Math.round(p.x / k * 100) / 100, Math.round(p.y / k * 100) / 100]); }
+      drawOnly(); return;
+    }
+    if (mode === "select" && cpt) { const [c, k] = cpt.split("|"); selected = { kind:"corr", id:c }; drag = { corr:c, k:Number(k), moved:false }; render(); e.preventDefault(); return; }
+    if (mode === "select" && cid) { selected = { kind:"corr", id:cid }; render(); return; }
+    if (mode === "dot" && !nid) { addNode(toPlan(e)); return; }
+    if (mode === "line" && nid) {
+      if (!lineStart) { lineStart = nid; render(); return; }
+      if (lineStart !== nid) addEdge(lineStart, nid);
+      lineStart = null; render(); return;
+    }
+    if (mode === "select") {
+      if (nid) { selected = { kind:"node", id:nid }; drag = { id:nid, moved:false }; render(); e.preventDefault(); return; }
+      if (eid !== undefined) { selected = { kind:"edge", i:Number(eid) }; render(); return; }
+      selected = null; render();
+    }
+  });
+  window.addEventListener("mousemove", (e) => {
+    if (!drag) return;
+    const p = toPlan(e);
+    if (drag.corr) {
+      const c = corrById(drag.corr); if (!c) return; const k = pxPerM();
+      c.path[drag.k] = [Math.round(p.x / k * 100) / 100, Math.round(p.y / k * 100) / 100]; drag.moved = true; drawOnly(); return;
+    }
+    const n = nodeById(drag.id); if (!n) return;
+    setP(n, p.x, p.y); drag.moved = true; render();
+  });
+  window.addEventListener("mouseup", () => { if (drag && drag.moved) save(); drag = null; });
+
+  // ---------- corridors ----------
+  function corrs() { return data.corridors || (data.corridors = []); }
+  function corrById(id) { return (data.corridors || []).find(c => c.id === id); }
+  function ptPos(p) { return typeof p === "string" ? (nodeById(p) || {}).pos : p; }
+  function corrPts(c) { return (c.path || []).map(ptPos).filter(Boolean); }
+  function project(pos, c) {          // nearest point of a corridor's centre line (plan metres), as tools/corridors.py
+    const pts = corrPts(c); let best = null;
+    for (let i = 0; i + 1 < pts.length; i++) {
+      const [ax, ay] = pts[i], [bx, by] = pts[i + 1], dx = bx - ax, dy = by - ay, l2 = dx * dx + dy * dy;
+      const t = l2 ? Math.max(0, Math.min(1, ((pos[0] - ax) * dx + (pos[1] - ay) * dy) / l2)) : 0;
+      const q = [ax + t * dx, ay + t * dy], d = Math.hypot(pos[0] - q[0], pos[1] - q[1]);
+      if (!best || d < best.d) best = { d, q };
+    }
+    return best;
+  }
+  function finishCorridor() {
+    const path = draft || [];
+    if (path.length < 2) { alert("A corridor needs at least 2 points."); return; }
+    const id = (prompt("Id for this corridor (e.g. " + prefix() + "c_north). Never rename it later.", prefix() + "c_" + (corrs().length + 1)) || "").trim();
+    if (!id) return;
+    if (!ID_RE.test(id) || corrById(id) || nodeById(id)) { alert("Use a new id with only a-z, 0-9 and _"); return; }
+    const name = (prompt("Name students hear in turns (\"Turn left into the ...\"), e.g. North corridor, Library, Lobby:", "") || "").trim();
+    corrs().push({ id, name, type: "corridor", path });
+    draft = []; selected = { kind:"corr", id }; save(); setMode("select");
+  }
+
+  // ---------- edit ----------
+  function suggestId() {
+    let i = data.nodes.length + 1, id;
+    do { id = prefix() + "point" + String(i).padStart(2, "0"); i++; } while (nodeById(id));
+    return id;
+  }
+  function addNode(p) {
+    const id = (prompt("Id for this dot (lowercase_with_underscores, e.g. " + prefix() + "logan_door).\nNEVER rename it later.", suggestId()) || "").trim();
+    if (!id) return;
+    if (!ID_RE.test(id)) { alert("Use only a-z, 0-9 and _"); return; }
+    if (nodeById(id)) { alert("That id already exists."); return; }
+    const name = (prompt("Name students see in the steps (leave empty for a plain corridor point):", "") || "").trim();
+    const node = { id, type: name ? "door" : "junction", name };
+    setP(node, p.x, p.y);
+    data.nodes.push(node); selected = { kind:"node", id }; save(); render();
+  }
+  function addEdge(a, b) {
+    if (data.edges.some(e => (e.from === a && e.to === b) || (e.from === b && e.to === a))) { alert("These two dots are already joined."); return; }
+    const msg = planMode
+      ? "Line " + a + " -> " + b + ". Press OK to use the plan distance, or type a tape-measured number of metres."
+      : "Measured walking distance " + a + " -> " + b + " in metres.\nLeave empty if not measured yet.";
+    const raw = prompt(msg, "");
+    if (raw === null) return;
+    const edge = { from: a, to: b };
+    const m = parseFloat(raw);
+    if (isFinite(m) && m > 0) edge.meters = Math.round(m * 10) / 10;
+    else if (!planMode) edge.meters = null;
+    data.edges.push(edge); selected = { kind:"edge", i: data.edges.length - 1 }; save(); render();
+  }
+  function removeSelected() {
+    if (!selected) return;
+    if (selected.kind === "node") {
+      const id = selected.id;
+      const used = data.edges.filter(e => e.from === id || e.to === id).length + data.links.filter(l => l.indoor === id).length;
+      const inPath = (data.corridors || []).filter(c => c.path.includes(id)).map(c => c.id);
+      if (!confirm("Delete " + id + (used ? " and its " + used + " line(s)/link(s)" : "") + (inPath.length ? " (it is a point of " + inPath.join(", ") + ")" : "") + "?")) return;
+      (data.corridors || []).forEach(c => { c.path = c.path.filter(p => p !== id); });
+      data.nodes = data.nodes.filter(n => n.id !== id);
+      data.edges = data.edges.filter(e => e.from !== id && e.to !== id);
+      data.links = data.links.filter(l => l.indoor !== id);
+    } else if (selected.kind === "corr") {
+      const on = data.nodes.filter(n => n.on === selected.id);
+      if (!confirm("Delete corridor " + selected.id + (on.length ? " (" + on.length + " dot(s) sit on it and will be cut off)" : "") + "?")) return;
+      on.forEach(n => delete n.on);
+      data.corridors = corrs().filter(c => c.id !== selected.id);
+    } else {
+      data.edges.splice(selected.i, 1);
+    }
+    selected = null; save(); render();
+  }
+
+  function renderEdit() {
+    const box = $("edit");
+    if (!selected) { box.hidden = true; box.innerHTML = ""; return; }
+    box.hidden = false;
+    if (selected.kind === "node") {
+      const n = nodeById(selected.id); if (!n) { selected = null; box.hidden = true; return; }
+      box.innerHTML =
+        '<b>Dot</b> <span class="hint">' + (planMode && n.pos ? "pos " + n.pos[0] + " m, " + n.pos[1] + " m" : "x " + n.x + ", y " + n.y) + '</span>' +
+        '<label class="f">id (renaming breaks QR codes and places: only for new dots)</label><input type="text" id="eId">' +
+        '<label class="f">name (shown in steps)</label><input type="text" id="eName">' +
+        '<label class="f">type</label><select id="eType">' + TYPES.map(t => "<option>" + t + "</option>").join("") + "</select>" +
+        (planMode ? '<label class="f">sits on corridor (joined by a short square stub)</label><select id="eOn"><option value="">none</option>' +
+          corrs().map(c => '<option value="' + c.id + '">' + escapeHtml(c.id + (c.name ? " · " + c.name : "")) + "</option>").join("") + "</select>" : "") +
+        '<label class="f">check on site (leave empty when confirmed)</label><input type="text" id="eVer">' +
+        '<div class="row" style="margin-top:8px"><button class="danger" id="eDel">Delete dot</button></div>';
+      if ($("eOn")) { $("eOn").value = n.on || ""; $("eOn").onchange = (e) => { if (e.target.value) n.on = e.target.value; else delete n.on; save(); drawOnly(); checksOnly(); }; }
+      $("eVer").value = n.verify || ""; $("eVer").oninput = (e) => { if (e.target.value.trim()) n.verify = e.target.value; else delete n.verify; save(); drawOnly(); };
+      $("eId").value = n.id; $("eName").value = n.name || ""; $("eType").value = TYPES.includes(n.type) ? n.type : "junction";
+      if (!TYPES.includes(n.type)) { const o = document.createElement("option"); o.textContent = n.type; $("eType").appendChild(o); $("eType").value = n.type; }
+      $("eId").onchange = (e) => renameNode(n, e.target.value.trim());
+      $("eName").oninput = (e) => { n.name = e.target.value; save(); drawOnly(); };
+      $("eType").onchange = (e) => { n.type = e.target.value; save(); drawOnly(); };
+      $("eDel").onclick = removeSelected;
+    } else if (selected.kind === "corr") {
+      const c = corrById(selected.id); if (!c) { selected = null; box.hidden = true; return; }
+      const pts = corrPts(c); let len = 0; for (let i = 0; i + 1 < pts.length; i++) len += Math.hypot(pts[i + 1][0] - pts[i][0], pts[i + 1][1] - pts[i][1]);
+      box.innerHTML =
+        '<b>Corridor</b> <span class="hint">' + escapeHtml(c.id) + " · " + c.path.length + " points · " + len.toFixed(1) + " m · " +
+        data.nodes.filter(n => n.on === c.id).length + ' dots on it</span>' +
+        '<label class="f">name (\"Turn left into the ...\")</label><input type="text" id="cName">' +
+        '<label class="f">type</label><select id="cType">' + EDGE_TYPES.map(t => "<option>" + t + "</option>").join("") + "</select>" +
+        '<div class="hint" style="margin-top:6px">Drag a small square to move a point. To pass through a dot, redraw the corridor.</div>' +
+        '<div class="row" style="margin-top:8px"><button class="danger" id="eDel">Delete corridor</button></div>';
+      $("cName").value = c.name || ""; $("cType").value = c.type || "corridor";
+      $("cName").oninput = (e) => { c.name = e.target.value; save(); drawOnly(); };
+      $("cType").onchange = (e) => { c.type = e.target.value; save(); drawOnly(); };
+      $("eDel").onclick = removeSelected;
+    } else {
+      const ed = data.edges[selected.i]; if (!ed) { selected = null; box.hidden = true; return; }
+      box.innerHTML =
+        '<b>Line</b> <span class="hint">' + ed.from + ' &harr; ' + ed.to + (planLen(ed) != null ? ' · plan ' + planLen(ed).toFixed(1) + ' m' : '') + '</span>' +
+        '<label class="f">measured metres ' + (planMode ? '(empty = use the plan distance)' : '') + '</label><input type="number" step="0.1" min="0" id="eM">' +
+        '<label class="f">type</label><select id="eT">' + EDGE_TYPES.map(t => "<option>" + t + "</option>").join("") + '</select>' +
+        '<label class="f">label (optional note, e.g. "library to Everest")</label><input type="text" id="eL">' +
+        '<label class="hint" style="display:block;margin-top:6px"><input type="checkbox" id="eOpt"> optional (allowed without metres)</label>' +
+        '<div class="row" style="margin-top:8px"><button class="danger" id="eDel">Delete line</button></div>';
+      $("eM").value = ed.meters ?? ""; $("eL").value = ed.label || ""; $("eOpt").checked = !!ed.optional;
+      $("eT").value = ed.type || "corridor";
+      $("eT").onchange = (e) => { if (e.target.value === "corridor") delete ed.type; else ed.type = e.target.value; save(); drawOnly(); };
+      $("eM").oninput = (e) => { const m = parseFloat(e.target.value); if (isFinite(m) && m > 0) ed.meters = m; else if (planMode) delete ed.meters; else ed.meters = null; save(); drawOnly(); };
+      $("eL").oninput = (e) => { ed.label = e.target.value; save(); };
+      $("eOpt").onchange = (e) => { if (e.target.checked) ed.optional = true; else delete ed.optional; save(); drawOnly(); };
+      $("eDel").onclick = removeSelected;
+    }
+  }
+  function renameNode(n, id) {
+    if (id === n.id) return;
+    if (!ID_RE.test(id)) { alert("Use only a-z, 0-9 and _"); renderEdit(); return; }
+    if (nodeById(id)) { alert("That id already exists."); renderEdit(); return; }
+    if (!confirm("Rename " + n.id + " to " + id + "?\nOnly do this for a dot you added today: places_v1.json, QR codes and the app may use the old id.")) { renderEdit(); return; }
+    data.edges.forEach(e => { if (e.from === n.id) e.from = id; if (e.to === n.id) e.to = id; });
+    data.links.forEach(l => { if (l.indoor === n.id) l.indoor = id; });
+    (data.corridors || []).forEach(c => { c.path = c.path.map(p => p === n.id ? id : p); });
+    n.id = id; selected = { kind:"node", id }; save(); render();
+  }
+
+  // ---------- links ----------
+  $("addLink").onclick = () => { data.links.push({ indoor: "", outdoor: "", meters: 0, label: "" }); save(); renderLinks(); };
+  function renderLinks() {
+    const box = $("links"); box.innerHTML = "";
+    data.links.forEach((l, i) => {
+      const row = document.createElement("div"); row.className = "link";
+      const sel = document.createElement("select");
+      sel.innerHTML = '<option value="">indoor dot…</option>' + data.nodes.map(n => '<option>' + n.id + '</option>').join("");
+      sel.value = l.indoor || ""; sel.onchange = () => { l.indoor = sel.value; save(); checksOnly(); };
+      const out = document.createElement("input"); out.type = "text"; out.placeholder = "outdoor id"; out.value = l.outdoor || "";
+      out.onchange = () => { l.outdoor = out.value.trim(); save(); checksOnly(); };
+      const m = document.createElement("input"); m.type = "number"; m.step = "0.1"; m.min = "0"; m.value = l.meters ?? ""; m.title = "metres from the indoor dot to the outdoor dot (0 if it is the same doorway)";
+      m.onchange = () => { const v = parseFloat(m.value); l.meters = isFinite(v) && v >= 0 ? v : null; save(); checksOnly(); };
+      const del = document.createElement("button"); del.textContent = "×"; del.className = "danger"; del.style.padding = "0";
+      del.onclick = () => { data.links.splice(i, 1); save(); renderLinks(); checksOnly(); };
+      row.append(sel, out, m, del); box.appendChild(row);
+    });
+  }
+
+  // ---------- checks ----------
+  function check() {
+    const out = [], ids = new Set(), deg = {};
+    data.nodes.forEach(n => {
+      if (!ID_RE.test(n.id)) out.push(["err", "bad id '" + n.id + "'"]);
+      if (ids.has(n.id)) out.push(["err", "id used twice: " + n.id]);
+      ids.add(n.id); deg[n.id] = 0;
+      if (!n.id.startsWith(prefix())) out.push(["warn", n.id + " has no '" + prefix() + "' floor prefix"]);
+    });
+    data.edges.forEach(e => {
+      if (!ids.has(e.from) || !ids.has(e.to)) out.push(["err", "line " + e.from + "-" + e.to + " uses an unknown dot"]);
+      else { deg[e.from]++; deg[e.to]++; }
+      if (!(edgeLen(e) > 0) && !e.optional) out.push(["err", "line " + e.from + " - " + e.to + " has no metres yet"]);
+      const pl = planLen(e);
+      if (pl != null && e.meters > 0 && Math.abs(e.meters - pl) > Math.max(3, 0.3 * pl)) out.push(["warn", "line " + e.from + " - " + e.to + ": measured " + e.meters + " m, plan " + pl.toFixed(1) + " m"]);
+    });
+    data.links.forEach(l => {
+      if (!ids.has(l.indoor)) out.push(["err", "link with unknown indoor dot '" + (l.indoor || "") + "'"]);
+      else deg[l.indoor]++;
+      if (!l.outdoor) out.push(["err", "link from " + (l.indoor || "?") + " has no outdoor id"]);
+      if (l.meters == null && !planMode) out.push(["err", "link " + (l.indoor || "?") + " - " + (l.outdoor || "?") + " has no metres"]);
+    });
+    // corridors: a corridor joins its path dots and every dot that sits on it
+    const adj = {}; data.nodes.forEach(n => adj[n.id] = []);
+    (data.corridors || []).forEach(c => {
+      const key = "corridor:" + c.id; adj[key] = [];
+      if (!c.id || !ID_RE.test(c.id)) out.push(["err", "bad corridor id '" + c.id + "'"]);
+      if (!c.path || c.path.length < 2) out.push(["err", "corridor " + c.id + " needs 2+ points"]);
+      (c.path || []).forEach(p => {
+        if (typeof p !== "string") return;
+        if (!ids.has(p)) { out.push(["err", "corridor " + c.id + " passes through unknown dot " + p]); return; }
+        deg[p]++; adj[p].push(key); adj[key].push(p);
+      });
+      if (!c.name) out.push(["warn", "corridor " + c.id + " has no name (turns will say \"the corridor\")"]);
+    });
+    data.nodes.forEach(n => {
+      if (!n.on) return;
+      const c = corrById(n.on);
+      if (!c) { out.push(["err", n.id + " sits on unknown corridor " + n.on]); return; }
+      deg[n.id]++; adj[n.id].push("corridor:" + c.id); adj["corridor:" + c.id].push(n.id);
+      const pr = n.pos && project(n.pos, c);
+      if (pr && pr.d > 6) out.push(["warn", n.id + " is " + pr.d.toFixed(1) + " m from its corridor " + n.on]);
+    });
+    Object.keys(deg).forEach(id => { if (deg[id] === 0) out.push(["warn", id + " is not joined to anything"]); });
+    // islands: groups of dots that can't reach a link (the outdoor map)
+    data.edges.forEach(e => { if (adj[e.from] && adj[e.to]) { adj[e.from].push(e.to); adj[e.to].push(e.from); } });
+    const seen = new Set(), stack = data.links.map(l => l.indoor).filter(id => adj[id]);
+    stack.forEach(id => seen.add(id));
+    while (stack.length) { const u = stack.pop(); adj[u].forEach(v => { if (!seen.has(v)) { seen.add(v); stack.push(v); } }); }
+    const cut = data.nodes.filter(n => !seen.has(n.id) && deg[n.id] > 0).map(n => n.id);
+    if (data.links.length && cut.length) out.push(["warn", "can't reach any outdoor link: " + cut.join(", ")]);
+    return out;
+  }
+  function checksOnly() {
+    const c = check(), box = $("checks");
+    const nM = data.edges.filter(e => e.meters > 0).length;
+    const nV = data.nodes.filter(n => n.verify).length;
+    box.innerHTML = '<div class="msg ok">' + (planMode ? "plan mode · " : "picture mode · ") + data.nodes.length + " dots, " + (data.corridors || []).length + " corridors, " + data.edges.length + " lines (" + nM + " tape-measured), " + data.links.length + " links" + (nV ? ", " + nV + " to verify" : "") + "</div>" +
+      c.map(([k, t]) => '<div class="msg ' + k + '">' + escapeHtml(t) + "</div>").join("");
+  }
+  function escapeHtml(s) { return String(s).replace(/[&<>"]/g, ch => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[ch])); }
+
+  // ---------- draw ----------
+  function drawOnly() {
+    const [W, H] = picSize();
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    const r = Math.max(6, W / 180), showIds = $("showIds").checked, showM = $("showM").checked;
+    let s = "";
+    if (planMode) {
+      const k = pxPerM(), pts = (arr) => arr.map(p => (p[0] * k) + "," + (p[1] * k)).join(" ");
+      (data.corridors || []).forEach(c => {
+        const ps = corrPts(c); if (ps.length < 2) return;
+        const sel = selected && selected.kind === "corr" && selected.id === c.id;
+        s += '<polyline points="' + pts(ps) + '" fill="none" stroke="#fff" stroke-width="' + (r * 1.6) + '" stroke-linejoin="round" stroke-linecap="round"/>';
+        s += '<polyline points="' + pts(ps) + '" fill="none" stroke="' + (sel ? "#ff7a00" : "#0e9f8e") + '" stroke-width="' + (r * 0.9) + '" stroke-linejoin="round" stroke-linecap="round"' + (c.type === "open" ? ' stroke-dasharray="' + (r * 1.5) + " " + r + '"' : "") + "/>";
+        s += '<polyline data-corr="' + c.id + '" points="' + pts(ps) + '" fill="none" stroke="transparent" stroke-width="' + (r * 2.6) + '" style="cursor:pointer"/>';
+        if (c.name && $("showIds").checked) { const m = ps[Math.floor((ps.length - 1) / 2)], m2 = ps[Math.floor((ps.length - 1) / 2) + 1];
+          s += '<text x="' + ((m[0] + m2[0]) / 2 * k) + '" y="' + ((m[1] + m2[1]) / 2 * k - r) + '" font-size="' + (r * 1.6) + '" fill="#0a6e63" stroke="#fff" stroke-width="' + (r * 0.5) + '" paint-order="stroke" pointer-events="none" font-style="italic">' + escapeHtml(c.name) + "</text>"; }
+        if (sel) c.path.forEach((p, i) => { if (typeof p === "string") return;
+          s += '<rect data-cpt="' + c.id + "|" + i + '" x="' + (p[0] * k - r * 0.7) + '" y="' + (p[1] * k - r * 0.7) + '" width="' + (r * 1.4) + '" height="' + (r * 1.4) + '" fill="#ff7a00" stroke="#fff" style="cursor:move"/>'; });
+      });
+      data.nodes.forEach(n => {            // stubs: door -> nearest point of its corridor
+        const c = n.on && corrById(n.on), pr = c && n.pos && project(n.pos, c); if (!pr) return;
+        s += '<line x1="' + n.pos[0] * k + '" y1="' + n.pos[1] * k + '" x2="' + pr.q[0] * k + '" y2="' + pr.q[1] * k + '" stroke="#0e9f8e" stroke-width="' + (r * 0.45) + '" stroke-dasharray="' + (r * 0.5) + '" pointer-events="none"/>';
+      });
+      if (draft && draft.length) {
+        const dp = draft.map(ptPos).filter(Boolean);
+        s += '<polyline points="' + pts(dp) + '" fill="none" stroke="#ff7a00" stroke-width="' + (r * 0.8) + '" stroke-dasharray="' + r + '" pointer-events="none"/>';
+        dp.forEach(p => { s += '<circle cx="' + p[0] * k + '" cy="' + p[1] * k + '" r="' + r * 0.6 + '" fill="#ff7a00" pointer-events="none"/>'; });
+      }
+    }
+    data.edges.forEach((e, i) => {
+      const na = nodeById(e.from), nb = nodeById(e.to); if (!na || !nb) return;
+      const [ax, ay] = P(na), [bx, by] = P(nb);
+      const a = { x: ax, y: ay }, b = { x: bx, y: by };
+      const sel = selected && selected.kind === "edge" && selected.i === i;
+      const len = edgeLen(e), ok = len > 0;
+      s += '<line x1="' + a.x + '" y1="' + a.y + '" x2="' + b.x + '" y2="' + b.y + '" stroke="#fff" stroke-width="' + (r * 1.3) + '" stroke-linecap="round"/>';
+      s += '<line x1="' + a.x + '" y1="' + a.y + '" x2="' + b.x + '" y2="' + b.y + '" stroke="' + (sel ? "#ff7a00" : ok ? "#2457e6" : "#c8372d") +
+           '" stroke-width="' + (r * 0.7) + '" stroke-linecap="round"' + (ok ? "" : ' stroke-dasharray="' + r + " " + r + '"') + "/>";
+      s += '<line data-edge="' + i + '" x1="' + a.x + '" y1="' + a.y + '" x2="' + b.x + '" y2="' + b.y + '" stroke="transparent" stroke-width="' + (r * 2.4) + '" style="cursor:pointer"/>';
+      if (showM) {
+        const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2, t = ok ? (Math.round(len * 10) / 10) + " m" + (e.meters > 0 && planMode ? "*" : "") : "? m";
+        s += '<text x="' + mx + '" y="' + (my - r) + '" font-size="' + (r * 1.8) + '" text-anchor="middle" fill="' + (ok ? "#1b2340" : "#c8372d") +
+             '" stroke="#fff" stroke-width="' + (r * 0.5) + '" paint-order="stroke" pointer-events="none" font-weight="600">' + t + "</text>";
+      }
+    });
+    const linked = new Set(data.links.map(l => l.indoor));
+    data.nodes.forEach(n0 => {
+      const [nx, ny] = P(n0); const n = { id: n0.id, type: n0.type, name: n0.name, x: nx, y: ny, verify: n0.verify };
+      const sel = (selected && selected.kind === "node" && selected.id === n.id) || lineStart === n.id;
+      const c = n.verify ? "#c8372d" : (COLORS[n.type] || "#5b6478");
+      if (linked.has(n.id)) s += '<circle cx="' + n.x + '" cy="' + n.y + '" r="' + (r * 1.9) + '" fill="none" stroke="#e0457b" stroke-width="' + (r * 0.35) + '" stroke-dasharray="' + (r * 0.6) + '" pointer-events="none"/>';
+      s += '<circle data-node="' + n.id + '" cx="' + n.x + '" cy="' + n.y + '" r="' + (sel ? r * 1.4 : r) + '" fill="' + c + '" stroke="' + (sel ? "#ff7a00" : "#fff") +
+           '" stroke-width="' + (r * 0.4) + '" style="cursor:' + (mode === "select" ? "move" : "pointer") + '"/>';
+      if (showIds || n.name) {
+        const label = showIds ? n.id + (n.name ? " · " + n.name : "") : n.name;
+        s += '<text x="' + (n.x + r * 1.5) + '" y="' + (n.y + r * 0.6) + '" font-size="' + (r * 1.7) + '" fill="#1b2340" stroke="#fff" stroke-width="' + (r * 0.5) +
+             '" paint-order="stroke" pointer-events="none">' + escapeHtml(label) + "</text>";
+      }
+    });
+    svg.innerHTML = s;
+  }
+  function render() { drawOnly(); renderEdit(); renderLinks(); checksOnly(); }
+
+  restore(); syncFloorFields(); render();
+})();
+</script>
+</body>
+</html>

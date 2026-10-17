@@ -353,3 +353,69 @@ Body: `{"start": "gate_main", "destination": "mount_lhotse", "step_free": false}
 ```
 `path` is always empty (it belongs to the app's schematic map). To draw the real route use `legs`: `outdoor` legs have a `[lat, lng]`
 `polyline`; `indoor` legs have pixel `points` on the floor-plan `image`.
+
+## Multi-floor data (update 6, 17 Oct 2026)
+
+What changed for the app (all additive; old fields are unchanged):
+
+- `GET /api/floors` lists every floor in order: `{"floor": 0, "code": "gf", "label": "Ground floor", "image": "ground.png",
+  "image_size": [1357, 882]}`, then `ff` (`first.png`) and `sf` (`second.png`). Bundle all three pictures from
+  `app/assets/floorplans/`.
+- Route answers have `floors` (e.g. `[0, 2]`) and **one indoor leg per floor**:
+  `{"type": "indoor", "floor": 2, "floor_label": "Second floor", "image": "second.png", "image_size": [...],
+  "distance_m": 18.4, "points": [{"id", "name", "x", "y", "lat", "lng"}]}`. Draw each indoor leg on its own picture
+  (floor selector), or draw `lat`/`lng` on the map: indoor points now have GPS positions too.
+- Every step has `kind` (`start_walk`, `walk`, `turn_left`, `turn_right`, `enter`, `exit`, `stairs`, `lift`,
+  `arrive`) and `floor`. Use `kind` for the icon instead of reading the sentence. Floor changes are their own step:
+  "Take the Staircase (Block A) up to the First floor".
+- `duration_s` includes lift waiting time; `distance_m` is metres walked only.
+- `accessible=1` (or `"step_free": true` on `POST /api/route`) avoids stairs and steps and uses lifts and ramps.
+- GPS start: `?from_lat=..&from_lng=..` snaps to an outdoor dot; add `&from_floor=N` when the app knows the floor
+  (e.g. after a QR scan) to allow indoor dots on that floor.
+- `POST /api/route` step `type` now also returns `stairs` and `lift` (the app already has icons for them).
+- `GET /api/rooms` results have `floor` and (for most places now) `lat`/`lng`.
+
+## Update 7 (17 Oct 2026): clean indoor lines, "inside the Library", speed and safety
+
+All additive for the app; nothing it already reads has changed shape.
+
+**Places inside places.** `GET /api/rooms` results have `within` (place id) and `within_name` ("Library");
+`GET /api/search` items have `within_name` when there is one. Show it under the name: "Psychology Lab · inside the
+Library". Route answers have `to_within`, and the last step already says "Arrive at Psychology Lab, inside the
+Library". Places that share one door (Yummy Waffle, Vending, ATM in the snack room) still arrive with the asked name.
+
+**Turn text names the corridor.** "Turn left into the North corridor and walk 5 m", "Walk 45 m through the
+Quadrangle", "Turn right into the Library and walk 12 m". No more "at the corridor".
+
+**Indoor leg points are the drawable line.** Points that sit on a straight line are left out, so every middle point
+is a real bend or a named place (the app draws a small dot at each). Lines are square on the signage picture.
+Points without a name have `"name": ""`; a bend without a dot has `"id": ""` too.
+
+**Caching.** Every GET answer depends only on the map version and the URL, so it has an `ETag`;
+send it back in `If-None-Match` and you get `304` with no body. `Cache-Control`: floors 1 h, search/rooms/route
+5 min, graph `no-cache` (always revalidate). Flutter's `http` does not cache by itself: keep the last answer and its
+ETag if you want the 304s (e.g. for `/api/search?q=` at app start).
+
+**gzip.** Send `Accept-Encoding: gzip` (Dart's `http`/`dio` do this by default) and large answers come compressed
+(the full graph: 170 KB -> 23 KB).
+
+**GET /api/graph** is the public copy: no plan metres, mapper notes or `verify` remarks. `ETag` = `"<version>"`.
+
+**Limits** (per client, per server process):
+- 120 GET requests/min (bursts of 60 are fine), 40/min for `POST /api/route` and `/api/estimates`,
+  2/min for `POST /api/report`. Over the limit: `429 {"error": {"code": "rate_limited"}}` with `Retry-After`
+  seconds. The app should show "Try again in a moment", not retry in a loop.
+- Request bodies over 16 KB: `413 too_large`. Query values over 120 characters: `400`. Wrong method: `405`.
+- The report inbox stops at 5 MB (`503 inbox_full`) until the team clears `data/reports.jsonl`.
+- Tune with env vars `RATE_READ_PER_MIN`, `RATE_HEAVY_PER_MIN`, `RATE_REPORT_PER_MIN`, `RATE_LIMITS=0` (off),
+  `TRUSTED_PROXIES=1` (set on Render so the real client address is used).
+
+**`POST /api/estimates`** now runs one search for all destinations (about 2 ms for 130 places) and gives the same
+minutes as `/api/route`.
+
+**Security headers** on every answer: `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`,
+`Referrer-Policy: no-referrer`, `Content-Security-Policy: default-src 'none'`. CORS stays `*` (public read-only
+data, no cookies or logins).
+
+**Floor pictures** in `app/assets/floorplans/` were re-saved as 128-colour PNGs: 593 KB -> 225 KB for the three,
+same look. Re-copy them into the Flutter assets.

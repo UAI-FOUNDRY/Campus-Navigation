@@ -16,12 +16,15 @@ def test_search_is_a_plain_list_with_the_app_fields():
     everything = c.get("/api/search?q=").json
     assert isinstance(everything, list) and len(everything) >= 20
     for item in everything:
-        assert set(item) == {"id", "name", "building", "floor", "type"} and item["building"]
+        assert {"id", "name", "building", "floor", "type"} <= set(item) <= {"id", "name", "building", "floor", "type",
+                                                                          "within_name"} and item["building"]
     hit = c.get("/api/search?q=everest").json[0]
     assert hit["id"] == "mount_everest_130" and hit["type"] == "hall" and hit["floor"] == 0
     types = {i["id"]: i["type"] for i in everything}
     assert types["mess"] == "cafeteria" and types["admin_lobby"] == "office" and types["gym_entrance"] == "gym"
     assert c.get("/api/search?q=zzzzzz").json == []
+    psych = next(i for i in everything if i["id"] == "psychology_lab")
+    assert psych["within_name"] == "Library"
 
 
 def test_post_route_gate_to_lhotse():

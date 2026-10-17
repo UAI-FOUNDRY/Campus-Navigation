@@ -6,8 +6,10 @@ services:
     plan: free
     branch: main
     buildCommand: pip install -r backend/requirements.txt
-    startCommand: gunicorn --chdir backend wsgi:app --bind 0.0.0.0:$PORT --workers 2
+    startCommand: gunicorn --chdir backend wsgi:app --bind 0.0.0.0:$PORT --workers 2 --threads 4 --preload --timeout 30 --max-requests 2000 --max-requests-jitter 200
     healthCheckPath: /api/health
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.7
+      - key: TRUSTED_PROXIES      # Render's proxy adds X-Forwarded-For: use it for per-client rate limits
+        value: "1"

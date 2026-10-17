@@ -1,0 +1,142 @@
+{
+ "_readme": "Things shared by every floor of the main building. Plan metres: x right, y down, origin = top-left corner of the architect's A4 sheets (1 m = 6.30 PDF points on GF/FF/SF; all three sheets share the frame). georef ties the plan to GPS using outdoor dots that sit on the building's facade; vertical lists the lifts and staircases (one dot per floor, bottom floor first).",
+ "name": "Main academic building (Blocks A and B)",
+ "floors": [
+  {
+   "code": "gf",
+   "floor": 0,
+   "label": "Ground floor"
+  },
+  {
+   "code": "ff",
+   "floor": 1,
+   "label": "First floor"
+  },
+  {
+   "code": "sf",
+   "floor": 2,
+   "label": "Second floor"
+  }
+ ],
+ "georef": {
+  "control_points": [
+   {
+    "outdoor": "class_entrance01",
+    "pos": [
+     8.73,
+     22.22
+    ]
+   },
+   {
+    "outdoor": "mountlogan_entrance",
+    "pos": [
+     8.73,
+     28.57
+    ]
+   },
+   {
+    "outdoor": "mountK2_entrance",
+    "pos": [
+     8.73,
+     34.13
+    ]
+   },
+   {
+    "outdoor": "girlswashroom_entrance",
+    "pos": [
+     8.73,
+     40.48
+    ]
+   },
+   {
+    "outdoor": "boyswashroom_entrance",
+    "pos": [
+     8.73,
+     42.06
+    ]
+   },
+   {
+    "outdoor": "makalu_entrance",
+    "pos": [
+     8.73,
+     49.21
+    ]
+   },
+   {
+    "outdoor": "vending_entrance",
+    "pos": [
+     9.52,
+     73.81
+    ]
+   }
+  ]
+ },
+ "vertical": [
+  {
+   "id": "lift_a",
+   "type": "lift",
+   "name": "Lift (Block A)",
+   "nodes": [
+    "a0_lift_a",
+    "a1_lift_a",
+    "a2_lift_a"
+   ]
+  },
+  {
+   "id": "lift_b",
+   "type": "lift",
+   "name": "Lift (Block B)",
+   "nodes": [
+    "a0_lift_b",
+    "a1_lift_b",
+    "a2_lift_b"
+   ]
+  },
+  {
+   "id": "stair_a",
+   "type": "stairs",
+   "name": "Staircase (Block A)",
+   "nodes": [
+    "a0_stair_a",
+    "a1_stair_a",
+    "a2_stair_a"
+   ]
+  },
+  {
+   "id": "stair_b",
+   "type": "stairs",
+   "name": "Spiral staircase (Block B)",
+   "nodes": [
+    "a0_stair_b",
+    "a1_stair_b",
+    "a2_stair_b"
+   ]
+  },
+  {
+   "id": "stair_cafe",
+   "type": "stairs",
+   "name": "Cafeteria staircase",
+   "nodes": [
+    "a0_stair_cafe",
+    "a1_stair_cafe"
+   ]
+  },
+  {
+   "id": "stair_lib",
+   "type": "stairs",
+   "name": "Library staircase",
+   "nodes": [
+    "a0_stair_lib",
+    "a1_stair_lib"
+   ]
+  }
+ ],
+ "costs": {
+  "_readme": "Floor changes: metres walked and extra seconds per floor. A* minimises time, so a far lift can beat near stairs only when step-free is asked.",
+  "stairs_m_per_floor": 12,
+  "stairs_s_per_floor": 20,
+  "lift_m": 4,
+  "lift_wait_s": 60,
+  "lift_s_per_floor": 6
+ }
+}

@@ -1,0 +1,1041 @@
+{
+ "_readme": "Indoor map of one floor (plan metres, x right, y down; same frame on every floor). corridors = centre lines; a dot with \"on\": <corridor> is joined to it by a short square stub. Lengths are computed from positions; put \"meters\" on an edge only to override with a tape measurement. 'verify' = check on site. Never rename ids. See docs/data-format.md.",
+ "code": "ff",
+ "floor": 1,
+ "label": "First floor",
+ "status": "plan",
+ "source_plan": "UAi_LEARNING_CENTER_-_FF_AREA_2026.pdf",
+ "image": "first.png",
+ "image_size": [
+  1358,
+  874
+ ],
+ "display_anchors": [
+  [
+   [
+    8.73,
+    54.76
+   ],
+   [
+    520,
+    350
+   ]
+  ],
+  [
+   [
+    28.57,
+    54.76
+   ],
+   [
+    708,
+    350
+   ]
+  ],
+  [
+   [
+    28.57,
+    64.29
+   ],
+   [
+    708,
+    478
+   ]
+  ],
+  [
+   [
+    27.46,
+    69.84
+   ],
+   [
+    692,
+    528
+   ]
+  ],
+  [
+   [
+    8.73,
+    82.54
+   ],
+   [
+    520,
+    662
+   ]
+  ],
+  [
+   [
+    26.19,
+    82.54
+   ],
+   [
+    678,
+    662
+   ]
+  ],
+  [
+   [
+    26.19,
+    97.62
+   ],
+   [
+    678,
+    825
+   ]
+  ],
+  [
+   [
+    8.73,
+    19.05
+   ],
+   [
+    520,
+    5
+   ]
+  ],
+  [
+   [
+    21.43,
+    27.78
+   ],
+   [
+    645,
+    100
+   ]
+  ],
+  [
+   [
+    17.78,
+    47.62
+   ],
+   [
+    570,
+    305
+   ]
+  ],
+  [
+   [
+    48.41,
+    52.06
+   ],
+   [
+    920,
+    352
+   ]
+  ],
+  [
+   [
+    40.0,
+    42.06
+   ],
+   [
+    830,
+    235
+   ]
+  ],
+  [
+   [
+    53.17,
+    94.92
+   ],
+   [
+    950,
+    790
+   ]
+  ],
+  [
+   [
+    61.9,
+    90.79
+   ],
+   [
+    1042,
+    755
+   ]
+  ],
+  [
+   [
+    70.63,
+    97.62
+   ],
+   [
+    1140,
+    825
+   ]
+  ],
+  [
+   [
+    62.7,
+    80.16
+   ],
+   [
+    1060,
+    659
+   ]
+  ],
+  [
+   [
+    68.25,
+    53.65
+   ],
+   [
+    1118,
+    352
+   ]
+  ],
+  [
+   [
+    66.67,
+    79.37
+   ],
+   [
+    1130,
+    628
+   ]
+  ]
+ ],
+ "corridors": [
+  {
+   "id": "a1_c_top",
+   "name": "First-floor corridor",
+   "type": "corridor",
+   "path": [
+    "a1_wc_n",
+    "a1_tc_e",
+    "a1_b315_n"
+   ]
+  },
+  {
+   "id": "a1_c_mezz",
+   "name": "Student Seating Area",
+   "type": "open",
+   "path": [
+    "a1_seating",
+    [
+     32.68,
+     50.79
+    ],
+    "a1_pass_s"
+   ]
+  },
+  {
+   "id": "a1_c_pass",
+   "name": "Block A passage",
+   "type": "corridor",
+   "path": [
+    "a1_pass_s",
+    [
+     20.32,
+     28.57
+    ]
+   ]
+  },
+  {
+   "id": "a1_c_cafe",
+   "name": "Cafeteria (first floor)",
+   "type": "open",
+   "path": [
+    "a1_mess_door",
+    [
+     50.63,
+     35.24
+    ]
+   ]
+  },
+  {
+   "id": "a1_c_west",
+   "name": "Block A corridor",
+   "type": "corridor",
+   "path": [
+    "a1_wc_n",
+    "a1_wc_lobby",
+    "a1_wc_k",
+    "a1_wc_s"
+   ]
+  },
+  {
+   "id": "a1_c_lobbya",
+   "name": "Block A lobby",
+   "type": "corridor",
+   "path": [
+    [
+     13.33,
+     73.81
+    ],
+    "a1_lobbya_mid",
+    "a1_wc_lobby"
+   ]
+  },
+  {
+   "id": "a1_c_mid",
+   "name": "Block A lobby",
+   "type": "corridor",
+   "path": [
+    "a1_lobbya_mid",
+    [
+     18.41,
+     64.44
+    ]
+   ]
+  },
+  {
+   "id": "a1_c_kang",
+   "name": "Kangchenjunga hall",
+   "type": "corridor",
+   "path": [
+    "a1_wc_k",
+    [
+     27.3,
+     83.33
+    ]
+   ]
+  },
+  {
+   "id": "a1_c_east",
+   "name": "Quadrangle corridor (east)",
+   "type": "corridor",
+   "path": [
+    "a1_tc_e",
+    "a1_ec_s"
+   ]
+  },
+  {
+   "id": "a1_c_b315",
+   "name": "Faculty corridor",
+   "type": "corridor",
+   "path": [
+    [
+     58.1,
+     53.14
+    ],
+    "a1_b315_n",
+    "a1_b315_m",
+    "a1_b315_s"
+   ]
+  },
+  {
+   "id": "a1_c_b493",
+   "name": "Block B corridor",
+   "type": "corridor",
+   "path": [
+    "a1_b315_m",
+    "a1_b493_e",
+    [
+     76.19,
+     78.25
+    ],
+    "a1_curve_n"
+   ]
+  },
+  {
+   "id": "a1_c_b200",
+   "name": "Block B corridor",
+   "type": "corridor",
+   "path": [
+    "a1_b493_e",
+    "a1_b200_s"
+   ]
+  },
+  {
+   "id": "a1_c_bottom",
+   "name": "Block B corridor",
+   "type": "corridor",
+   "path": [
+    "a1_ec_s",
+    "a1_b315_s",
+    "a1_cr_n",
+    "a1_b200_s",
+    [
+     70.63,
+     89.84
+    ],
+    [
+     70.63,
+     91.75
+    ],
+    [
+     80.16,
+     91.75
+    ]
+   ]
+  },
+  {
+   "id": "a1_c_curve",
+   "name": "Faculty cabins corridor",
+   "type": "corridor",
+   "path": [
+    "a1_curve_n",
+    [
+     78.1,
+     79.37
+    ],
+    [
+     79.21,
+     84.13
+    ],
+    "a1_bc_e"
+   ]
+  },
+  {
+   "id": "a1_c_cr",
+   "name": "Block B corridor",
+   "type": "corridor",
+   "path": [
+    "a1_cr_n",
+    [
+     61.27,
+     93.97
+    ]
+   ]
+  },
+  {
+   "id": "a1_c_curve_s",
+   "name": "Block B corridor",
+   "type": "corridor",
+   "path": [
+    "a1_bc_e",
+    [
+     78.89,
+     91.75
+    ]
+   ]
+  }
+ ],
+ "nodes": [
+  {
+   "id": "a1_wc_n",
+   "type": "corner",
+   "name": "",
+   "pos": [
+    30.32,
+    54.29
+   ]
+  },
+  {
+   "id": "a1_wc_lobby",
+   "type": "junction",
+   "name": "Block A lobby (first floor)",
+   "pos": [
+    30.32,
+    73.81
+   ]
+  },
+  {
+   "id": "a1_wc_k",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    30.32,
+    83.33
+   ]
+  },
+  {
+   "id": "a1_wc_s",
+   "type": "corner",
+   "name": "",
+   "pos": [
+    30.32,
+    97.14
+   ]
+  },
+  {
+   "id": "a1_pass_s",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    20.32,
+    50.79
+   ]
+  },
+  {
+   "id": "a1_tc_e",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    50.79,
+    54.29
+   ]
+  },
+  {
+   "id": "a1_b315_n",
+   "type": "corner",
+   "name": "",
+   "pos": [
+    58.1,
+    54.29
+   ]
+  },
+  {
+   "id": "a1_b315_m",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    58.1,
+    78.25
+   ]
+  },
+  {
+   "id": "a1_ec_s",
+   "type": "corner",
+   "name": "",
+   "pos": [
+    50.79,
+    89.84
+   ]
+  },
+  {
+   "id": "a1_b315_s",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    58.1,
+    89.84
+   ]
+  },
+  {
+   "id": "a1_b493_e",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    68.73,
+    78.25
+   ]
+  },
+  {
+   "id": "a1_b200_s",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    68.73,
+    89.84
+   ]
+  },
+  {
+   "id": "a1_bc_e",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    78.89,
+    89.84
+   ]
+  },
+  {
+   "id": "a1_curve_n",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    76.19,
+    75.56
+   ]
+  },
+  {
+   "id": "a1_lobbya_mid",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    18.41,
+    73.81
+   ]
+  },
+  {
+   "id": "a1_cr_n",
+   "type": "junction",
+   "name": "",
+   "pos": [
+    61.27,
+    89.84
+   ]
+  },
+  {
+   "id": "a1_thomson_door",
+   "type": "door",
+   "name": "Thomson Reuters Trading Room",
+   "pos": [
+    17.62,
+    47.97
+   ],
+   "on": "a1_c_pass"
+  },
+  {
+   "id": "a1_washroom_a",
+   "type": "door",
+   "name": "Washroom (first floor, Block A)",
+   "pos": [
+    17.94,
+    40.63
+   ],
+   "on": "a1_c_pass"
+  },
+  {
+   "id": "a1_wellness",
+   "type": "door",
+   "name": "Wellness Room",
+   "pos": [
+    17.94,
+    33.49
+   ],
+   "on": "a1_c_pass",
+   "verify": "Door read from the drawing, not a door mark."
+  },
+  {
+   "id": "a1_dhaulagiri_door",
+   "type": "door",
+   "name": "Mount Dhaulagiri",
+   "pos": [
+    19.37,
+    27.78
+   ],
+   "on": "a1_c_pass",
+   "verify": "Door read from the drawing, not a door mark."
+  },
+  {
+   "id": "a1_stair_lib",
+   "type": "stairs",
+   "name": "Library staircase",
+   "pos": [
+    23.02,
+    28.57
+   ],
+   "on": "a1_c_pass"
+  },
+  {
+   "id": "a1_seating",
+   "type": "door",
+   "name": "Student Seating Area",
+   "pos": [
+    32.68,
+    52.25
+   ],
+   "on": "a1_c_top",
+   "note": "Mezzanine over the library; the way to the north rooms of Block A"
+  },
+  {
+   "id": "a1_montblanc_door",
+   "type": "door",
+   "name": "Mont Blanc",
+   "pos": [
+    47.44,
+    52.16
+   ],
+   "on": "a1_c_top"
+  },
+  {
+   "id": "a1_mess_door",
+   "type": "door",
+   "name": "Cafeteria (first floor)",
+   "pos": [
+    50.6,
+    51.75
+   ],
+   "on": "a1_c_top",
+   "note": "Plan: Moot Court Room"
+  },
+  {
+   "id": "a1_stair_cafe",
+   "type": "stairs",
+   "name": "Cafeteria staircase",
+   "pos": [
+    51.59,
+    35.24
+   ],
+   "on": "a1_c_cafe"
+  },
+  {
+   "id": "a1_lift_a",
+   "type": "lift",
+   "name": "Lift (Block A)",
+   "pos": [
+    27.3,
+    71.59
+   ],
+   "on": "a1_c_lobbya"
+  },
+  {
+   "id": "a1_stair_a",
+   "type": "stairs",
+   "name": "Staircase (Block A)",
+   "pos": [
+    21.11,
+    76.19
+   ],
+   "on": "a1_c_lobbya"
+  },
+  {
+   "id": "a1_exam_office",
+   "type": "door",
+   "name": "Examination Office",
+   "pos": [
+    13.97,
+    71.59
+   ],
+   "on": "a1_c_lobbya",
+   "verify": "Plan: Data room / Faculty Cabin 126."
+  },
+  {
+   "id": "a1_aconcagua_door",
+   "type": "door",
+   "name": "Mount Aconcagua",
+   "pos": [
+    17.62,
+    64.44
+   ],
+   "on": "a1_c_mid"
+  },
+  {
+   "id": "a1_mckinley_door",
+   "type": "door",
+   "name": "Mount McKinley (Denali)",
+   "pos": [
+    19.21,
+    64.44
+   ],
+   "on": "a1_c_mid"
+  },
+  {
+   "id": "a1_cabin_126",
+   "type": "door",
+   "name": "Faculty Cabin 126",
+   "pos": [
+    16.87,
+    69.97
+   ],
+   "on": "a1_c_mid"
+  },
+  {
+   "id": "a1_cabin_125",
+   "type": "door",
+   "name": "Faculty Offices (Block A, first floor)",
+   "pos": [
+    20.0,
+    69.97
+   ],
+   "on": "a1_c_mid",
+   "note": "Plan: Faculty Cabin 125"
+  },
+  {
+   "id": "a1_kangchenjunga_door",
+   "type": "door",
+   "name": "Mount Kangchenjunga",
+   "pos": [
+    26.38,
+    83.41
+   ],
+   "on": "a1_c_kang"
+  },
+  {
+   "id": "a1_siesta_lounge",
+   "type": "door",
+   "name": "Staff Siesta Lounge",
+   "pos": [
+    29.05,
+    88.1
+   ],
+   "on": "a1_c_west",
+   "verify": "Plan: Office; door side not visible."
+  },
+  {
+   "id": "a1_counseling",
+   "type": "door",
+   "name": "Safe Space (Counseling Room)",
+   "pos": [
+    29.05,
+    92.86
+   ],
+   "on": "a1_c_west",
+   "verify": "Door side not visible on the plan."
+  },
+  {
+   "id": "a1_cabin_124",
+   "type": "door",
+   "name": "Faculty Cabin 124",
+   "pos": [
+    59.22,
+    53.14
+   ],
+   "on": "a1_c_b315"
+  },
+  {
+   "id": "a1_cabin_123",
+   "type": "door",
+   "name": "Faculty Cabin 123",
+   "pos": [
+    59.25,
+    58.49
+   ],
+   "on": "a1_c_b315"
+  },
+  {
+   "id": "a1_cabin_122",
+   "type": "door",
+   "name": "Faculty Cabin 122",
+   "pos": [
+    59.25,
+    59.56
+   ],
+   "on": "a1_c_b315"
+  },
+  {
+   "id": "a1_cabin_121",
+   "type": "door",
+   "name": "Faculty Cabin 121",
+   "pos": [
+    59.29,
+    63.49
+   ],
+   "on": "a1_c_b315"
+  },
+  {
+   "id": "a1_cabin_120",
+   "type": "door",
+   "name": "Faculty Cabin 120",
+   "pos": [
+    59.3,
+    67.59
+   ],
+   "on": "a1_c_b315"
+  },
+  {
+   "id": "a1_cabin_119",
+   "type": "door",
+   "name": "Faculty Cabin 119",
+   "pos": [
+    59.3,
+    68.6
+   ],
+   "on": "a1_c_b315"
+  },
+  {
+   "id": "a1_lift_b",
+   "type": "lift",
+   "name": "Lift (Block B)",
+   "pos": [
+    63.49,
+    79.37
+   ],
+   "on": "a1_c_b493",
+   "verify": "First-floor plan draws a tutorial room here; signage shows the lift."
+  },
+  {
+   "id": "a1_washroom_b",
+   "type": "door",
+   "name": "Washroom (first floor, Block B)",
+   "pos": [
+    64.29,
+    77.14
+   ],
+   "on": "a1_c_b493"
+  },
+  {
+   "id": "a1_cabin_116",
+   "type": "door",
+   "name": "Faculty Cabin 116",
+   "pos": [
+    67.54,
+    81.46
+   ],
+   "on": "a1_c_b200"
+  },
+  {
+   "id": "a1_hod_117",
+   "type": "door",
+   "name": "HOD Cabin 117",
+   "pos": [
+    67.16,
+    88.13
+   ],
+   "on": "a1_c_b200"
+  },
+  {
+   "id": "a1_hod_118",
+   "type": "door",
+   "name": "HOD Cabin 118",
+   "pos": [
+    62.65,
+    88.57
+   ],
+   "on": "a1_c_bottom"
+  },
+  {
+   "id": "a1_career_office",
+   "type": "door",
+   "name": "Career Management Office",
+   "pos": [
+    60.67,
+    90.78
+   ],
+   "on": "a1_c_cr",
+   "note": "Plan: CR Room"
+  },
+  {
+   "id": "a1_cabin_101",
+   "type": "door",
+   "name": "Faculty Cabin 101",
+   "pos": [
+    60.68,
+    93.97
+   ],
+   "on": "a1_c_cr"
+  },
+  {
+   "id": "a1_kilimanjaro_door",
+   "type": "door",
+   "name": "Mount Kilimanjaro",
+   "pos": [
+    61.9,
+    91.33
+   ],
+   "on": "a1_c_cr"
+  },
+  {
+   "id": "a1_stair_b",
+   "type": "stairs",
+   "name": "Spiral staircase (Block B)",
+   "pos": [
+    53.65,
+    93.65
+   ],
+   "on": "a1_c_bottom"
+  },
+  {
+   "id": "a1_director_4",
+   "type": "door",
+   "name": "Director Cabin 4",
+   "pos": [
+    71.75,
+    92.54
+   ],
+   "on": "a1_c_bottom"
+  },
+  {
+   "id": "a1_director_5",
+   "type": "door",
+   "name": "Director Cabin 5",
+   "pos": [
+    75.78,
+    93.11
+   ],
+   "on": "a1_c_bottom"
+  },
+  {
+   "id": "a1_director_6",
+   "type": "door",
+   "name": "Director Cabin 6",
+   "pos": [
+    77.3,
+    93.11
+   ],
+   "on": "a1_c_bottom"
+  },
+  {
+   "id": "a1_faculty_lounge",
+   "type": "door",
+   "name": "Faculty Lounge 105",
+   "pos": [
+    79.57,
+    91.43
+   ],
+   "on": "a1_c_bottom"
+  },
+  {
+   "id": "a1_fuji_door",
+   "type": "door",
+   "name": "Mount Fuji",
+   "pos": [
+    76.62,
+    87.57
+   ],
+   "on": "a1_c_curve",
+   "note": "Plan: TCR (50 seats)"
+  },
+  {
+   "id": "a1_cabin_106",
+   "type": "door",
+   "name": "Faculty Cabin 106",
+   "pos": [
+    80.76,
+    89.4
+   ],
+   "on": "a1_c_curve"
+  },
+  {
+   "id": "a1_cabin_107",
+   "type": "door",
+   "name": "Faculty Cabin 107",
+   "pos": [
+    80.51,
+    86.98
+   ],
+   "on": "a1_c_curve"
+  },
+  {
+   "id": "a1_cabin_108",
+   "type": "door",
+   "name": "Faculty Cabin 108",
+   "pos": [
+    80.51,
+    86.19
+   ],
+   "on": "a1_c_curve"
+  },
+  {
+   "id": "a1_cabin_109",
+   "type": "door",
+   "name": "Faculty Cabin 109",
+   "pos": [
+    79.78,
+    82.78
+   ],
+   "on": "a1_c_curve"
+  },
+  {
+   "id": "a1_cabin_110",
+   "type": "door",
+   "name": "Faculty Cabin 110",
+   "pos": [
+    79.78,
+    81.9
+   ],
+   "on": "a1_c_curve"
+  },
+  {
+   "id": "a1_cabin_111",
+   "type": "door",
+   "name": "Faculty Cabin 111",
+   "pos": [
+    78.41,
+    77.14
+   ],
+   "on": "a1_c_curve"
+  },
+  {
+   "id": "a1_hod_113",
+   "type": "door",
+   "name": "HOD Cabin 113",
+   "pos": [
+    76.24,
+    74.1
+   ],
+   "on": "a1_c_curve"
+  },
+  {
+   "id": "a1_cabin_114",
+   "type": "door",
+   "name": "Faculty Cabin 114",
+   "pos": [
+    75.59,
+    74.16
+   ],
+   "on": "a1_c_b493"
+  },
+  {
+   "id": "a1_cabin_115",
+   "type": "door",
+   "name": "Faculty Cabin 115",
+   "pos": [
+    73.38,
+    76.89
+   ],
+   "on": "a1_c_b493"
+  }
+ ],
+ "edges": [],
+ "links": []
+}

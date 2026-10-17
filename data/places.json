@@ -1,0 +1,1560 @@
+[
+ {
+  "id": "admin_lobby",
+  "name": "Admin Lobby",
+  "aliases": [
+   "lobby",
+   "badminton court",
+   "pickleball",
+   "pickleball court",
+   "badminton"
+  ],
+  "entry_nodes": [
+   "a0_adminlobby"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "mess",
+  "name": "Cafeteria / Mess",
+  "aliases": [
+   "cafeteria",
+   "mess",
+   "canteen"
+  ],
+  "entry_nodes": [
+   "a0_mess_inside_door",
+   "mess_entrance"
+  ],
+  "building": "Main building",
+  "category": "food"
+ },
+ {
+  "id": "mount_everest_130",
+  "name": "Mount Everest 130",
+  "aliases": [
+   "everest",
+   "130",
+   "mount everest",
+   "classroom 2"
+  ],
+  "entry_nodes": [
+   "a0_everest_door"
+  ],
+  "building": "Block A",
+  "category": "classroom"
+ },
+ {
+  "id": "mount_lhotse",
+  "name": "Mount Lhotse",
+  "aliases": [
+   "lhotse",
+   "70",
+   "mount lhotse",
+   "classroom 1"
+  ],
+  "entry_nodes": [
+   "a0_lhotse_door",
+   "a0_lhotse_door_s"
+  ],
+  "building": "Block A",
+  "category": "classroom"
+ },
+ {
+  "id": "library",
+  "name": "Library",
+  "aliases": [
+   "learning center",
+   "learning centre"
+  ],
+  "entry_nodes": [
+   "a0_library"
+  ],
+  "building": "Main building",
+  "category": "library"
+ },
+ {
+  "id": "mount_kosciuszko",
+  "name": "Mount Kosciuszko",
+  "aliases": [
+   "kosciuszko",
+   "classroom 4"
+  ],
+  "entry_nodes": [
+   "a0_kosciuszko_door"
+  ],
+  "building": "Block A",
+  "category": "classroom",
+  "within": "library"
+ },
+ {
+  "id": "psychology_lab",
+  "name": "Psychology Lab",
+  "aliases": [
+   "psychology"
+  ],
+  "entry_nodes": [
+   "a0_psychology_lab"
+  ],
+  "building": "Main building",
+  "category": "lab",
+  "within": "library"
+ },
+ {
+  "id": "counseling_lab",
+  "name": "Counseling Lab",
+  "aliases": [
+   "counselling lab",
+   "counseling"
+  ],
+  "entry_nodes": [
+   "a0_counseling_lab"
+  ],
+  "building": "Main building",
+  "category": "lab",
+  "within": "library"
+ },
+ {
+  "id": "executive_dining",
+  "name": "Executive Dining",
+  "aliases": [
+   "executive dinning"
+  ],
+  "entry_nodes": [
+   "a0_exec_dining"
+  ],
+  "building": "Main building",
+  "category": "food"
+ },
+ {
+  "id": "guest_waiting_room",
+  "name": "Guest Waiting Room",
+  "aliases": [
+   "reception",
+   "waiting room"
+  ],
+  "entry_nodes": [
+   "a0_reception"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_board_room",
+  "name": "Faculty Board Room",
+  "aliases": [
+   "board room",
+   "conference room ground floor"
+  ],
+  "entry_nodes": [
+   "a0_board_room"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "registrar_office",
+  "name": "Registrar Office",
+  "aliases": [
+   "registrar"
+  ],
+  "entry_nodes": [
+   "a0_registrar"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "vice_chancellor_office",
+  "name": "Vice Chancellor Office",
+  "aliases": [
+   "vc office",
+   "vice chancellor"
+  ],
+  "entry_nodes": [
+   "a0_vc_office"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "admin_office",
+  "name": "Admin Office",
+  "aliases": [
+   "administration",
+   "administration office"
+  ],
+  "entry_nodes": [
+   "a0_admin_office"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "chancellor_office",
+  "name": "Chancellor Office",
+  "aliases": [
+   "chancellor"
+  ],
+  "entry_nodes": [
+   "a0_chancellor"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "vending_machine",
+  "name": "Vending Machine",
+  "aliases": [
+   "vending",
+   "vending machines",
+   "snacks",
+   "drinks"
+  ],
+  "entry_nodes": [
+   "a0_shop_a"
+  ],
+  "building": "Block A",
+  "category": "food",
+  "within": "food_court_a"
+ },
+ {
+  "id": "atm",
+  "name": "ATM",
+  "aliases": [
+   "cash"
+  ],
+  "entry_nodes": [
+   "a0_shop_a"
+  ],
+  "building": "Block A",
+  "category": "facility",
+  "within": "food_court_a",
+  "note": "Check on site that the ATM is in this room."
+ },
+ {
+  "id": "yummy_waffle",
+  "name": "Yummy Waffle",
+  "aliases": [
+   "waffle",
+   "waffles",
+   "yummy waffles",
+   "snacks"
+  ],
+  "entry_nodes": [
+   "a0_shop_a"
+  ],
+  "building": "Block A",
+  "category": "food",
+  "within": "food_court_a"
+ },
+ {
+  "id": "clinic",
+  "name": "Clinic",
+  "aliases": [
+   "doctor",
+   "first aid",
+   "medical"
+  ],
+  "entry_nodes": [
+   "a0_clinic"
+  ],
+  "building": "Block A",
+  "category": "facility"
+ },
+ {
+  "id": "washroom_gf_a",
+  "name": "Washroom (Block A, ground floor)",
+  "aliases": [
+   "toilet",
+   "restroom"
+  ],
+  "entry_nodes": [
+   "a0_washroom_a",
+   "a0_washroom_a2"
+  ],
+  "building": "Block A",
+  "category": "washroom"
+ },
+ {
+  "id": "washroom_gf_b",
+  "name": "Washroom (Block B, ground floor)",
+  "aliases": [
+   "toilet",
+   "restroom"
+  ],
+  "entry_nodes": [
+   "a0_washroom_b",
+   "a0_washroom_b2"
+  ],
+  "building": "Block B",
+  "category": "washroom"
+ },
+ {
+  "id": "mess_first_floor",
+  "name": "Cafeteria (first floor)",
+  "aliases": [
+   "mess first floor",
+   "cafeteria upstairs"
+  ],
+  "entry_nodes": [
+   "a1_mess_door"
+  ],
+  "building": "Main building",
+  "category": "food"
+ },
+ {
+  "id": "mount_kangchenjunga",
+  "name": "Mount Kangchenjunga",
+  "aliases": [
+   "kangchenjunga",
+   "classroom 7"
+  ],
+  "entry_nodes": [
+   "a1_kangchenjunga_door"
+  ],
+  "building": "Block A",
+  "category": "classroom"
+ },
+ {
+  "id": "mount_aconcagua",
+  "name": "Mount Aconcagua",
+  "aliases": [
+   "aconcagua",
+   "classroom 8"
+  ],
+  "entry_nodes": [
+   "a1_aconcagua_door"
+  ],
+  "building": "Block A",
+  "category": "classroom"
+ },
+ {
+  "id": "mount_mckinley",
+  "name": "Mount McKinley (Denali)",
+  "aliases": [
+   "mckinley",
+   "denali",
+   "classroom 9"
+  ],
+  "entry_nodes": [
+   "a1_mckinley_door"
+  ],
+  "building": "Block A",
+  "category": "classroom"
+ },
+ {
+  "id": "mount_dhaulagiri",
+  "name": "Mount Dhaulagiri",
+  "aliases": [
+   "dhaulagiri",
+   "classroom 10"
+  ],
+  "entry_nodes": [
+   "a1_dhaulagiri_door"
+  ],
+  "building": "Block A",
+  "category": "classroom"
+ },
+ {
+  "id": "mont_blanc",
+  "name": "Mont Blanc",
+  "aliases": [
+   "mount blanc",
+   "classroom 11"
+  ],
+  "entry_nodes": [
+   "a1_montblanc_door"
+  ],
+  "building": "Block B",
+  "category": "classroom"
+ },
+ {
+  "id": "mount_fuji",
+  "name": "Mount Fuji",
+  "aliases": [
+   "fuji",
+   "classroom 12"
+  ],
+  "entry_nodes": [
+   "a1_fuji_door"
+  ],
+  "building": "Block B",
+  "category": "classroom"
+ },
+ {
+  "id": "mount_kilimanjaro",
+  "name": "Mount Kilimanjaro",
+  "aliases": [
+   "kilimanjaro",
+   "classroom 13"
+  ],
+  "entry_nodes": [
+   "a1_kilimanjaro_door"
+  ],
+  "building": "Block B",
+  "category": "classroom"
+ },
+ {
+  "id": "thomson_reuters_trading_room",
+  "name": "Thomson Reuters Trading Room",
+  "aliases": [
+   "trading room",
+   "thomson reuters"
+  ],
+  "entry_nodes": [
+   "a1_thomson_door"
+  ],
+  "building": "Block A",
+  "category": "lab"
+ },
+ {
+  "id": "wellness_room",
+  "name": "Wellness Room",
+  "aliases": [
+   "wellness"
+  ],
+  "entry_nodes": [
+   "a1_wellness"
+  ],
+  "building": "Block A",
+  "category": "facility"
+ },
+ {
+  "id": "examination_office",
+  "name": "Examination Office",
+  "aliases": [
+   "exam office",
+   "examination"
+  ],
+  "entry_nodes": [
+   "a1_exam_office"
+  ],
+  "building": "Block A",
+  "category": "office"
+ },
+ {
+  "id": "staff_siesta_lounge",
+  "name": "Staff Siesta Lounge",
+  "aliases": [
+   "siesta"
+  ],
+  "entry_nodes": [
+   "a1_siesta_lounge"
+  ],
+  "building": "Block A",
+  "category": "facility"
+ },
+ {
+  "id": "safe_space",
+  "name": "Safe Space (Counseling Room)",
+  "aliases": [
+   "counseling room",
+   "counselling room",
+   "safe space"
+  ],
+  "entry_nodes": [
+   "a1_counseling"
+  ],
+  "building": "Block A",
+  "category": "facility"
+ },
+ {
+  "id": "career_management_office",
+  "name": "Career Management Office",
+  "aliases": [
+   "career office",
+   "placement"
+  ],
+  "entry_nodes": [
+   "a1_career_office"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "washroom_ff_a",
+  "name": "Washroom (Block A, first floor)",
+  "aliases": [
+   "toilet",
+   "restroom"
+  ],
+  "entry_nodes": [
+   "a1_washroom_a"
+  ],
+  "building": "Block A",
+  "category": "washroom"
+ },
+ {
+  "id": "washroom_ff_b",
+  "name": "Washroom (Block B, first floor)",
+  "aliases": [
+   "toilet",
+   "restroom"
+  ],
+  "entry_nodes": [
+   "a1_washroom_b"
+  ],
+  "building": "Block B",
+  "category": "washroom"
+ },
+ {
+  "id": "mount_vinson",
+  "name": "Mount Vinson",
+  "aliases": [
+   "vinson",
+   "classroom 14"
+  ],
+  "entry_nodes": [
+   "a2_vinson_door"
+  ],
+  "building": "Block A",
+  "category": "classroom"
+ },
+ {
+  "id": "mauna_kea",
+  "name": "Mauna Kea",
+  "aliases": [
+   "mauna kea",
+   "classroom 15"
+  ],
+  "entry_nodes": [
+   "a2_maunakea_door"
+  ],
+  "building": "Block A",
+  "category": "classroom"
+ },
+ {
+  "id": "mount_nanda_devi",
+  "name": "Mount Nanda Devi",
+  "aliases": [
+   "nanda devi",
+   "classroom 17"
+  ],
+  "entry_nodes": [
+   "a2_nandadevi_door"
+  ],
+  "building": "Block B",
+  "category": "classroom"
+ },
+ {
+  "id": "mount_manaslu",
+  "name": "Mount Manaslu",
+  "aliases": [
+   "manaslu",
+   "classroom 18"
+  ],
+  "entry_nodes": [
+   "a2_manaslu_door"
+  ],
+  "building": "Block B",
+  "category": "classroom"
+ },
+ {
+  "id": "mount_annapurna",
+  "name": "Mount Annapurna",
+  "aliases": [
+   "annapurna",
+   "classroom 19"
+  ],
+  "entry_nodes": [
+   "a2_annapurna_door"
+  ],
+  "building": "Block B",
+  "category": "classroom"
+ },
+ {
+  "id": "mount_trisul",
+  "name": "Mount Trisul",
+  "aliases": [
+   "trisul",
+   "classroom 20"
+  ],
+  "entry_nodes": [
+   "a2_trisul_door"
+  ],
+  "building": "Block B",
+  "category": "classroom"
+ },
+ {
+  "id": "mount_elbrus",
+  "name": "Mount Elbrus",
+  "aliases": [
+   "elbrus",
+   "classroom 21"
+  ],
+  "entry_nodes": [
+   "a2_elbrus_door"
+  ],
+  "building": "Block B",
+  "category": "classroom"
+ },
+ {
+  "id": "mount_nuptse",
+  "name": "Mount Nuptse",
+  "aliases": [
+   "nuptse",
+   "classroom 22"
+  ],
+  "entry_nodes": [
+   "a2_nuptse_door"
+  ],
+  "building": "Block B",
+  "category": "classroom"
+ },
+ {
+  "id": "sri_kailash_peak",
+  "name": "Sri Kailash Peak",
+  "aliases": [
+   "kailash",
+   "classroom 23"
+  ],
+  "entry_nodes": [
+   "a2_kailash_door"
+  ],
+  "building": "Block B",
+  "category": "classroom"
+ },
+ {
+  "id": "saraswati_parbat",
+  "name": "Saraswati Parbat",
+  "aliases": [
+   "saraswati",
+   "classroom 24"
+  ],
+  "entry_nodes": [
+   "a2_saraswati_door"
+  ],
+  "building": "Block B",
+  "category": "classroom"
+ },
+ {
+  "id": "design_studio",
+  "name": "Design Studio",
+  "aliases": [
+   "design"
+  ],
+  "entry_nodes": [
+   "a2_design_studio"
+  ],
+  "building": "Block B",
+  "category": "lab"
+ },
+ {
+  "id": "high_performance_ai_lab",
+  "name": "High Performance AI Lab",
+  "aliases": [
+   "hpc lab",
+   "ai lab second floor"
+  ],
+  "entry_nodes": [
+   "a2_hpc_lab"
+  ],
+  "building": "Block A",
+  "category": "lab"
+ },
+ {
+  "id": "ar_vr_lab",
+  "name": "AR / VR / MR & IoT Lab",
+  "aliases": [
+   "ar vr lab",
+   "vr lab",
+   "iot lab"
+  ],
+  "entry_nodes": [
+   "a2_arvr_lab"
+  ],
+  "building": "Block A",
+  "category": "lab"
+ },
+ {
+  "id": "univitt_ai",
+  "name": "Univitt AI Offices",
+  "aliases": [
+   "univitt"
+  ],
+  "entry_nodes": [
+   "a2_univitt"
+  ],
+  "building": "Block A",
+  "category": "office"
+ },
+ {
+  "id": "auditorium",
+  "name": "Auditorium / Multi Sports Centre",
+  "aliases": [
+   "auditorium",
+   "multi sports centre",
+   "basketball court",
+   "indoor sports"
+  ],
+  "entry_nodes": [
+   "a2_auditorium_door"
+  ],
+  "building": "Main building",
+  "category": "auditorium"
+ },
+ {
+  "id": "conference_room",
+  "name": "Conference Room",
+  "aliases": [
+   "conference"
+  ],
+  "entry_nodes": [
+   "a2_conference"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "washroom_sf_b",
+  "name": "Washroom (Block B, second floor)",
+  "aliases": [
+   "toilet",
+   "restroom"
+  ],
+  "entry_nodes": [
+   "a2_washroom_b"
+  ],
+  "building": "Block B",
+  "category": "washroom"
+ },
+ {
+  "id": "food_court_a",
+  "name": "Snack room (Yummy Waffle & Vending)",
+  "aliases": [
+   "food court",
+   "data-02",
+   "data 02",
+   "snack room",
+   "yummy waffle & vending"
+  ],
+  "entry_nodes": [
+   "a0_shop_a"
+  ],
+  "building": "Block A",
+  "category": "food"
+ },
+ {
+  "id": "aspretto",
+  "name": "Aspretto (coffee shop)",
+  "aliases": [
+   "aspretto",
+   "asperetto",
+   "coffee",
+   "coffee shop",
+   "cafe"
+  ],
+  "entry_nodes": [
+   "a0_aspretto"
+  ],
+  "building": "Block B",
+  "category": "food",
+  "note": "In the lobby, next to the spiral staircase"
+ },
+ {
+  "id": "director_office",
+  "name": "Director Office",
+  "aliases": [
+   "director"
+  ],
+  "entry_nodes": [
+   "a0_director_office"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "student_seating_area",
+  "name": "Student Seating Area",
+  "aliases": [
+   "seating area",
+   "study area",
+   "mezzanine"
+  ],
+  "entry_nodes": [
+   "a1_seating"
+  ],
+  "building": "Main building",
+  "category": "facility"
+ },
+ {
+  "id": "faculty_lounge",
+  "name": "Faculty Lounge",
+  "aliases": [
+   "staff lounge",
+   "lounge 105"
+  ],
+  "entry_nodes": [
+   "a1_faculty_lounge"
+  ],
+  "building": "Block B",
+  "category": "facility"
+ },
+ {
+  "id": "school_of_music",
+  "name": "School of Music, Sound & Cinematics",
+  "aliases": [
+   "music school",
+   "cinematics"
+  ],
+  "entry_nodes": [
+   "a2_school_music"
+  ],
+  "building": "Block A",
+  "category": "office"
+ },
+ {
+  "id": "sound_studio",
+  "name": "Sound Studio",
+  "aliases": [
+   "studio"
+  ],
+  "entry_nodes": [
+   "a2_sound_studio"
+  ],
+  "building": "Block A",
+  "category": "lab"
+ },
+ {
+  "id": "music_recording_room",
+  "name": "Music Recording Room",
+  "aliases": [
+   "recording room",
+   "recording studio"
+  ],
+  "entry_nodes": [
+   "a2_music_room"
+  ],
+  "building": "Block A",
+  "category": "lab"
+ },
+ {
+  "id": "untersberg",
+  "name": "Untersberg Mountain",
+  "aliases": [
+   "untersberg",
+   "classroom 16"
+  ],
+  "entry_nodes": [
+   "a2_untersberg_door"
+  ],
+  "building": "Block A",
+  "category": "classroom"
+ },
+ {
+  "id": "design_counseling_room",
+  "name": "Design Counseling Room",
+  "aliases": [
+   "design counselling"
+  ],
+  "entry_nodes": [
+   "a2_design_counseling"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "washroom_sf_a",
+  "name": "Washroom (Block A, second floor)",
+  "aliases": [
+   "toilet",
+   "restroom"
+  ],
+  "entry_nodes": [
+   "a2_washroom_a"
+  ],
+  "building": "Block A",
+  "category": "washroom"
+ },
+ {
+  "id": "hod_office_04",
+  "name": "HOD Office 04",
+  "aliases": [
+   "hod",
+   "head of department"
+  ],
+  "entry_nodes": [
+   "a0_hod_04"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "hod_office_05",
+  "name": "HOD Office 05",
+  "aliases": [
+   "hod",
+   "head of department"
+  ],
+  "entry_nodes": [
+   "a0_hod_05"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "hod_office_06",
+  "name": "HOD Office 06",
+  "aliases": [
+   "hod",
+   "head of department"
+  ],
+  "entry_nodes": [
+   "a0_hod_06"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "hod_office_07",
+  "name": "HOD Office 07",
+  "aliases": [
+   "hod",
+   "head of department"
+  ],
+  "entry_nodes": [
+   "a0_hod_07"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "hod_office_08",
+  "name": "HOD Office 08",
+  "aliases": [
+   "hod",
+   "head of department"
+  ],
+  "entry_nodes": [
+   "a0_hod_08"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "hod_office_09",
+  "name": "HOD Office 09",
+  "aliases": [
+   "hod",
+   "head of department"
+  ],
+  "entry_nodes": [
+   "a0_hod_09"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "hod_office_10",
+  "name": "HOD Office 10",
+  "aliases": [
+   "hod",
+   "head of department"
+  ],
+  "entry_nodes": [
+   "a0_hod_10"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_101",
+  "name": "Faculty Cabin 101",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "101"
+  ],
+  "entry_nodes": [
+   "a1_cabin_101"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_106",
+  "name": "Faculty Cabin 106",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "106"
+  ],
+  "entry_nodes": [
+   "a1_cabin_106"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_107",
+  "name": "Faculty Cabin 107",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "107"
+  ],
+  "entry_nodes": [
+   "a1_cabin_107"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_108",
+  "name": "Faculty Cabin 108",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "108"
+  ],
+  "entry_nodes": [
+   "a1_cabin_108"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_109",
+  "name": "Faculty Cabin 109",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "109"
+  ],
+  "entry_nodes": [
+   "a1_cabin_109"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_110",
+  "name": "Faculty Cabin 110",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "110"
+  ],
+  "entry_nodes": [
+   "a1_cabin_110"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_111",
+  "name": "Faculty Cabin 111",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "111"
+  ],
+  "entry_nodes": [
+   "a1_cabin_111"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_114",
+  "name": "Faculty Cabin 114",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "114"
+  ],
+  "entry_nodes": [
+   "a1_cabin_114"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_115",
+  "name": "Faculty Cabin 115",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "115"
+  ],
+  "entry_nodes": [
+   "a1_cabin_115"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_116",
+  "name": "Faculty Cabin 116",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "116"
+  ],
+  "entry_nodes": [
+   "a1_cabin_116"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_119",
+  "name": "Faculty Cabin 119",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "119"
+  ],
+  "entry_nodes": [
+   "a1_cabin_119"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_120",
+  "name": "Faculty Cabin 120",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "120"
+  ],
+  "entry_nodes": [
+   "a1_cabin_120"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_121",
+  "name": "Faculty Cabin 121",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "121"
+  ],
+  "entry_nodes": [
+   "a1_cabin_121"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_122",
+  "name": "Faculty Cabin 122",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "122"
+  ],
+  "entry_nodes": [
+   "a1_cabin_122"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_123",
+  "name": "Faculty Cabin 123",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "123"
+  ],
+  "entry_nodes": [
+   "a1_cabin_123"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_124",
+  "name": "Faculty Cabin 124",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "124"
+  ],
+  "entry_nodes": [
+   "a1_cabin_124"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_125",
+  "name": "Faculty Offices (Block A, first floor)",
+  "aliases": [
+   "faculty",
+   "cabin 125",
+   "125"
+  ],
+  "entry_nodes": [
+   "a1_cabin_125"
+  ],
+  "building": "Block A",
+  "category": "office"
+ },
+ {
+  "id": "faculty_cabin_126",
+  "name": "Faculty Cabin 126",
+  "aliases": [
+   "faculty",
+   "cabin",
+   "126"
+  ],
+  "entry_nodes": [
+   "a1_cabin_126"
+  ],
+  "building": "Block A",
+  "category": "office"
+ },
+ {
+  "id": "hod_cabin_113",
+  "name": "HOD Cabin 113",
+  "aliases": [
+   "hod",
+   "head of department",
+   "113"
+  ],
+  "entry_nodes": [
+   "a1_hod_113"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "hod_cabin_117",
+  "name": "HOD Cabin 117",
+  "aliases": [
+   "hod",
+   "head of department",
+   "117"
+  ],
+  "entry_nodes": [
+   "a1_hod_117"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "hod_cabin_118",
+  "name": "HOD Cabin 118",
+  "aliases": [
+   "hod",
+   "head of department",
+   "118"
+  ],
+  "entry_nodes": [
+   "a1_hod_118"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "director_cabin_4",
+  "name": "Director Cabin 4",
+  "aliases": [
+   "director"
+  ],
+  "entry_nodes": [
+   "a1_director_4"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "director_cabin_5",
+  "name": "Director Cabin 5",
+  "aliases": [
+   "director"
+  ],
+  "entry_nodes": [
+   "a1_director_5"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "director_cabin_6",
+  "name": "Director Cabin 6",
+  "aliases": [
+   "director"
+  ],
+  "entry_nodes": [
+   "a1_director_6"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_room_01",
+  "name": "Faculty Room 01",
+  "aliases": [
+   "faculty",
+   "faculty room",
+   "staff room"
+  ],
+  "entry_nodes": [
+   "a2_faculty_01"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_room_02",
+  "name": "Faculty Room 02",
+  "aliases": [
+   "faculty",
+   "faculty room",
+   "staff room"
+  ],
+  "entry_nodes": [
+   "a2_faculty_02"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_room_03",
+  "name": "Faculty Room 03",
+  "aliases": [
+   "faculty",
+   "faculty room",
+   "staff room"
+  ],
+  "entry_nodes": [
+   "a2_faculty_03"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_room_04",
+  "name": "Faculty Room 04",
+  "aliases": [
+   "faculty",
+   "faculty room",
+   "staff room"
+  ],
+  "entry_nodes": [
+   "a2_faculty_04"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_room_05",
+  "name": "Faculty Room 05",
+  "aliases": [
+   "faculty",
+   "faculty room",
+   "staff room"
+  ],
+  "entry_nodes": [
+   "a2_faculty_05"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_room_06",
+  "name": "Faculty Room 06",
+  "aliases": [
+   "faculty",
+   "faculty room",
+   "staff room"
+  ],
+  "entry_nodes": [
+   "a2_faculty_06"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_room_07",
+  "name": "Faculty Room 07",
+  "aliases": [
+   "faculty",
+   "faculty room",
+   "staff room"
+  ],
+  "entry_nodes": [
+   "a2_faculty_07"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_room_08",
+  "name": "Faculty Room 08",
+  "aliases": [
+   "faculty",
+   "faculty room",
+   "staff room"
+  ],
+  "entry_nodes": [
+   "a2_faculty_08"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_room_09",
+  "name": "Faculty Room 09",
+  "aliases": [
+   "faculty",
+   "faculty room",
+   "staff room"
+  ],
+  "entry_nodes": [
+   "a2_faculty_09"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_room_10",
+  "name": "Faculty Room 10",
+  "aliases": [
+   "faculty",
+   "faculty room",
+   "staff room"
+  ],
+  "entry_nodes": [
+   "a2_faculty_10"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_room_11",
+  "name": "Faculty Room 11",
+  "aliases": [
+   "faculty",
+   "faculty room",
+   "staff room"
+  ],
+  "entry_nodes": [
+   "a2_faculty_11"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_room_12",
+  "name": "Faculty Room 12",
+  "aliases": [
+   "faculty",
+   "faculty room",
+   "staff room"
+  ],
+  "entry_nodes": [
+   "a2_faculty_12"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_room_13",
+  "name": "Faculty Room 13",
+  "aliases": [
+   "faculty",
+   "faculty room",
+   "staff room"
+  ],
+  "entry_nodes": [
+   "a2_faculty_13"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_room_14",
+  "name": "Faculty Room 14",
+  "aliases": [
+   "faculty",
+   "faculty room",
+   "staff room"
+  ],
+  "entry_nodes": [
+   "a2_faculty_14"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "wellbeing_office",
+  "name": "Wellbeing Office",
+  "aliases": [
+   "wellbeing",
+   "well being",
+   "student wellbeing"
+  ],
+  "entry_nodes": [
+   "a0_wellbeing"
+  ],
+  "building": "Main building",
+  "category": "office"
+ },
+ {
+  "id": "accounts_office",
+  "name": "Accounts Office",
+  "aliases": [
+   "accounts",
+   "fees",
+   "fee payment",
+   "finance"
+  ],
+  "entry_nodes": [
+   "a0_accounts"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "study_pods",
+  "name": "Study Pods",
+  "aliases": [
+   "pods",
+   "study pod",
+   "quiet study"
+  ],
+  "entry_nodes": [
+   "a0_study_pods"
+  ],
+  "building": "Block B",
+  "category": "facility"
+ },
+ {
+  "id": "merchandise_store",
+  "name": "Merchandise Store",
+  "aliases": [
+   "merch",
+   "merchandise",
+   "store",
+   "uai store"
+  ],
+  "entry_nodes": [
+   "a0_merch_store"
+  ],
+  "building": "Block B",
+  "category": "shop"
+ },
+ {
+  "id": "ai_lab",
+  "name": "AI Lab",
+  "aliases": [
+   "ai lab",
+   "lab classroom",
+   "artificial intelligence lab"
+  ],
+  "entry_nodes": [
+   "class_entrance01"
+  ],
+  "building": "Block A",
+  "category": "lab"
+ }
+]

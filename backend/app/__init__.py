@@ -2,7 +2,7 @@ from functools import lru_cache
 
 from flask import Flask, jsonify
 
-from . import config
+from . import config, web
 from .api import bp as api_bp
 from .core.astar import astar
 from .core.graph import CampusGraph
@@ -18,14 +18,16 @@ def create_app(data_path=None):
     graph = CampusGraph.load(data_path or config.DATA_PATH)
 
     @lru_cache(maxsize=config.ROUTE_CACHE_SIZE)
-    def cached_route(starts, goals, accessible_only):
+    def cached_route(starts, goals, accessible_only, goal_key=None):
         found = astar(graph, starts, goals, accessible_only)
         if found is None:
             return None
-        return build_route(graph, found, config.WALK_SPEED_MPS, graph.node_place.get(found.goal))
+        name, within = graph.goal_info(found.goal, goal_key)
+        return build_route(graph, found, config.WALK_SPEED_MPS, name, within)
 
     app.extensions["campus"] = {"graph": graph, "places": PlaceIndex(graph.rooms.values()), "route": cached_route}
     app.register_blueprint(api_bp, url_prefix="/api")
+    web.install(app, graph)
 
     @app.after_request
     def add_cors(resp):  # lets the Flutter web build and local tools call the API

@@ -27,10 +27,14 @@ _TYPE_RULES = [
 ]
 
 
+CATEGORY_TO_APP = {"classroom": "hall", "food": "cafeteria", "office": "office", "lab": "lab", "library": "library",
+                   "auditorium": "auditorium", "sports": "sports", "hostel": "hostel"}
+
+
 def app_type(room):
-    """Type word for the app: a room's own 'category' (if the merged graph ever carries one) wins over the guess."""
+    """Type word for the app: a place's 'category' from data/places.json wins over the name guess."""
     if room.get("category"):
-        return room["category"]
+        return CATEGORY_TO_APP.get(room["category"], "place")
     words = set(re.split(r"[^a-z0-9]+", " ".join([room["id"], room["name"], *room.get("aliases", [])]).lower()))
     for kind, keys in _TYPE_RULES:
         if any(k in words for k in keys) or any(k in room["id"].lower() for k in keys if len(k) > 3):
@@ -39,8 +43,11 @@ def app_type(room):
 
 
 def _search_item(room):
-    return {"id": room["id"], "name": room["name"], "building": room.get("building") or "Campus",
+    item = {"id": room["id"], "name": room["name"], "building": room.get("building") or "Campus",
             "floor": room.get("floor", 0), "type": app_type(room)}
+    if room.get("within_name"):
+        item["within_name"] = room["within_name"]
+    return item
 
 
 @bp.get("/search")
@@ -52,17 +59,8 @@ def app_search():
     return jsonify([_search_item(r) for r in hits])
 
 
-def _step_type(text):
-    t = text.lower()
-    if t.startswith("arrive"):
-        return "arrive"
-    if t.startswith("go inside"):
-        return "enter"
-    if " left" in f" {t.split(' at ')[0]}":
-        return "turn_left"
-    if " right" in f" {t.split(' at ')[0]}":
-        return "turn_right"
-    return "walk"
+KIND_TO_APP = {"start_walk": "walk", "walk": "walk", "turn_left": "turn_left", "turn_right": "turn_right",
+               "enter": "enter", "exit": "walk", "stairs": "stairs", "lift": "lift", "arrive": "arrive"}
 
 
 def _step_title(kind, text, dist):
@@ -70,23 +68,26 @@ def _step_title(kind, text, dist):
         return text  # "Arrive at Mount Lhotse"
     if kind == "enter":
         return "Go inside"
+    if kind == "exit":
+        return "Go outside"
     if kind in ("turn_left", "turn_right"):
         return text.split(" at ")[0]  # "Bear right", "Turn left", "Make a sharp left"
-    if text.lower().startswith("go outside"):
-        return "Go outside"
+    if kind == "stairs":
+        return "Take the stairs"
+    if kind == "lift":
+        return "Take the lift"
     return f"Walk {int(round(dist))} m" if dist >= 1 else "Continue"
 
 
 def to_app_route(result, start_name):
     steps = [{"type": "start", "title": "You are here", "instruction": start_name, "distance": 0, "floor": 0}]
     for s in result["steps"]:
-        kind = _step_type(s["instruction"])
-        steps.append({"type": kind, "title": _step_title(kind, s["instruction"], s["distance_m"]),
-                      "instruction": s["instruction"], "distance": s["distance_m"],
-                      "floor": s.get("floor") if s["space"] == "indoor" else 0})
+        kind = s.get("kind", "walk")
+        steps.append({"type": KIND_TO_APP.get(kind, "walk"), "title": _step_title(kind, s["instruction"], s["distance_m"]),
+                      "instruction": s["instruction"], "distance": s["distance_m"], "floor": s.get("floor", 0)})
     return {
         "distance_meters": int(round(result["distance_m"])),
-        "estimated_minutes": max(1, int(result["duration_s"] / 60 + 0.5)) if result["distance_m"] > 0 else 0,
+        "estimated_minutes": max(1, int(result["duration_s"] / 60 + 0.5)) if result["duration_s"] > 0 else 0,
         "steps": steps,
         "path": [],
         # extras for drawing the real route (outdoor [lat,lng] polyline, indoor pixel points on the floor plan)
@@ -95,6 +96,8 @@ def to_app_route(result, start_name):
         "from": result["from"],
         "to": result["to"],
         "to_name": result["to_name"],
+        "to_within": result.get("to_within"),
+        "floors": result.get("floors", []),
         "graph_version": result["graph_version"],
     }
 
@@ -118,7 +121,7 @@ def app_route():
         return error("not_found", f"unknown destination '{dest_key}'", 404)
 
     step_free = str(body.get("step_free", "")).lower() in ("1", "true", "yes")
-    result = ctx["route"](tuple(starts), tuple(goals), step_free)
+    result = ctx["route"](tuple(starts), tuple(goals), step_free, dest_key)
     if result is None:
         return error("no_route", "no walkable route between those places", 422)
 

@@ -17,7 +17,8 @@ def test_health():
 def test_version_graph_etag_and_floors():
     c = client()
     v = c.get("/api/graph/version").json["version"]
-    assert c.get("/api/graph").headers["ETag"] == v
+    assert c.get("/api/graph").headers["ETag"] == f'"{v}"'
+    assert c.get("/api/graph", headers={"If-None-Match": f'"{v}"'}).status_code == 304
     assert c.get("/api/graph", headers={"If-None-Match": v}).status_code == 304
     floors = c.get("/api/floors").json["floors"]
     assert floors and floors[0]["image"] and len(floors[0]["image_size"]) == 2
@@ -27,7 +28,8 @@ def test_search_finds_outdoor_and_indoor_places():
     c = client()
     assert any("Makalu" in r["name"] for r in c.get("/api/rooms?q=makalu").json["results"])
     everest = c.get("/api/rooms?q=everest").json["results"][0]
-    assert everest["id"] == "mount_everest_130" and everest["indoor"] is True and everest["lat"] is None
+    assert everest["id"] == "mount_everest_130" and everest["indoor"] is True and everest["floor"] == 0
+    assert everest["lat"] is not None  # indoor dots get GPS from the georef (plan tied to the facade doors)
     mess = c.get("/api/rooms/mess").json
     assert len(mess["node_ids"]) == 2 and mess["indoor"] is False and mess["lat"] is not None
     assert c.get("/api/rooms?q=zzzzzz").json["results"] == []
@@ -35,7 +37,7 @@ def test_search_finds_outdoor_and_indoor_places():
 
 def test_outdoor_route_gate_to_gym():
     r = client().get("/api/route?from=gate_main&to=gym_entrance").json
-    assert 400 < r["distance_m"] < 520
+    assert 300 < r["distance_m"] < 520   # v5 joined the gym line (was ~460 m round the turf before)
     assert r["nodes"][0] == "gate_main" and r["nodes"][-1] == "gym_entrance"
     assert [leg["type"] for leg in r["legs"]] == ["outdoor"]
     assert r["steps"][-1]["instruction"].startswith("Arrive at") and len(r["polyline"]) >= 2
