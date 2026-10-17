@@ -419,3 +419,14 @@ data, no cookies or logins).
 
 **Floor pictures** in `app/assets/floorplans/` were re-saved as 128-colour PNGs: 593 KB -> 225 KB for the three,
 same look. Re-copy them into the Flutter assets.
+
+## Update 8 (17 Oct 2026): map pins, all places, attic lab, outdoor v6
+
+- `GET /api/rooms?q=&limit=500`: the limit now goes up to 500 (it was 50, so with 137 places the Gym, Turf, R7...
+  never reached the app). Ask for all places in one call.
+- `lat`/`lng` in `/api/rooms` are now **only for places with an outdoor door** (gates, entrances, the mess back door).
+  Indoor places have `lat`/`lng` = `null` and `x`/`y` + `floor` for the floor picture, as in version 1. Their GPS is still
+  there as `gps: {"lat", "lng"}` (for live tracking later). So the campus map shows outdoor pins only and the Indoors tab
+  shows rooms per floor.
+- A staircase inside one floor (the spiral stair from Work Station 01 up to the Innovation Lab attic) is its own step:
+  `{"kind": "stairs", "instruction": "Take the spiral staircase up to Innovation Lab"}`.

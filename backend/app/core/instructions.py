@@ -280,10 +280,19 @@ def build_route(graph, result, walk_speed, goal_name=None, goal_within=None):
     steps, i = [], 0
     while i < len(edge_ids):
         e = graph.edges[edge_ids[i]]
+        if e.get("climb"):          # a staircase inside one floor (e.g. the spiral stair up to the attic lab)
+            a, b = nodes[node_ids[i]], nodes[node_ids[i + 1]]
+            up = (e["climb"] == "up") == (e["from"] == a["id"])
+            via = "the " + a["name"][0].lower() + a["name"][1:] if a["type"] == "stairs" and a["name"] else "the stairs"
+            text = f"Take {via} {'up' if up else 'down'} to {_label(b)}"
+            steps.append(_step(a, text, _edge_len(e), "stairs"))
+            i += 1
+            continue
         if e["space"] in ("outdoor", "indoor"):
             j = i
             while (j < len(edge_ids) and graph.edges[edge_ids[j]]["space"] == e["space"]
-                   and graph.edges[edge_ids[j]].get("floor", 0) == e.get("floor", 0)):
+                   and graph.edges[edge_ids[j]].get("floor", 0) == e.get("floor", 0)
+                   and not graph.edges[edge_ids[j]].get("climb")):
                 j += 1
             make = _outdoor_steps if e["space"] == "outdoor" else _indoor_steps
             steps.extend(make(graph, node_ids[i:j + 1], edge_ids[i:j], first=(i == 0)))

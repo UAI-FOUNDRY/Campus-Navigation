@@ -29,7 +29,9 @@ def test_search_finds_outdoor_and_indoor_places():
     assert any("Makalu" in r["name"] for r in c.get("/api/rooms?q=makalu").json["results"])
     everest = c.get("/api/rooms?q=everest").json["results"][0]
     assert everest["id"] == "mount_everest_130" and everest["indoor"] is True and everest["floor"] == 0
-    assert everest["lat"] is not None  # indoor dots get GPS from the georef (plan tied to the facade doors)
+    # indoor places are pinned on the floor picture (x, y), not on the campus map; their GPS is in "gps"
+    assert everest["lat"] is None and everest["gps"]["lat"] is not None and everest["x"] is not None
+    assert len(c.get("/api/rooms?q=&limit=500").json["results"]) > 100     # the app asks for all places at once
     mess = c.get("/api/rooms/mess").json
     assert len(mess["node_ids"]) == 2 and mess["indoor"] is False and mess["lat"] is not None
     assert c.get("/api/rooms?q=zzzzzz").json["results"] == []
@@ -37,7 +39,7 @@ def test_search_finds_outdoor_and_indoor_places():
 
 def test_outdoor_route_gate_to_gym():
     r = client().get("/api/route?from=gate_main&to=gym_entrance").json
-    assert 300 < r["distance_m"] < 520   # v5 joined the gym line (was ~460 m round the turf before)
+    assert 300 < r["distance_m"] < 520   # v6 joins the gym line (was ~460 m round the turf before)
     assert r["nodes"][0] == "gate_main" and r["nodes"][-1] == "gym_entrance"
     assert [leg["type"] for leg in r["legs"]] == ["outdoor"]
     assert r["steps"][-1]["instruction"].startswith("Arrive at") and len(r["polyline"]) >= 2

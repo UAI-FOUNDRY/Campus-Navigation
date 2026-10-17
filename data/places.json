@@ -646,7 +646,11 @@
   "name": "High Performance AI Lab",
   "aliases": [
    "hpc lab",
-   "ai lab second floor"
+   "ai lab second floor",
+   "ai lab",
+   "hpc",
+   "high performance computing",
+   "quantum computing lab"
   ],
   "entry_nodes": [
    "a2_hpc_lab"
@@ -1544,17 +1548,67 @@
   "category": "shop"
  },
  {
-  "id": "ai_lab",
-  "name": "AI Lab",
+  "id": "innovation_lab",
+  "name": "Innovation Lab (Incubation Launchpad)",
   "aliases": [
-   "ai lab",
-   "lab classroom",
-   "artificial intelligence lab"
+   "innovation lab",
+   "incubation launchpad",
+   "incubation",
+   "launchpad",
+   "attic",
+   "work station 02"
   ],
   "entry_nodes": [
-   "class_entrance01"
+   "a2_innovation_lab"
   ],
-  "building": "Block A",
-  "category": "lab"
+  "building": "Block B",
+  "category": "lab",
+  "note": "Attic over the second-floor faculty rooms, up the spiral staircase in Work Station 01"
+ },
+ {
+  "id": "faculty_room_15",
+  "name": "Faculty Room 15",
+  "aliases": [
+   "faculty",
+   "faculty room",
+   "15"
+  ],
+  "entry_nodes": [
+   "a2_innovation_lab"
+  ],
+  "building": "Block B",
+  "category": "office",
+  "within": "innovation_lab"
+ },
+ {
+  "id": "faculty_room_16",
+  "name": "Faculty Room 16",
+  "aliases": [
+   "faculty",
+   "faculty room",
+   "16"
+  ],
+  "entry_nodes": [
+   "a2_innovation_lab"
+  ],
+  "building": "Block B",
+  "category": "office",
+  "within": "innovation_lab"
+ },
+ {
+  "id": "entrepreneurship_coe",
+  "name": "Entrepreneurship CoE",
+  "aliases": [
+   "entrepreneurship",
+   "coe",
+   "e-cell",
+   "centre of excellence"
+  ],
+  "entry_nodes": [
+   "a2_ws01"
+  ],
+  "building": "Block B",
+  "category": "office",
+  "note": "Signage puts it beside the Incubation Launchpad; entry assumed through Work Station 01 (verify)"
  }
 ]

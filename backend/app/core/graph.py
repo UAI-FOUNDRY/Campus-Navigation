@@ -53,7 +53,7 @@ class CampusGraph:
     # What the public may see. Plan metres ("pos"), mapper notes and on-site checks stay on the server.
     PUBLIC_NODE = ("id", "type", "name", "space", "floor", "building", "lat", "lng", "x", "y", "area", "media")
     PUBLIC_EDGE = ("id", "from", "to", "weight", "length", "extra_s", "type", "space", "floor", "accessible",
-                   "connector", "connector_name", "geometry", "via_geo", "area")
+                   "connector", "connector_name", "geometry", "via_geo", "area", "climb")
     PUBLIC_ROOM = ("id", "name", "aliases", "type", "building", "floor", "node_id", "node_ids", "category",
                    "within", "within_name")
 

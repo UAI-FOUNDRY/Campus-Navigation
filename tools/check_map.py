@@ -2,7 +2,7 @@
 """Find drawing mistakes in the outdoor GeoJSON that make A* lose a path.
 
     python tools/check_map.py                      # newest data/outdoor/outdoor_draft_vN.geojson
-    python tools/check_map.py data/outdoor/outdoor_draft_v5.geojson
+    python tools/check_map.py data/outdoor/outdoor_draft_v6.geojson
 
 What it reports
   BROKEN   a line END that stops near another line but not at a dot: the two paths are NOT joined.

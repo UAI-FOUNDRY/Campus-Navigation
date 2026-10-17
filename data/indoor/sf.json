@@ -753,6 +753,37 @@
    "on": "a2_c_p5"
   },
   {
+   "id": "a2_ws01",
+   "type": "door",
+   "name": "Work Station 01",
+   "pos": [
+    62.06,
+    55.87
+   ],
+   "on": "a2_c_fp",
+   "verify": "Door into Work Station 01 (with the spiral staircase) read from the drawing; signage shows the Entrepreneurship CoE next to it."
+  },
+  {
+   "id": "a2_stair_innov",
+   "type": "stairs",
+   "name": "Spiral staircase",
+   "pos": [
+    63.65,
+    54.76
+   ],
+   "note": "Up to the Innovation Lab (attic)"
+  },
+  {
+   "id": "a2_innovation_lab",
+   "type": "door",
+   "name": "Innovation Lab",
+   "pos": [
+    63.65,
+    53.81
+   ],
+   "note": "Attic level; plan detail 'Innovation Lab', Work Station 02 and Faculty Rooms 15-16"
+  },
+  {
    "id": "a2_faculty_08",
    "type": "door",
    "name": "Faculty Room 08",
@@ -893,6 +924,20 @@
    "on": "a2_c_fp"
   }
  ],
- "edges": [],
+ "edges": [
+  {
+   "from": "a2_ws01",
+   "to": "a2_stair_innov",
+   "type": "open"
+  },
+  {
+   "from": "a2_stair_innov",
+   "to": "a2_innovation_lab",
+   "type": "steps",
+   "meters": 8,
+   "climb": "up",
+   "note": "spiral staircase to the attic"
+  }
+ ],
  "links": []
 }

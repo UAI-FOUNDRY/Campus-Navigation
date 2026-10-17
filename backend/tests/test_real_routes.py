@@ -78,7 +78,7 @@ def test_outdoor_map_has_no_breaking_mistakes():
 def test_gps_start_inside_the_building_needs_the_floor():
     c = client()
     everest = c.get("/api/rooms/mount_everest_130").json
-    lat, lng = everest["lat"], everest["lng"]
+    lat, lng = everest["gps"]["lat"], everest["gps"]["lng"]
     r = c.get(f"/api/route?from_lat={lat}&from_lng={lng}&to=mount_lhotse").json
     assert not r["from"].startswith("a0_")                       # without a floor: snapped to an outdoor dot
     r = c.get(f"/api/route?from_lat={lat}&from_lng={lng}&from_floor=0&to=mount_lhotse").json
@@ -122,3 +122,17 @@ def test_estimates_agree_with_routes():
     assert set(est) == set(ids)
     for pid in ("library", "mount_nanda_devi", "aspretto", "mess_first_floor"):
         assert est[pid] == max(1, int(route(c, "gate_main", pid)["duration_s"] / 60 + 0.5))
+
+
+def test_attic_lab_is_up_the_spiral_staircase():
+    r = route(client(), "gate_main", "faculty_room_15")
+    assert r["floors"] == [0, 2]
+    assert any(s["kind"] == "stairs" and "up to Innovation Lab" in s["instruction"] for s in r["steps"])
+    assert r["steps"][-1]["instruction"].endswith("inside the Innovation Lab (Incubation Launchpad)")
+
+
+def test_map_pins_only_outdoor_places():
+    rooms = client().get("/api/rooms?q=&limit=500").json["results"]
+    pinned = [r for r in rooms if r["lat"] is not None]
+    assert all(not r["indoor"] for r in pinned)
+    assert {"gym_entrance", "turf_entrance"} <= {r["id"] for r in pinned}

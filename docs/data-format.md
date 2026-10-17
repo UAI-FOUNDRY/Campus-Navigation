@@ -4,7 +4,7 @@ Everything the router knows comes from five kinds of files. `python tools/merge_
 `data/build/campus.merged.json` (commit that file; the server only reads it).
 
 ```
-data/outdoor/outdoor_draft_vN.geojson   outdoor paths and doors (geojson.io); the newest N is used
+data/outdoor/outdoor_draft_vN.geojson   outdoor paths and doors (geojson.io); the newest N is used (v6 = your v4 + 2 joins)
 data/indoor/building.json               shared by all floors: GPS tie-in, lifts and stairs, floor-change costs
 data/indoor/gf.json  ff.json  sf.json    one file per floor (gf = ground, ff = first, sf = second, tf = third ...)
 data/places.json                        what students can search for, and which doors lead into it
@@ -72,6 +72,8 @@ A floor is described the way a mapper thinks about it: **corridors** are centre 
   places.json, QR codes or the app (the merge refuses places that point at them; generate_qr skips them).
 - `edges`: extra lines that a corridor can't describe (steps between two levels, a door straight onto another door).
   `"via": [[x, y], ...]` bends a line without adding dots. Length = along the bends.
+  `"climb": "up"` (with `"type": "steps"` and `"meters"`) marks a staircase inside one floor, from `from` up to
+  `to`, e.g. the spiral stair to the attic Innovation Lab; the route announces it as its own step.
 - Node `type`: `door` (a room you can route to), `junction`, `corner`, `exit` (door to outside; needs a link),
   `gate`, `lift`, `stairs`. `name` is what the steps say ("... Mount Lhotse is on your left").
 - Ids: floor prefix + short name: `a0_` ground, `a1_` first, `a2_` second. **Never rename an id once used.**

@@ -3,7 +3,7 @@
 
 Usage (from the repo root; every argument is optional):
     python tools/merge_data.py
-    python tools/merge_data.py --outdoor data/outdoor/outdoor_draft_v5.geojson --places data/places.json
+    python tools/merge_data.py --outdoor data/outdoor/outdoor_draft_v6.geojson --places data/places.json
 
 Defaults: newest data/outdoor/outdoor_draft_v*.geojson, every data/indoor/<code>.json floor file (gf, ff, sf, ...),
 data/indoor/building.json (georef + lifts/stairs), data/places.json, output data/build/campus.merged.json.
@@ -223,7 +223,7 @@ def merge(outdoor_geo, indoor_files, places, outdoor_name="outdoor.geojson", bui
                 errors.append(f"{tag}: 'meters' must be a positive number")
                 continue
             length = float(m) if m is not None else plan_len
-            if m is not None and plan_len and abs(m - plan_len) > max(3.0, 0.3 * plan_len):
+            if m is not None and plan_len and not ed.get("climb") and abs(m - plan_len) > max(3.0, 0.3 * plan_len):
                 warnings.append(f"{tag}: measured {m} m but the plan says {plan_len:.1f} m: re-check one of them")
             if length > 120:
                 warnings.append(f"{tag} is {length:.0f} m: please re-check")
@@ -238,6 +238,8 @@ def merge(outdoor_geo, indoor_files, places, outdoor_name="outdoor.geojson", bui
                 edge["via"] = [[float(v[0]), float(v[1])] for v in via]
                 if geo:
                     edge["via_geo"] = [list(geo.to_latlng(*v)) for v in via]
+            if ed.get("climb") in ("up", "down"):   # stairs inside a floor: announced as their own step
+                edge["climb"] = ed["climb"]
             for k in ("corridor", "area"):
                 if ed.get(k):
                     edge[k] = ed[k]

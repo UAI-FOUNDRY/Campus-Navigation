@@ -54,6 +54,17 @@ the node editor if needed, delete its `verify` note, merge, commit.
   lift). The studios are reached by the ramp (west) and Passage 03. The AI lab is entered through the lobby area
   north of Passage 01. Confirm.
 
+## New in update 8
+
+- **Innovation Lab (attic)**: reached from the second-floor faculty passage through Work Station 01 and its spiral
+  staircase (plan detail "Innovation Lab", with Faculty Rooms 15 and 16). Signage calls it Incubation Launchpad
+  (Attic). Check the Work Station 01 door and where the Entrepreneurship CoE door really is.
+- **Quadrangle South Entrance**: back at your v4 position. That outdoor dot is about 12 m from the door the plan
+  shows, so the route says "Go inside ... and walk 12 m". If the dot is at the real door, tell us and we re-check the
+  plan's tie-in there; if not, move the dot onto the doorway in geojson.io.
+- **AI Lab**: no separate "AI Lab" any more; "ai lab" finds the High Performance AI Lab (second floor). The ground
+  floor signage still shows a box called "AI Lab" above Mount Logan: what is it today?
+
 ## Plan distances vs the team's tile measurements (ground floor)
 
 Most legs agree within a few metres, which also confirms the plan reading. The legs below differ; the plan is

@@ -5,12 +5,17 @@ from . import bp, error
 
 def _public(graph, room):
     nodes = [graph.nodes[n] for n in room["node_ids"]]
-    geo = next((n for n in nodes if n["lat"] is not None), None)
-    first = nodes[0]
+    indoor = all(n["space"] == "indoor" for n in nodes)
+    # lat/lng only for places with an outdoor door: the app pins those on the campus map and shows indoor places
+    # (x, y) on the floor picture. Indoor GPS (from the plan georef) stays available as "gps".
+    outdoor = next((n for n in nodes if n["space"] == "outdoor" and n["lat"] is not None), None)
+    gps = next((n for n in nodes if n["lat"] is not None), None)
+    first = next((n for n in nodes if n["space"] == "indoor"), nodes[0])
     return {"id": room["id"], "name": room["name"], "aliases": room["aliases"], "type": room["type"],
             "building": room["building"], "floor": room["floor"], "node_ids": room["node_ids"],
-            "indoor": all(n["space"] == "indoor" for n in nodes),
-            "lat": geo["lat"] if geo else None, "lng": geo["lng"] if geo else None,
+            "indoor": indoor,
+            "lat": outdoor["lat"] if outdoor else None, "lng": outdoor["lng"] if outdoor else None,
+            "gps": {"lat": gps["lat"], "lng": gps["lng"]} if gps else None,
             "x": first.get("x"), "y": first.get("y"),
             # "inside the Library": show it under the name in search results
             "within": room.get("within"), "within_name": room.get("within_name"),
@@ -21,7 +26,7 @@ def _public(graph, room):
 def search_rooms():
     ctx = current_app.extensions["campus"]
     try:
-        limit = max(1, min(int(request.args.get("limit", 8)), 50))
+        limit = max(1, min(int(request.args.get("limit", 8)), 500))   # the app asks for every place at once
     except ValueError:
         return error("bad_request", "'limit' must be a number", 400)
     hits = ctx["places"].search(request.args.get("q", "")[:100], limit)
