@@ -136,3 +136,9 @@ def test_map_pins_only_outdoor_places():
     pinned = [r for r in rooms if r["lat"] is not None]
     assert all(not r["indoor"] for r in pinned)
     assert {"gym_entrance", "turf_entrance"} <= {r["id"] for r in pinned}
+
+
+def test_stairs_only_place_explains_step_free():
+    r = client().get("/api/route?from=quad_south_entrance&to=innovation_lab&accessible=1")
+    assert r.status_code == 422 and r.json["error"]["code"] == "no_step_free_route"
+    assert "only be reached by stairs" in r.json["error"]["message"]

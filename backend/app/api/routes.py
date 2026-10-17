@@ -1,7 +1,7 @@
 from flask import current_app, jsonify, request
 
 from .. import config
-from . import bp, error
+from . import bp, error, no_route
 
 
 @bp.get("/route")
@@ -47,5 +47,5 @@ def route():
     accessible = a.get("accessible", "").lower() in ("1", "true", "yes")
     result = ctx["route"](tuple(starts), tuple(goals), accessible, a["to"])
     if result is None:
-        return error("no_route", "no walkable route between those places", 422)
+        return no_route(ctx, starts, goals, accessible, a["to"])
     return jsonify(result)

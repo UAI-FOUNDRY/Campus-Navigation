@@ -10,7 +10,7 @@ import re
 
 from flask import current_app, jsonify, request
 
-from . import bp, error
+from . import bp, error, no_route
 
 # The app's filter chips understand these type words (lib/theme/destination_style.dart, categoryOfType):
 # lab, library, hall, auditorium, cafeteria, sports, gym, turf, office, hostel. Anything else shows under "Other".
@@ -123,7 +123,7 @@ def app_route():
     step_free = str(body.get("step_free", "")).lower() in ("1", "true", "yes")
     result = ctx["route"](tuple(starts), tuple(goals), step_free, dest_key)
     if result is None:
-        return error("no_route", "no walkable route between those places", 422)
+        return no_route(ctx, starts, goals, step_free, dest_key)
 
     room = g.rooms.get(start_key)
     start_name = room["name"] if room else (g.nodes[result["from"]]["name"] or start_key)
