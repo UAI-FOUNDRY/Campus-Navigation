@@ -4,6 +4,7 @@
     python -m pip install "qrcode[pil]"
     python tools/generate_qr.py                    # lifts, stairs, exits, named junctions, gates, outdoor entrances
     python tools/generate_qr.py --ids a0_lobbya_e a1_lobbya_e gate_main
+    python tools/generate_qr.py --floors           # only the stairs and lift landings (floor checkpoints)
 
 Each code holds  campusnav:<node id>  (the app also accepts the bare id). Output: out/qr_codes.pdf (git-ignored).
 Codes use node ids, so they keep working when names change. Re-print only when a node is deleted.
@@ -33,6 +34,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--graph", default=str(ROOT / "data/build/campus.merged.json"))
     ap.add_argument("--ids", nargs="*")
+    ap.add_argument("--floors", action="store_true",
+                    help="only stairs and lift landings: one sticker per landing fixes the floor on any phone")
     ap.add_argument("--out", default=str(ROOT / "out/qr_codes.pdf"))
     a = ap.parse_args()
     import qrcode
@@ -41,6 +44,8 @@ def main():
     g = json.loads(Path(a.graph).read_text(encoding="utf-8"))
     nodes = {n["id"]: n for n in g["nodes"]}
     chosen = [nodes[i] for i in a.ids] if a.ids else pick(g["nodes"])
+    if a.floors:
+        chosen = [n for n in chosen if n.get("space") == "indoor" and n["type"] in ("lift", "stairs")]
     chosen.sort(key=lambda n: (n.get("space") != "outdoor", n.get("floor", 0), n["id"]))
 
     W, H = 1240, 1754                      # A4 at 150 dpi

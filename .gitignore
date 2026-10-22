@@ -15,3 +15,6 @@ data/reports.jsonl
 private/
 *.dwg
 out/
+
+# Wi-Fi fingerprints sent by the app (merge with tools/merge_wifi.py, then commit data/wifi/fingerprints.json)
+data/wifi/contributions.jsonl

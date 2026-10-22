@@ -1,8 +1,13 @@
 # Live "blue dot" tracking: what is possible for free, and how
 
 Goal: like Google Maps, a dot that shows where the student is and moves along the route, outdoors and inside the
-main building. Status: **not part of version 1** (guidance is the "Next step" / "Simulate walk" button). This is the
-plan for after the demo.
+main building.
+
+> **Status (October 2026): built in the app** (`CampusNav-Flutter`, `lib/services/live_guide.dart`). GPS outside,
+> steps + gyroscope turns inside, the barometer for floors (the stairs / lift card closes by itself on the new floor,
+> and a wrong floor is flagged), the compass for "turn around" hints, QR signs as exact checkpoints, and Wi-Fi
+> fingerprints that the app learns from confirmed spots (`/api/wifi`, see api.md) so "Use my location" can name the
+> room indoors. The notes below are the original plan; the app README describes what was built and how to tune it.
 
 ## What the backend already gives the app
 

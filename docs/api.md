@@ -279,6 +279,30 @@ Example: `/api/route?from=gate_main&to=nope` gives 404:
 Walking minutes from one start to many places, for the "2 min walk" labels. Body: `{"start": "gate_main", "destinations": ["mess", "gym_entrance"]}`.
 Answers `{"estimates": {"mess": 3, "gym_entrance": 7}}`. Unknown or unreachable places are left out; unknown `start` is `404 not_found`.
 
+## GET /api/wifi  and  POST /api/wifi
+Wi-Fi fingerprints of campus spots, for "Use my location" indoors (Android; iPhones cannot scan Wi-Fi).
+
+When a student confirms where they are (picks their spot in the app's "Where exactly are you?" list, or scans a sign),
+the app sends the Wi-Fi networks it hears there:
+```json
+POST /api/wifi
+{"spot": "a0_adminlobby", "floor": 0, "at": "2026-10-18T10:00:00Z",
+ "aps": {"aa:bb:cc:00:00:01": -48, "aa:bb:cc:00:00:02": -61, "aa:bb:cc:00:00:03": -70}}
+```
+`spot` is a place or node id, `floor` must match that spot, and `aps` maps nearby access point ids (BSSIDs) to
+signal strength in dBm (at least 3). The request stores the spot, floor, scan timestamp, and AP ids/signal strengths;
+it does not include an account or device identifier, but spot and time can still be location-sensitive. Answers
+`201 {"status": "saved"}`; a bad body or mismatched floor is `400`, an unknown spot `404`.
+Saved to `data/wifi/contributions.jsonl` (env `CAMPUS_WIFI_INBOX`, git-ignored, stops at 20 MB:
+`503 inbox_full`).
+
+`GET /api/wifi` returns every fingerprint (the committed `data/wifi/fingerprints.json`, env `CAMPUS_WIFI`, plus the inbox),
+the newest 8 per spot: `{"samples": [{"spot", "floor", "at", "aps"}], "spots": 12}`. The app downloads it at most once an
+hour and keeps it for offline use.
+
+`python tools/merge_wifi.py --clear` folds the inbox into `data/wifi/fingerprints.json`; commit that file so every
+deployment (Render's disk is wiped on redeploy) serves the fingerprints.
+
 ## POST /api/report
 The app's "Report a problem" sheet. Body: `{"start", "destination", "reason", "details"}` (`reason` required). Each report is appended to
 `data/reports.jsonl` (override with `CAMPUS_REPORTS`). Answers `201 {"status": "received"}`.
@@ -403,11 +427,11 @@ ETag if you want the 304s (e.g. for `/api/search?q=` at app start).
 
 **Limits** (per client, per server process):
 - 120 GET requests/min (bursts of 60 are fine), 40/min for `POST /api/route` and `/api/estimates`,
-  2/min for `POST /api/report`. Over the limit: `429 {"error": {"code": "rate_limited"}}` with `Retry-After`
+  2/min for `POST /api/report`, 10/min for `POST /api/wifi`. Over the limit: `429 {"error": {"code": "rate_limited"}}` with `Retry-After`
   seconds. The app should show "Try again in a moment", not retry in a loop.
 - Request bodies over 16 KB: `413 too_large`. Query values over 120 characters: `400`. Wrong method: `405`.
 - The report inbox stops at 5 MB (`503 inbox_full`) until the team clears `data/reports.jsonl`.
-- Tune with env vars `RATE_READ_PER_MIN`, `RATE_HEAVY_PER_MIN`, `RATE_REPORT_PER_MIN`, `RATE_LIMITS=0` (off),
+- Tune with env vars `RATE_READ_PER_MIN`, `RATE_HEAVY_PER_MIN`, `RATE_REPORT_PER_MIN`, `RATE_WIFI_PER_MIN`, `RATE_LIMITS=0` (off),
   `TRUSTED_PROXIES=1` (set on Render so the real client address is used).
 
 **`POST /api/estimates`** now runs one search for all destinations (about 2 ms for 130 places) and gives the same

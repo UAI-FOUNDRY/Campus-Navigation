@@ -19,4 +19,4 @@ def no_route(ctx, starts, goals, accessible, goal_key):
     return error("no_route", "no walkable route between those places", 422)
 
 
-from . import compat, estimates, meta, report, rooms, routes  # noqa: E402,F401  (registers the endpoints)
+from . import compat, estimates, meta, report, rooms, routes, wifi  # noqa: E402,F401  (registers the endpoints)
