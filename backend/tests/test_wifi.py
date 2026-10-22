@@ -48,5 +48,6 @@ def test_rejects_bad_fingerprints(tmp_path, monkeypatch):
     assert c.post("/api/wifi", json={"spot": "a0_adminlobby", "aps": {"aa:bb:cc:00:00:01": -50}}).status_code == 400
     assert c.post("/api/wifi", json={"spot": "a0_adminlobby", "aps": {"not-a-mac": -50, "x": -60, "y": -70}}).status_code == 400
     assert c.post("/api/wifi", json={"spot": "nowhere_at_all", "aps": APS}).status_code == 404
+    assert c.post("/api/wifi", json={"spot": "a0_adminlobby", "floor": 2, "aps": APS}).status_code == 400
     assert c.post("/api/wifi", data="nope", content_type="text/plain").status_code == 400
     assert not (tmp_path / "contributions.jsonl").exists()
