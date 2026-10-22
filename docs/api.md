@@ -293,7 +293,7 @@ POST /api/wifi
 signal strength in dBm (at least 3). The request stores the spot, floor, scan timestamp, and AP ids/signal strengths;
 it does not include an account or device identifier, but spot and time can still be location-sensitive. Answers
 `201 {"status": "saved"}`; a bad body or mismatched floor is `400`, an unknown spot `404`.
-`404`. Saved to `data/wifi/contributions.jsonl` (env `CAMPUS_WIFI_INBOX`, git-ignored, stops at 20 MB:
+Saved to `data/wifi/contributions.jsonl` (env `CAMPUS_WIFI_INBOX`, git-ignored, stops at 20 MB:
 `503 inbox_full`).
 
 `GET /api/wifi` returns every fingerprint (the committed `data/wifi/fingerprints.json`, env `CAMPUS_WIFI`, plus the inbox),
