@@ -13,19 +13,35 @@ MAX_APS = 40          # strongest access points kept per fingerprint
 
 
 def clean(sample, graph):
-    """A valid fingerprint {spot, floor, at, aps: {bssid: dBm}} or None.
+    """Validate a fingerprint and return its normalized representation, or None.
 
-    Only access point ids (BSSIDs) and signal strengths are kept: nothing about the phone or the person."""
+    The sample includes a spot, floor, scan timestamp, and access-point BSSIDs
+    with signal strengths. It contains no user account or phone/device ID;
+    the recorded spot and time can still be location-sensitive."""
     if not isinstance(sample, dict):
         return None
     spot = str(sample.get("spot", ""))[:80]
-    if not spot or graph.resolve(spot) is None:
+    resolved = graph.resolve(spot) if spot else None
+    if resolved is None:
         return None
     try:
         floor = int(sample.get("floor", 0))
     except (TypeError, ValueError):
         return None
     if not -2 <= floor <= 20:
+        return None
+
+    # Do not accept a fingerprint that teaches a valid spot the wrong floor.
+    room = graph.rooms.get(spot)
+    if room is not None and room.get("floor") is not None:
+        expected_floors = {int(room["floor"])}
+    else:
+        expected_floors = {
+            int(graph.nodes[node_id].get("floor", 0))
+            for node_id in resolved
+            if node_id in graph.nodes
+        }
+    if expected_floors and floor not in expected_floors:
         return None
     aps = sample.get("aps")
     if not isinstance(aps, dict):
