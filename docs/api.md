@@ -289,8 +289,10 @@ POST /api/wifi
 {"spot": "a0_adminlobby", "floor": 0, "at": "2026-10-18T10:00:00Z",
  "aps": {"aa:bb:cc:00:00:01": -48, "aa:bb:cc:00:00:02": -61, "aa:bb:cc:00:00:03": -70}}
 ```
-`spot` is a place or node id, `aps` maps access point ids (BSSIDs) to signal strength in dBm (at least 3). Nothing about
-the phone or the person is sent or stored. Answers `201 {"status": "saved"}`; a bad body is `400`, an unknown spot
+`spot` is a place or node id, `floor` must match that spot, and `aps` maps nearby access point ids (BSSIDs) to
+signal strength in dBm (at least 3). The request stores the spot, floor, scan timestamp, and AP ids/signal strengths;
+it does not include an account or device identifier, but spot and time can still be location-sensitive. Answers
+`201 {"status": "saved"}`; a bad body or mismatched floor is `400`, an unknown spot `404`.
 `404`. Saved to `data/wifi/contributions.jsonl` (env `CAMPUS_WIFI_INBOX`, git-ignored, stops at 20 MB:
 `503 inbox_full`).
 
