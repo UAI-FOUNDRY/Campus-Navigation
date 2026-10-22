@@ -46,6 +46,8 @@ def _limits(endpoint, method):
     """(bucket, requests per minute, burst) for this request."""
     if endpoint in ("api.report_problem",):
         return "report", config.RATE_REPORT_PER_MIN, 3
+    if endpoint in ("api.wifi_add",):
+        return "wifi", config.RATE_WIFI_PER_MIN, 10
     if endpoint in ("api.estimates", "api.app_route"):
         return "heavy", config.RATE_HEAVY_PER_MIN, 20
     return "read", config.RATE_READ_PER_MIN, 60

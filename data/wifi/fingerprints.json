@@ -1,0 +1,4 @@
+{
+  "about": "Wi-Fi fingerprints of campus spots (access point id -> signal dBm). Filled by tools/merge_wifi.py from what the app sends (data/wifi/contributions.jsonl). See docs/live-tracking.md.",
+  "samples": []
+}
