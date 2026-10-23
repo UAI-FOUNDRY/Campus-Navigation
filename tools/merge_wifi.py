@@ -4,8 +4,10 @@ Run from the repo root:
     python tools/merge_wifi.py            # merge, keep the inbox
     python tools/merge_wifi.py --clear    # merge, then empty the inbox
 
-Keeps the newest 8 fingerprints per spot and drops ones for spots that are no longer on the map. Commit
-data/wifi/fingerprints.json afterwards so every deployment of the backend serves them.
+Keeps the newest 8 fingerprints per spot and drops ones for spots that are no longer on the map. Running it is the
+review: the app serves at most 3 unmerged fingerprints a spot, merged ones are trusted. Look at the inbox first if
+something seems wrong (e.g. one spot with many new fingerprints). Commit data/wifi/fingerprints.json afterwards so
+every deployment of the backend serves them.
 """
 import json
 import sys

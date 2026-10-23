@@ -9,15 +9,29 @@ from . import bp, error
 
 _BSSID = re.compile(r"^[0-9a-f]{2}(:[0-9a-f]{2}){5}$")
 PER_SPOT = 8          # newest fingerprints kept per spot
+MAX_FRESH = 3         # ... of which at most this many not yet merged (reviewed) by tools/merge_wifi.py
 MAX_APS = 40          # strongest access points kept per fingerprint
 
 
-def clean(sample, graph):
+def _day(value):
+    """An ISO time (any offset) as its UTC date "YYYY-MM-DD", or "" if it is not one."""
+    try:
+        t = datetime.fromisoformat(str(value)[:40].replace("Z", "+00:00"))
+    except ValueError:
+        return ""
+    if t.tzinfo is None:
+        t = t.replace(tzinfo=timezone.utc)
+    return t.astimezone(timezone.utc).date().isoformat()
+
+
+def clean(sample, graph, received=None):
     """Validate a fingerprint and return its normalized representation, or None.
 
-    The sample includes a spot, floor, scan timestamp, and access-point BSSIDs
-    with signal strengths. It contains no user account or phone/device ID;
-    the recorded spot and time can still be location-sensitive."""
+    The sample includes a spot, floor and access-point BSSIDs with signal
+    strengths. It contains no user account or phone/device ID. Only the DAY is
+    kept, never the time: a spot with an exact time says where someone was.
+    [received]: a new fingerprint from the app; its day is the server's (a
+    phone's clock can be wrong, and a future date would stay "newest")."""
     if not isinstance(sample, dict):
         return None
     spot = str(sample.get("spot", ""))[:80]
@@ -56,23 +70,23 @@ def clean(sample, graph):
     if len(heard) < 3:
         return None
     heard.sort(key=lambda kv: -kv[1])
-    at = str(sample.get("at", ""))[:40]
-    try:
-        datetime.fromisoformat(at.replace("Z", "+00:00"))
-    except ValueError:
-        at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    at = received.date().isoformat() if received is not None else _day(sample.get("at", ""))
     return {"spot": spot, "floor": floor, "at": at, "aps": dict(heard[:MAX_APS])}
 
 
-def load_samples():
-    """The committed fingerprints (data/wifi/fingerprints.json) plus everything the apps sent since
-    (data/wifi/contributions.jsonl, merged into the first by tools/merge_wifi.py)."""
-    samples = []
+def load_committed():
+    """The reviewed fingerprints (data/wifi/fingerprints.json, written by tools/merge_wifi.py)."""
     try:
         data = json.loads(config.WIFI_PATH.read_text(encoding="utf-8"))
-        samples += data.get("samples", []) if isinstance(data, dict) else data
     except (OSError, ValueError):
-        pass
+        return []
+    samples = data.get("samples", []) if isinstance(data, dict) else data
+    return samples if isinstance(samples, list) else []
+
+
+def load_contributions():
+    """What the apps sent since (data/wifi/contributions.jsonl), oldest first."""
+    samples = []
     try:
         with config.WIFI_CONTRIB_PATH.open(encoding="utf-8") as f:
             for line in f:
@@ -85,16 +99,43 @@ def load_samples():
     return samples
 
 
-def newest_per_spot(samples, graph):
+def load_samples():
+    """Committed fingerprints, then everything the apps sent since (for tools/merge_wifi.py)."""
+    return load_committed() + load_contributions()
+
+
+def newest_per_spot(samples, graph, fresh=(), max_fresh=MAX_FRESH):
+    """The newest PER_SPOT fingerprints of every spot. [samples] are trusted (reviewed); of the unreviewed
+    [fresh] ones at most [max_fresh] a spot are kept, so a flood of wrong ones cannot push out the reviewed ones.
+    Newest = latest day; within a day, the one received last (the sort is stable)."""
     by_spot = {}
     for s in samples:
         c = clean(s, graph)
         if c:
             by_spot.setdefault(c["spot"], []).append(c)
+    fresh_by_spot = {}
+    for s in fresh:
+        c = clean(s, graph)
+        if c:
+            fresh_by_spot.setdefault(c["spot"], []).append(c)
+    for spot, new in fresh_by_spot.items():
+        by_spot.setdefault(spot, []).extend(sorted(new, key=lambda s: s["at"])[-max_fresh:])
     out = []
     for spot in sorted(by_spot):
         out += sorted(by_spot[spot], key=lambda s: s["at"])[-PER_SPOT:]
     return out
+
+
+# GET /api/wifi is answered from this until a file changes (each worker keeps its own copy).
+_cache = {"key": None, "body": None}
+
+
+def _stamp(path):
+    try:
+        st = path.stat()
+        return (str(path), st.st_mtime_ns, st.st_size)
+    except OSError:
+        return (str(path), None, None)
 
 
 @bp.get("/wifi")
@@ -102,10 +143,15 @@ def wifi_fingerprints():
     """GET /api/wifi -> {"samples": [{spot, floor, at, aps}], "spots": N}
 
     Wi-Fi fingerprints of campus spots: the app compares the networks it hears with these to tell the room and
-    floor indoors (Android; iPhones cannot scan Wi-Fi)."""
+    floor indoors (Android; iPhones cannot scan Wi-Fi). Reviewed fingerprints first; at most MAX_FRESH a spot of
+    the ones sent since the last merge."""
     graph = current_app.extensions["campus"]["graph"]
-    samples = newest_per_spot(load_samples(), graph)
-    return jsonify(samples=samples, spots=len({s["spot"] for s in samples}))
+    key = (id(graph), _stamp(config.WIFI_PATH), _stamp(config.WIFI_CONTRIB_PATH))
+    if _cache["key"] != key:
+        samples = newest_per_spot(load_committed(), graph, fresh=load_contributions())
+        _cache["body"] = {"samples": samples, "spots": len({s["spot"] for s in samples})}
+        _cache["key"] = key
+    return jsonify(_cache["body"])
 
 
 @bp.post("/wifi")
@@ -116,7 +162,7 @@ def wifi_add():
     a sign). Appended to data/wifi/contributions.jsonl."""
     graph = current_app.extensions["campus"]["graph"]
     body = request.get_json(silent=True)
-    sample = clean(body, graph)
+    sample = clean(body, graph, received=datetime.now(timezone.utc))
     if sample is None:
         spot = str(body.get("spot", "")) if isinstance(body, dict) else ""
         if spot and graph.resolve(spot) is None:

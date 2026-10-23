@@ -290,18 +290,24 @@ POST /api/wifi
  "aps": {"aa:bb:cc:00:00:01": -48, "aa:bb:cc:00:00:02": -61, "aa:bb:cc:00:00:03": -70}}
 ```
 `spot` is a place or node id, `floor` must match that spot, and `aps` maps nearby access point ids (BSSIDs) to
-signal strength in dBm (at least 3). The request stores the spot, floor, scan timestamp, and AP ids/signal strengths;
-it does not include an account or device identifier, but spot and time can still be location-sensitive. Answers
+signal strength in dBm (at least 3). The server stores the spot, floor, AP ids/signal strengths and only the DAY it
+received the fingerprint (UTC, its own clock): the app's `at` is ignored, so a wrong phone clock cannot make a
+fingerprint stay "newest", and no time of day is kept (a spot with an exact time says where someone was). There is
+no account or device identifier. Answers
 `201 {"status": "saved"}`; a bad body or mismatched floor is `400`, an unknown spot `404`.
 Saved to `data/wifi/contributions.jsonl` (env `CAMPUS_WIFI_INBOX`, git-ignored, stops at 20 MB:
 `503 inbox_full`).
 
-`GET /api/wifi` returns every fingerprint (the committed `data/wifi/fingerprints.json`, env `CAMPUS_WIFI`, plus the inbox),
-the newest 8 per spot: `{"samples": [{"spot", "floor", "at", "aps"}], "spots": 12}`. The app downloads it at most once an
-hour and keeps it for offline use.
+`GET /api/wifi` returns the newest 8 fingerprints per spot: `{"samples": [{"spot", "floor", "at": "2026-10-23", "aps"}],
+"spots": 12}`. The reviewed ones (the committed `data/wifi/fingerprints.json`, env `CAMPUS_WIFI`) count fully; of the
+unreviewed inbox at most 3 a spot are served, so a burst of wrong fingerprints cannot push out the reviewed ones. The
+answer is cached until either file changes. The app downloads it at most once an hour and keeps it for offline use.
 
-`python tools/merge_wifi.py --clear` folds the inbox into `data/wifi/fingerprints.json`; commit that file so every
-deployment (Render's disk is wiped on redeploy) serves the fingerprints.
+`python tools/merge_wifi.py --clear` folds the inbox into `data/wifi/fingerprints.json` (running it is the review: look
+at the inbox first if one spot suddenly has many new fingerprints); commit that file so every deployment serves them.
+On Render's free plan the disk is wiped on every redeploy AND every restart (the service sleeps after 15 minutes
+idle), so the inbox (and `data/reports.jsonl`) do not last there: collect fingerprints with the backend on a machine
+with a lasting disk, or move the inbox to a database before relying on it.
 
 ## POST /api/report
 The app's "Report a problem" sheet. Body: `{"start", "destination", "reason", "details"}` (`reason` required). Each report is appended to
