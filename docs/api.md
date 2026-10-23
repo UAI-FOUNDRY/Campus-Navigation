@@ -310,8 +310,23 @@ idle), so the inbox (and `data/reports.jsonl`) do not last there: collect finger
 with a lasting disk, or move the inbox to a database before relying on it.
 
 ## POST /api/report
-The app's "Report a problem" sheet. Body: `{"start", "destination", "reason", "details"}` (`reason` required). Each report is appended to
-`data/reports.jsonl` (override with `CAMPUS_REPORTS`). Answers `201 {"status": "received"}`.
+The app's "Report a problem" sheet. Body: `{"start", "destination", "reason", "details"?, "step"?, "step_free"?}` (`reason`
+required; `step` is the instruction being followed when it went wrong). Answers `201 {"status": "received"}` at once.
+
+Each report is appended to `data/reports.jsonl` (override with `CAMPUS_REPORTS`) and, when the env var `GITHUB_TOKEN` is
+set, opened as an issue in `REPORTS_REPO` (default `UAI-FOUNDRY/Campus-Navigation`) labelled `report` (`REPORTS_LABEL`).
+The issue has the place names, the step, whether it was step-free, a link that shows the same route, and what the person
+wrote (as plain text: no links or @mentions). It is created in the background, so the app never waits for GitHub; if
+GitHub fails, the report is still in the file and the reason is in the server log. At most 30 issues a day per server
+process (`REPORTS_ISSUES_PER_DAY`); past that, the file only. No name, account or position of the person is sent.
+
+Set up (once):
+1. GitHub > Settings > Developer settings > Fine-grained tokens > Generate: resource owner `UAI-FOUNDRY`, only the
+   `Campus-Navigation` repository, permission **Issues: Read and write**, nothing else. (An organisation may have to
+   approve the token: Settings > Personal access tokens in the organisation.)
+2. Render > campus-nav-api > Environment > add `GITHUB_TOKEN` with that token. Render restarts the service.
+3. In the repo, create the label `report` (Issues > Labels) so the issues are easy to filter.
+If the repository is public, so are the issues: the app asks people not to put names or phone numbers in reports.
 
 ## GET /api/floors
 Floor-plan images the app should bundle (put the file in `app/assets/floorplans/`). `image_size` is the pixel size that
