@@ -784,144 +784,15 @@
    "note": "Attic level; plan detail 'Innovation Lab', Work Station 02 and Faculty Rooms 15-16"
   },
   {
-   "id": "a2_faculty_08",
+   "id": "a2_faculty_offices",
    "type": "door",
-   "name": "Faculty Room 08",
+   "name": "Faculty Offices",
    "pos": [
-    59.52,
-    54.44
+    61.27,
+    70.79
    ],
-   "on": "a2_c_fp"
-  },
-  {
-   "id": "a2_faculty_07",
-   "type": "door",
-   "name": "Faculty Room 07",
-   "pos": [
-    59.52,
-    56.51
-   ],
-   "on": "a2_c_fp"
-  },
-  {
-   "id": "a2_faculty_06",
-   "type": "door",
-   "name": "Faculty Room 06",
-   "pos": [
-    59.52,
-    57.62
-   ],
-   "on": "a2_c_fp"
-  },
-  {
-   "id": "a2_faculty_05",
-   "type": "door",
-   "name": "Faculty Room 05",
-   "pos": [
-    59.52,
-    60.95
-   ],
-   "on": "a2_c_fp"
-  },
-  {
-   "id": "a2_faculty_04",
-   "type": "door",
-   "name": "Faculty Room 04",
-   "pos": [
-    59.52,
-    62.06
-   ],
-   "on": "a2_c_fp"
-  },
-  {
-   "id": "a2_faculty_03",
-   "type": "door",
-   "name": "Faculty Room 03",
-   "pos": [
-    59.52,
-    65.4
-   ],
-   "on": "a2_c_fp"
-  },
-  {
-   "id": "a2_faculty_02",
-   "type": "door",
-   "name": "Faculty Room 02",
-   "pos": [
-    59.52,
-    67.62
-   ],
-   "on": "a2_c_fp"
-  },
-  {
-   "id": "a2_faculty_01",
-   "type": "door",
-   "name": "Faculty Room 01",
-   "pos": [
-    59.52,
-    68.41
-   ],
-   "on": "a2_c_fp"
-  },
-  {
-   "id": "a2_faculty_09",
-   "type": "door",
-   "name": "Faculty Room 09",
-   "pos": [
-    61.75,
-    57.62
-   ],
-   "on": "a2_c_fp"
-  },
-  {
-   "id": "a2_faculty_10",
-   "type": "door",
-   "name": "Faculty Room 10",
-   "pos": [
-    61.75,
-    60.95
-   ],
-   "on": "a2_c_fp"
-  },
-  {
-   "id": "a2_faculty_11",
-   "type": "door",
-   "name": "Faculty Room 11",
-   "pos": [
-    61.75,
-    62.22
-   ],
-   "on": "a2_c_fp"
-  },
-  {
-   "id": "a2_faculty_12",
-   "type": "door",
-   "name": "Faculty Room 12",
-   "pos": [
-    61.75,
-    65.4
-   ],
-   "on": "a2_c_fp"
-  },
-  {
-   "id": "a2_faculty_13",
-   "type": "door",
-   "name": "Faculty Room 13",
-   "pos": [
-    61.75,
-    67.46
-   ],
-   "on": "a2_c_fp"
-  },
-  {
-   "id": "a2_faculty_14",
-   "type": "door",
-   "name": "Faculty Room 14",
-   "pos": [
-    61.75,
-    68.57
-   ],
-   "on": "a2_c_fp"
+   "on": "a2_c_fp",
+   "note": "One door for Faculty Rooms 01-14 along the faculty passage (merged 27 Oct 2026)"
   }
  ],
  "edges": [

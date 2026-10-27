@@ -417,35 +417,6 @@
      90.16
     ]
    ]
-  },
-  {
-   "id": "a0_c_b_curve",
-   "name": "HOD corridor",
-   "type": "corridor",
-   "path": [
-    "a0_b_curve_s",
-    [
-     76.51,
-     85.71
-    ],
-    [
-     76.67,
-     80.95
-    ],
-    "a0_b_curve_n"
-   ]
-  },
-  {
-   "id": "a0_c_b_top",
-   "name": "HOD corridor",
-   "type": "corridor",
-   "path": [
-    "a0_b_curve_n",
-    [
-     81.43,
-     74.44
-    ]
-   ]
   }
  ],
  "nodes": [
@@ -600,15 +571,6 @@
    "pos": [
     76.83,
     90.16
-   ]
-  },
-  {
-   "id": "a0_b_curve_n",
-   "type": "junction",
-   "name": "",
-   "pos": [
-    76.35,
-    74.44
    ]
   },
   {
@@ -956,127 +918,15 @@
    "on": "a0_c_b_pass"
   },
   {
-   "id": "a0_board_room",
+   "id": "a0_admin_wing",
    "type": "door",
-   "name": "Faculty Board Room",
+   "name": "Administration Wing",
    "pos": [
-    67.56,
+    72.7,
     91.05
    ],
    "on": "a0_c_b2",
-   "note": "Plan: Conference Room"
-  },
-  {
-   "id": "a0_vc_office",
-   "type": "door",
-   "name": "Vice Chancellor Office",
-   "pos": [
-    73.43,
-    91.05
-   ],
-   "on": "a0_c_b2"
-  },
-  {
-   "id": "a0_director_office",
-   "type": "door",
-   "name": "Director Office",
-   "pos": [
-    77.83,
-    91.05
-   ],
-   "on": "a0_c_b2",
-   "note": "Plan: Director Office 02"
-  },
-  {
-   "id": "a0_chancellor",
-   "type": "door",
-   "name": "Chancellor Office",
-   "pos": [
-    79.68,
-    91.05
-   ],
-   "on": "a0_c_b2"
-  },
-  {
-   "id": "a0_admin_office",
-   "type": "door",
-   "name": "Admin Office",
-   "pos": [
-    77.62,
-    82.86
-   ],
-   "on": "a0_c_b_curve",
-   "note": "Open-plan office east of the HOD corridor"
-  },
-  {
-   "id": "a0_hod_04",
-   "type": "door",
-   "name": "HOD Office 04",
-   "pos": [
-    75.65,
-    87.78
-   ],
-   "on": "a0_c_b_curve"
-  },
-  {
-   "id": "a0_hod_05",
-   "type": "door",
-   "name": "HOD Office 05",
-   "pos": [
-    75.48,
-    81.9
-   ],
-   "on": "a0_c_b_curve"
-  },
-  {
-   "id": "a0_hod_06",
-   "type": "door",
-   "name": "HOD Office 06",
-   "pos": [
-    75.63,
-    80.48
-   ],
-   "on": "a0_c_b_curve"
-  },
-  {
-   "id": "a0_hod_07",
-   "type": "door",
-   "name": "HOD Office 07",
-   "pos": [
-    75.05,
-    74.92
-   ],
-   "on": "a0_c_b_curve"
-  },
-  {
-   "id": "a0_hod_08",
-   "type": "door",
-   "name": "HOD Office 08",
-   "pos": [
-    75.05,
-    73.65
-   ],
-   "on": "a0_c_b_top"
-  },
-  {
-   "id": "a0_hod_09",
-   "type": "door",
-   "name": "HOD Office 09",
-   "pos": [
-    76.51,
-    73.57
-   ],
-   "on": "a0_c_b_top"
-  },
-  {
-   "id": "a0_hod_10",
-   "type": "door",
-   "name": "HOD Office 10",
-   "pos": [
-    81.4,
-    73.71
-   ],
-   "on": "a0_c_b_top"
+   "note": "One door for the whole office wing: Chancellor, Vice Chancellor, Director, Board Room, Admin Office, HOD Offices 04-10 (merged 27 Oct 2026)"
   }
  ],
  "edges": [

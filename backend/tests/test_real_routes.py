@@ -142,3 +142,11 @@ def test_stairs_only_place_explains_step_free():
     r = client().get("/api/route?from=quad_south_entrance&to=innovation_lab&accessible=1")
     assert r.status_code == 422 and r.json["error"]["code"] == "no_step_free_route"
     assert "only be reached by stairs" in r.json["error"]["message"]
+
+
+def test_office_wings_are_one_stop_each():
+    c = client()
+    for old, wing in [("vice chancellor", "admin_wing"), ("director cabin 6", "faculty_directors_wing"),
+                      ("faculty room 08", "faculty_offices_sf")]:
+        assert c.get(f"/api/rooms?q={old}").json["results"][0]["id"] == wing
+        assert route(c, "gate_main", wing)["steps"][-1]["kind"] == "arrive"

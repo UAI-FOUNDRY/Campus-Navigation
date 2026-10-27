@@ -141,19 +141,6 @@
   "category": "office"
  },
  {
-  "id": "faculty_board_room",
-  "name": "Faculty Board Room",
-  "aliases": [
-   "board room",
-   "conference room ground floor"
-  ],
-  "entry_nodes": [
-   "a0_board_room"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
   "id": "registrar_office",
   "name": "Registrar Office",
   "aliases": [
@@ -161,44 +148,6 @@
   ],
   "entry_nodes": [
    "a0_registrar"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "vice_chancellor_office",
-  "name": "Vice Chancellor Office",
-  "aliases": [
-   "vc office",
-   "vice chancellor"
-  ],
-  "entry_nodes": [
-   "a0_vc_office"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "admin_office",
-  "name": "Admin Office",
-  "aliases": [
-   "administration",
-   "administration office"
-  ],
-  "entry_nodes": [
-   "a0_admin_office"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "chancellor_office",
-  "name": "Chancellor Office",
-  "aliases": [
-   "chancellor"
-  ],
-  "entry_nodes": [
-   "a0_chancellor"
   ],
   "building": "Block B",
   "category": "office"
@@ -758,18 +707,6 @@
   "note": "In the lobby, next to the spiral staircase"
  },
  {
-  "id": "director_office",
-  "name": "Director Office",
-  "aliases": [
-   "director"
-  ],
-  "entry_nodes": [
-   "a0_director_office"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
   "id": "student_seating_area",
   "name": "Student Seating Area",
   "aliases": [
@@ -781,19 +718,6 @@
    "a1_seating"
   ],
   "building": "Main building",
-  "category": "facility"
- },
- {
-  "id": "faculty_lounge",
-  "name": "Faculty Lounge",
-  "aliases": [
-   "staff lounge",
-   "lounge 105"
-  ],
-  "entry_nodes": [
-   "a1_faculty_lounge"
-  ],
-  "building": "Block B",
   "category": "facility"
  },
  {
@@ -873,97 +797,6 @@
   "category": "washroom"
  },
  {
-  "id": "hod_office_04",
-  "name": "HOD Office 04",
-  "aliases": [
-   "hod",
-   "head of department"
-  ],
-  "entry_nodes": [
-   "a0_hod_04"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "hod_office_05",
-  "name": "HOD Office 05",
-  "aliases": [
-   "hod",
-   "head of department"
-  ],
-  "entry_nodes": [
-   "a0_hod_05"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "hod_office_06",
-  "name": "HOD Office 06",
-  "aliases": [
-   "hod",
-   "head of department"
-  ],
-  "entry_nodes": [
-   "a0_hod_06"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "hod_office_07",
-  "name": "HOD Office 07",
-  "aliases": [
-   "hod",
-   "head of department"
-  ],
-  "entry_nodes": [
-   "a0_hod_07"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "hod_office_08",
-  "name": "HOD Office 08",
-  "aliases": [
-   "hod",
-   "head of department"
-  ],
-  "entry_nodes": [
-   "a0_hod_08"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "hod_office_09",
-  "name": "HOD Office 09",
-  "aliases": [
-   "hod",
-   "head of department"
-  ],
-  "entry_nodes": [
-   "a0_hod_09"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "hod_office_10",
-  "name": "HOD Office 10",
-  "aliases": [
-   "hod",
-   "head of department"
-  ],
-  "entry_nodes": [
-   "a0_hod_10"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
   "id": "faculty_cabin_101",
   "name": "Faculty Cabin 101",
   "aliases": [
@@ -973,118 +806,6 @@
   ],
   "entry_nodes": [
    "a1_cabin_101"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_cabin_106",
-  "name": "Faculty Cabin 106",
-  "aliases": [
-   "faculty",
-   "cabin",
-   "106"
-  ],
-  "entry_nodes": [
-   "a1_cabin_106"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_cabin_107",
-  "name": "Faculty Cabin 107",
-  "aliases": [
-   "faculty",
-   "cabin",
-   "107"
-  ],
-  "entry_nodes": [
-   "a1_cabin_107"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_cabin_108",
-  "name": "Faculty Cabin 108",
-  "aliases": [
-   "faculty",
-   "cabin",
-   "108"
-  ],
-  "entry_nodes": [
-   "a1_cabin_108"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_cabin_109",
-  "name": "Faculty Cabin 109",
-  "aliases": [
-   "faculty",
-   "cabin",
-   "109"
-  ],
-  "entry_nodes": [
-   "a1_cabin_109"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_cabin_110",
-  "name": "Faculty Cabin 110",
-  "aliases": [
-   "faculty",
-   "cabin",
-   "110"
-  ],
-  "entry_nodes": [
-   "a1_cabin_110"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_cabin_111",
-  "name": "Faculty Cabin 111",
-  "aliases": [
-   "faculty",
-   "cabin",
-   "111"
-  ],
-  "entry_nodes": [
-   "a1_cabin_111"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_cabin_114",
-  "name": "Faculty Cabin 114",
-  "aliases": [
-   "faculty",
-   "cabin",
-   "114"
-  ],
-  "entry_nodes": [
-   "a1_cabin_114"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_cabin_115",
-  "name": "Faculty Cabin 115",
-  "aliases": [
-   "faculty",
-   "cabin",
-   "115"
-  ],
-  "entry_nodes": [
-   "a1_cabin_115"
   ],
   "building": "Block B",
   "category": "office"
@@ -1216,20 +937,6 @@
   "category": "office"
  },
  {
-  "id": "hod_cabin_113",
-  "name": "HOD Cabin 113",
-  "aliases": [
-   "hod",
-   "head of department",
-   "113"
-  ],
-  "entry_nodes": [
-   "a1_hod_113"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
   "id": "hod_cabin_117",
   "name": "HOD Cabin 117",
   "aliases": [
@@ -1253,238 +960,6 @@
   ],
   "entry_nodes": [
    "a1_hod_118"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "director_cabin_4",
-  "name": "Director Cabin 4",
-  "aliases": [
-   "director"
-  ],
-  "entry_nodes": [
-   "a1_director_4"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "director_cabin_5",
-  "name": "Director Cabin 5",
-  "aliases": [
-   "director"
-  ],
-  "entry_nodes": [
-   "a1_director_5"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "director_cabin_6",
-  "name": "Director Cabin 6",
-  "aliases": [
-   "director"
-  ],
-  "entry_nodes": [
-   "a1_director_6"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_room_01",
-  "name": "Faculty Room 01",
-  "aliases": [
-   "faculty",
-   "faculty room",
-   "staff room"
-  ],
-  "entry_nodes": [
-   "a2_faculty_01"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_room_02",
-  "name": "Faculty Room 02",
-  "aliases": [
-   "faculty",
-   "faculty room",
-   "staff room"
-  ],
-  "entry_nodes": [
-   "a2_faculty_02"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_room_03",
-  "name": "Faculty Room 03",
-  "aliases": [
-   "faculty",
-   "faculty room",
-   "staff room"
-  ],
-  "entry_nodes": [
-   "a2_faculty_03"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_room_04",
-  "name": "Faculty Room 04",
-  "aliases": [
-   "faculty",
-   "faculty room",
-   "staff room"
-  ],
-  "entry_nodes": [
-   "a2_faculty_04"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_room_05",
-  "name": "Faculty Room 05",
-  "aliases": [
-   "faculty",
-   "faculty room",
-   "staff room"
-  ],
-  "entry_nodes": [
-   "a2_faculty_05"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_room_06",
-  "name": "Faculty Room 06",
-  "aliases": [
-   "faculty",
-   "faculty room",
-   "staff room"
-  ],
-  "entry_nodes": [
-   "a2_faculty_06"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_room_07",
-  "name": "Faculty Room 07",
-  "aliases": [
-   "faculty",
-   "faculty room",
-   "staff room"
-  ],
-  "entry_nodes": [
-   "a2_faculty_07"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_room_08",
-  "name": "Faculty Room 08",
-  "aliases": [
-   "faculty",
-   "faculty room",
-   "staff room"
-  ],
-  "entry_nodes": [
-   "a2_faculty_08"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_room_09",
-  "name": "Faculty Room 09",
-  "aliases": [
-   "faculty",
-   "faculty room",
-   "staff room"
-  ],
-  "entry_nodes": [
-   "a2_faculty_09"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_room_10",
-  "name": "Faculty Room 10",
-  "aliases": [
-   "faculty",
-   "faculty room",
-   "staff room"
-  ],
-  "entry_nodes": [
-   "a2_faculty_10"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_room_11",
-  "name": "Faculty Room 11",
-  "aliases": [
-   "faculty",
-   "faculty room",
-   "staff room"
-  ],
-  "entry_nodes": [
-   "a2_faculty_11"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_room_12",
-  "name": "Faculty Room 12",
-  "aliases": [
-   "faculty",
-   "faculty room",
-   "staff room"
-  ],
-  "entry_nodes": [
-   "a2_faculty_12"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_room_13",
-  "name": "Faculty Room 13",
-  "aliases": [
-   "faculty",
-   "faculty room",
-   "staff room"
-  ],
-  "entry_nodes": [
-   "a2_faculty_13"
-  ],
-  "building": "Block B",
-  "category": "office"
- },
- {
-  "id": "faculty_room_14",
-  "name": "Faculty Room 14",
-  "aliases": [
-   "faculty",
-   "faculty room",
-   "staff room"
-  ],
-  "entry_nodes": [
-   "a2_faculty_14"
   ],
   "building": "Block B",
   "category": "office"
@@ -1610,5 +1085,102 @@
   "building": "Block B",
   "category": "office",
   "note": "Signage puts it beside the Incubation Launchpad; entry assumed through Work Station 01 (verify)"
+ },
+ {
+  "id": "admin_wing",
+  "name": "Administration Wing",
+  "aliases": [
+   "administration",
+   "admin wing",
+   "leadership offices",
+   "vc",
+   "vc office",
+   "hod",
+   "hod office",
+   "faculty board room",
+   "vice chancellor office",
+   "admin office",
+   "chancellor office",
+   "director office",
+   "hod office 04",
+   "hod office 05",
+   "hod office 06",
+   "hod office 07",
+   "hod office 08",
+   "hod office 09",
+   "hod office 10"
+  ],
+  "entry_nodes": [
+   "a0_admin_wing"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_directors_wing",
+  "name": "Faculty & Directors' Wing",
+  "aliases": [
+   "faculty wing",
+   "directors wing",
+   "director",
+   "director cabin",
+   "faculty cabin",
+   "faculty lounge",
+   "director cabin 4",
+   "director cabin 5",
+   "director cabin 6",
+   "hod cabin 113",
+   "113",
+   "faculty cabin 106",
+   "106",
+   "faculty cabin 107",
+   "107",
+   "faculty cabin 108",
+   "108",
+   "faculty cabin 109",
+   "109",
+   "faculty cabin 110",
+   "110",
+   "faculty cabin 111",
+   "111",
+   "faculty cabin 114",
+   "114",
+   "faculty cabin 115",
+   "115"
+  ],
+  "entry_nodes": [
+   "a1_faculty_wing"
+  ],
+  "building": "Block B",
+  "category": "office"
+ },
+ {
+  "id": "faculty_offices_sf",
+  "name": "Faculty Offices (second floor)",
+  "aliases": [
+   "faculty offices",
+   "faculty room",
+   "faculty rooms",
+   "staff room",
+   "faculty room 01",
+   "faculty room 02",
+   "faculty room 03",
+   "faculty room 04",
+   "faculty room 05",
+   "faculty room 06",
+   "faculty room 07",
+   "faculty room 08",
+   "faculty room 09",
+   "faculty room 10",
+   "faculty room 11",
+   "faculty room 12",
+   "faculty room 13",
+   "faculty room 14"
+  ],
+  "entry_nodes": [
+   "a2_faculty_offices"
+  ],
+  "building": "Block B",
+  "category": "office"
  }
 ]
